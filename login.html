@@ -4,16 +4,16 @@
     MEMBERS: ​Brenden Carroll, Stefani Page, Elina Tsykhmistrenko, Justin White, Hamza Zgidou​ 
     COURSE: CMSC 495:7383
     FILE: login.html
-    DATE: April 4, 2023
+    DATE: April 1, 2023
 -->
  <html>
     <head>
-        <link rel="stylesheet" href="loginStyleSheet.css">
+        <link rel="stylesheet" href="mainStyleSheet.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet"> 
     </head>
-    <script src="path-to-javascript-file.js"></script>
+    
     <body>
         <form>
             <div class="defaultContainer">
@@ -28,16 +28,16 @@
                         <h2>
                             Sign in or Create Account
                         </h2>
-                        <input type="text" placeholder="Enter Username" name="uname" required>
-                        <input type="password" placeholder="Enter Password" name="psw" required>
-                        <button type="submit">Login</button>
-                        <button type="createAccount">Create Account</button>
+                        <p id="loginError"></p>
+                        <input id="usrInput" type="text" placeholder="Enter Username" name="uname">
+                        <input type="passwordInput" placeholder="Enter Password" name="psw">
+                        <button id="submitBtn" type="submit">Login</button>
+                        <button id="createAccountBtn" type="button">Create Account</button>
                         <a id="forgot" href="#">Forgot Username/Password?</a>                 
                 </div>
             </div>
+            <script src="loginPage.js"></script>
         </form>
     </body>
     
- 
- 
 </html>
