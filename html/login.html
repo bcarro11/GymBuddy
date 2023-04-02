@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--
+    GROUP: Gym Buddy
+    MEMBERS: ​Brenden Carroll, Stefani Page, Elina Tsykhmistrenko, Justin White, Hamza Zgidou​ 
+    COURSE: CMSC 495:7383
+    FILE: login.html
+    DATE: April 1, 2023
+-->
+ <html>
+    <head>
+        <link rel="stylesheet" href="..\css\mainStyleSheet.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet"> 
+    </head>
+    
+    <body>
+        <form>
+            <div class="defaultContainer">
+                <div class="grid1">
+                    <img src="..\imgs\GymLogo.png" class="logo">
+                </div>
+
+                <div class="grid2">
+                        <h1>
+                            Welcome
+                        </h1>
+                        <h2>
+                            Sign in or Create Account
+                        </h2>
+                        <p id="loginError"></p>
+                        <input id="usrInput" type="text" placeholder="Enter Username" name="uname">
+                        <input type="passwordInput" placeholder="Enter Password" name="psw">
+                        <button id="submitBtn" type="submit">Login</button>
+                        <button id="createAccountBtn" type="button">Create Account</button>
+                        <a id="forgot" href="#">Forgot Username/Password?</a>                 
+                </div>
+            </div>
+            <script src="..\js\loginPage.js"></script>
+        </form>
+    </body>
+    
+</html>
