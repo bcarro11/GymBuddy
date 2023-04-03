@@ -26,14 +26,18 @@ html {
     gap: 4px;
     align-items: center;
     justify-items: center;
-    text-align: center;
-    text-justify: center;
+    /* text-align: center; */
+    /* text-justify: center; */
 }
 
 .grid1 {
     align-self: center;
     justify-self: center;
+    text-align: center;
+    text-justify: center;
 }
+
+
 
 .grid2 {
     background-color: #ffffff;
@@ -51,8 +55,66 @@ html {
     text-align: center;
 }   
 
-input {
+.grid3 {
+    /* display: inline-grid; */
+    /* display: block; */
+    grid-template-columns: 10%;
+    /* justify-content: center; */
+    /* align-content: center; */
+    background-color: #ffffff;
+    padding: 20px 20px;
+    border: #008ca8;
+    border-style: solid;
+}
+
+.centerAll {
+    /* display: block; */
+    text-align: center;
+    text-justify: center;
+    align-content: center;
+    justify-content: center;
+    justify-items: auto;
+    align-items: center;
+}
+
+/* input {
     width: 90%;
+    padding: 15px 20px;
+    margin: auto;
+    margin-bottom: 10px;
+    display: block;
+    border: 1px solid #008ca8;
+    box-sizing: border-box;
+    border-radius: 25px;
+    
+} */
+
+#defaultInput {
+    width: 90%;
+    padding: 15px 20px;
+    margin: auto;
+    margin-bottom: 10px;
+    display: block;
+    border: 1px solid #008ca8;
+    box-sizing: border-box;
+    border-radius: 25px;
+    
+}
+
+input.createAccInput {
+    width: 100%;
+    padding: 15px 20px;
+    margin: auto;
+    margin-bottom: 10px;
+    display: block;
+    border: 1px solid #008ca8;
+    box-sizing: border-box;
+    border-radius: 25px;
+    
+}
+
+select.createAccInput {
+    width: 100%;
     padding: 15px 20px;
     margin: auto;
     margin-bottom: 10px;
@@ -70,9 +132,13 @@ button {
     margin-bottom: 10px;
     border: none;
     cursor: pointer;
-    width: 90%;
+    width: 50%;
     border-radius: 25px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
+
 
 button:hover {
     opacity: 90%;
@@ -89,4 +155,18 @@ h2 {
 
 #forgot {
     font-family: 'Roboto';
+}
+
+#createAccountTitle {
+    margin-left: 5em;
+    margin-right: 5em;
+}
+
+#defaultLabel {
+    padding: 15px 20px;
+    font-family: 'Roboto';
+    text-justify: left;
+    text-align: left;
+    align-items: left;
+    align-content: left;
 }
