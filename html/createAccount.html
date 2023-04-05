@@ -17,38 +17,38 @@
     <body>
         
             <div class="defaultContainer">
-                <form>
+                
                 <div class="grid3">
                     <div class="centerAll">
                         <h1 id="createAccountTitle">Gym Buddy</h1>
                         <h2>Create Account</h2>
                     </div>                        
-
+                    <form id="createForm">
                             <label id="defaultLabel" for="name">Your Name*</label>
                             <input class="createAccInput" id="name" type="text" placeholder="First and Last Name" name="name" required></input>
 
-                            <label id="defaultLabel" for="createAccInput">E-Mail Address*</label>
-                            <input class="createAccInput" id="createAccInput" type="text" placeholder="E-Mail" name="nname" required></input>
+                            <label id="defaultLabel" for="emailAdd">E-Mail Address*</label>
+                            <input class="createAccInput" id="emailAdd" type="text" placeholder="E-Mail" name="email" required></input>
 
-                            <label id="defaultLabel" for="createAccInput">Password*</label>                            
-                            <input class="createAccInput" id="createAccInput" type="pasword" placeholder="At least 8 characters" name="fname" required></input>
-                            <input class="createAccInput" id="createAccInput" type="password" placeholder="Re-Enter Password" name="lname" required></input>
+                            <label id="defaultLabel" for="pwd1 pwd2">Password*</label>                            
+                            <input class="createAccInput" id="pwd1" type="password" placeholder="At least 8 characters" name="password1" required></input>
+                            <input class="createAccInput" id="pwd2" type="password" placeholder="Re-Enter Password" name="password2" required></input>
 
-                            <label id="defaultLabel" for="createAccInput">Nickname</label>
-                            <input class="createAccInput" id="createAccInput" type="text" placeholder="(optional) Nickname" name="nname"></input>
+                            <label id="defaultLabel" for="nickName">Nickname</label>
+                            <input class="createAccInput" id="nickName" type="text" placeholder="(optional) Nickname" name="nname"></input>
 
-                            <label id="defaultLabel" for="createAccInput">Date of Birth*</label>
-                            <input class="createAccInput" id="createAccInput" type="date" name="dob" required></input>
+                            <label id="defaultLabel" for="dateOfBirth">Date of Birth*</label>
+                            <input class="createAccInput" id="dateOfBirth" type="date" name="dob" required></input>
 
-                            <label id="defaultLabel" for="createAccInput">Gender*</label>
-                            <select class="createAccInput" name="gender" id="createAccInput" required>
+                            <label id="defaultLabel" for="gender">Gender*</label>
+                            <select class="createAccInput" name="gender" id="gender" required>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
                                 <option value="nonBinary">Non-Binary</option>
                             </select>
 
-                            <label id="defaultLabel" for="createAccInput">Preferred Gym*</label>
-                            <select class="createAccInput" name="prefGym" id="createAccInput" required>
+                            <label id="defaultLabel" for="preferredGym">Preferred Gym*</label>
+                            <select class="createAccInput" name="prefGym" id="preferredGym" required>
                                 <option value="male">Gold's Gym</option>
                                 <option value="female">Planet Fitness</option>
                                 <option value="nonBinary">LA Fitness</option>
@@ -56,9 +56,9 @@
 
                         <button id="createAccBtn" type="submit">Accept</button>
                         <button id="cancelCreateBtn" type="button">Cancel</button>
-                        
+                    </form>  
                 </div>
-                </form>
+                
             </div>
             <script src="..\js\createAccount.js"></script>
         <!-- </form> -->
