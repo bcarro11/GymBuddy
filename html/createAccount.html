@@ -22,7 +22,11 @@
                     <div class="centerAll">
                         <h1 id="createAccountTitle">Gym Buddy</h1>
                         <h2>Create Account</h2>
-                    </div>                        
+                    </div>
+                    <!--
+                        Create User Form:
+                        Form contains all data for user account creation.
+                    -->                    
                     <form id="createForm">
                             <label id="defaultLabel" for="name">Your Name*</label>
                             <input class="createAccInput" id="name" type="text" placeholder="First and Last Name" name="name" required></input>
@@ -49,9 +53,9 @@
 
                             <label id="defaultLabel" for="preferredGym">Preferred Gym*</label>
                             <select class="createAccInput" name="prefGym" id="preferredGym" required>
-                                <option value="male">Gold's Gym</option>
-                                <option value="female">Planet Fitness</option>
-                                <option value="nonBinary">LA Fitness</option>
+                                <option value="goldsGym">Gold's Gym</option>
+                                <option value="planetFitness">Planet Fitness</option>
+                                <option value="LAFitness">LA Fitness</option>
                             </select>
 
                         <button id="createAccBtn" type="submit">Accept</button>

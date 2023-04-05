@@ -12,12 +12,36 @@ const createAcc = document.getElementById("createForm").addEventListener("submit
 function getAccInfo(event){
     event.preventDefault();
 
-    const data = new FormData(event.target);
+    let data = new FormData(event.target);
     
-    const value = Object.fromEntries(data.entries());
+    let value = Object.fromEntries(data.entries());
+
+    console.log(value);
     
-    console.log({ value });
-    console.log("getAcc");
+    window.location.href="profilePage.html"; 
+
+    // POST TO SERVER VIA FETCH
+    // const response = await fetch('https://gymbuddy.com', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json; charset=utf-8'
+    //     },
+    //     body: JSON.stringify(value),
+    // })
+
+    // for multi-selects
+    // value.name = data.getAll('name');
+
+    // Check to see if passwords match.
+    // var pwd1 = value["password1"];
+    // var pwd2 = value["password2"];
+    // var comp = pwd1.localeCompare(pwd2).toString();
+    // if(comp == 0){
+    //     console.log("Passwords Match");
+    // } else {
+    //     console.log("Passwords DO NOT Match");
+    // }
+
 }
 
 function goHome(){
