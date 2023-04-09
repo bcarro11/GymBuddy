@@ -53,6 +53,10 @@ body {
     height: 132px;
 }
 
+.mailPic:hover {
+    opacity: 90%;
+}
+
 .grid2 {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
@@ -62,15 +66,33 @@ body {
 }
 
 .mailGrid {
-    grid-column: 3 / 4;
-    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
+    /* margin-top: 100px; */
     /* background-color: #ffffff;
     border: #008ca8;
     border-style: solid;     */
 }
 
-.mailPic:hover {
-    opacity: 90%;
+.logoGrid {
+    grid-column: 1 / 2;
+    grid-row: 4 / 6;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
+    /* margin-top: 100px; */
+    /* background-color: #ffffff; */
+    /* border: #008ca8; */
+    /* border-style: solid;     */
+}
+
+.logo {
+    width: 100%;
 }
 
 .grid3 {
@@ -82,16 +104,16 @@ body {
 }
 
 .grid4 {
-    grid-column: 2 / 4;
-    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+    grid-row: 2 / 4;
     background-color: #ffffff;
     border: #008ca8;
     border-style: solid;    
 }
 
 .grid5 {
-    grid-column: 2 / 4;
-    grid-row: 3 / 4;
+    grid-column: 2 / 3;
+    grid-row: 4 / 6;
     background-color: #ffffff;
     border: #008ca8;
     border-style: solid;    
@@ -117,7 +139,7 @@ h1 {
     color: #008ca8;
     text-align: center;
     padding: 15px 20px;
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 
 
@@ -134,6 +156,7 @@ h3 {
     color: #008ca8;
     text-align: left;
     padding: 15px 20px;
+    text-decoration: underline;
 }
 
 button {
