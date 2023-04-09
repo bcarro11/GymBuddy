@@ -2,7 +2,7 @@
     GROUP: Gym Buddy
     MEMBERS: ​Brenden Carroll, Stefani Page, Elina Tsykhmistrenko, Justin White, Hamza Zgidou​ 
     COURSE: CMSC 495:7383
-    FILE: mainStyleSheet.css
+    FILE: findBuddy.css
     DATE: April 8, 2023
 */
 
@@ -15,10 +15,10 @@ html {
 
 body {
     overflow: hidden;
-    background-image: url('../imgs/GymLogo.png');
+    /* background-image: url('../imgs/GymLogo.png');
     background-position: center;
     background-repeat: repeat;
-    background-size: 35%;
+    background-size: 35%; */
 }
 
 .container {
