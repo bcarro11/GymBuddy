@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!--
+    GROUP: Gym Buddy
+    MEMBERS: ​Brenden Carroll, Stefani Page, Elina Tsykhmistrenko, Justin White, Hamza Zgidou​ 
+    COURSE: CMSC 495:7383
+    FILE: login.html
+    DATE: April 1, 2023
+-->
+
+ <html>
+    <head>
+        <!-- <link rel="stylesheet" href="..\css\profilePage.css"> -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/profilePage.css')}}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet"> 
+    </head>
+    
+    <body>
+        
+        <div class="container"> 
+            
+            <div class="grid1">                
+                    <a href="#">
+                        <img class="profilePic" src="{{ url_for('static', filename='imgs/profile.png')}}" alt="">
+                         <!-- <img class="profilePic" src="..\imgs\profile.png" alt="" >                         -->
+                    </a>        
+            </div>
+
+            <div class="grid2">
+                <H1>
+                    Profile Information
+                </H1>
+            </div>
+
+            <div class="mailGrid">
+                <div class="messagesIcon">
+                    <a href="#">
+                        <!-- <img src="..\imgs\mail.png" alt=""> -->
+                        <img class="mailPic" src="{{ url_for('static', filename='imgs/mail.png')}}" alt="">
+                        <!-- <img class="mailPic" src="..\imgs\mail.png" alt=""> -->
+                    </a>
+                </div>
+            </div>
+
+            <!-- <div class="logoGrid">
+                <div class="logo">
+                    <a href="#">
+                        <img class="logo" src="..\imgs\GymLogo.png" alt="">
+                    </a>
+                </div>
+            </div> -->
+
+            <div class="grid3">
+                <div class="status">
+                    <!-- <a href="#"> -->
+                        <span> Status </span>
+                        <!-- <img src="..\imgs\GymLogo.png" alt=""> -->
+                    <!-- </a> -->
+                </div>
+                <div class="prefGym">
+                    <!-- <a href="#"> -->
+                        <span> Preferred Gym </span>
+                        <!-- <img src="..\imgs\GymLogo.png" alt=""> -->
+                    <!-- </a> -->
+                </div>
+                <div class="searchForBuddyBtn">
+                    <button id="searchForBuddy" type="button">Search for Buddy</button>
+                </div>
+            </div>
+
+            <div class="grid4">
+                <div class="basicInfo">
+                    <h2>Basic Info</h2>
+                    <h3>Name: </h3><p id="profName"></p>
+                    <h3>Nick Name: </h3><p id="profNickName"></p>
+                    <h3>Birthday: </h3><p id="profBirthday"></p>
+                    <h3>Gender: </h3><p id="profGender"></p>                    
+                </div>
+            </div>
+
+            <div class="grid5">
+                <div class="additionalInfo">
+                    <h2>Additional Info</h2>
+                    <h3>Favorite Exercise: </h3><p id="profFavExercise"></p>
+                    <h3>Favorite Workout Music: </h3><p id="profFavMusic"></p>                
+                    <h3>Fitness Goals: </h3><p id="profFitnessGoals"></p>
+                </div>
+            </div>
+
+        </div><!--End of div.container-->
+        <script src="{{ url_for('static', filename='js/profilePage.js')}}"></script>
+        <!-- <script src="..\js\profilePage.js"></script> -->
+    </body>
+    
+</html>
