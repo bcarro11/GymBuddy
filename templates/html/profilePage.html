@@ -29,7 +29,7 @@
 
             <div class="grid2">
                 <H1>
-                    Profile Information
+                    {{ test }} Profile Information 
                 </H1>
             </div>
 
@@ -43,14 +43,6 @@
                 </div>
             </div>
 
-            <!-- <div class="logoGrid">
-                <div class="logo">
-                    <a href="#">
-                        <img class="logo" src="..\imgs\GymLogo.png" alt="">
-                    </a>
-                </div>
-            </div> -->
-
             <div class="grid3">
                 <div class="status">
                     <!-- <a href="#"> -->
@@ -59,10 +51,7 @@
                     <!-- </a> -->
                 </div>
                 <div class="prefGym">
-                    <!-- <a href="#"> -->
                         <span> Preferred Gym </span>
-                        <!-- <img src="..\imgs\GymLogo.png" alt=""> -->
-                    <!-- </a> -->
                 </div>
                 <div class="searchForBuddyBtn">
                     <button id="searchForBuddy" type="button">Search for Buddy</button>
@@ -72,10 +61,22 @@
             <div class="grid4">
                 <div class="basicInfo">
                     <h2>Basic Info</h2>
-                    <h3>Name: </h3><p id="profName"></p>
-                    <h3>Nick Name: </h3><p id="profNickName"></p>
-                    <h3>Birthday: </h3><p id="profBirthday"></p>
-                    <h3>Gender: </h3><p id="profGender"></p>                    
+                    <br>
+                    <div id="fieldInfo">                    
+                        <h3>Name: </h3><p>{{ uName }}</p>
+                    </div>
+                    <br>
+                    <div id="fieldInfo"> 
+                        <h3>Nick Name: </h3><p id="prefNickName">{{ nname }}</p>
+                    </div>
+                    <br>
+                    <div id="fieldInfo"> 
+                        <h3>Birthday: </h3><p id="prefBirthday">{{ dob }}</p>
+                    </div>
+                    <br>
+                    <div id="fieldInfo"> 
+                        <h3>Gender: </h3><p id="prefGender">{{ gender }}</p>
+                    </div>
                 </div>
             </div>
 
@@ -89,7 +90,7 @@
             </div>
 
         </div><!--End of div.container-->
-        <script src="{{ url_for('static', filename='js/profilePage.js')}}"></script>
+        <!-- <script src="{{ url_for('static', filename='js/profilePage.js')}}"></script> -->
         <!-- <script src="..\js\profilePage.js"></script> -->
     </body>
     

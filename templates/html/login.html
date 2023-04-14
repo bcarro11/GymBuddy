@@ -30,7 +30,10 @@
                         <h2>
                             Sign in or Create Account
                         </h2>
-                        <form id="loginForm">
+                        {% if error %}
+                            <p class="error"><strong>{{error}}</strong>
+                        {% endif %}                        
+                        <form id="loginForm" method="post">
                             <p id="loginError"></p>
                             <input id="defaultInput" type="text" placeholder="Enter Username" name="uname" required>
                             <input id ="defaultInput" type="password" placeholder="Enter Password" name="psw" required>
@@ -42,7 +45,7 @@
                 
             </div>
             <!-- <script src="..\js\loginPage.js"></script> -->
-            <script src="{{ url_for('static', filename='js/loginPage.js')}}"></script>
+            <!-- <script src="{{ url_for('static', filename='js/loginPage.js')}}"></script> -->
 
     </body>
     

@@ -30,13 +30,23 @@ function submitFunction(event){
     .then(function (response){
 
         if(response.ok) {
-            response.json()
-            .then(function(response) {
-                console.log(response);
+            console.log("response ok");
+            let x = response.json()                    
+            .then(function(x) {
+                console.log(x)
+                // let x = response.json
+                if(x['response'] == "YES") {
+                    console.log("SUCCESS");
+                    goToProfilePage();
+                } else {
+                    console.log(x['response']);
+                    // alert(x['response']);
+                }
             });
         }
         else {
-            throw Error('Something went wrong');
+            // throw Error('Something went wrong');
+            alert("NO");
         }
     })
     .catch(function(error) {
@@ -59,6 +69,10 @@ function submitFunction(event){
 
 }
 
+function goToProfilePage(test){
+    window.location.href="profilePage";
+}
+
 function goToCreateAcc(){
-    window.location.href="createAccount";  
+    window.location.href=("createAccount");  
 }

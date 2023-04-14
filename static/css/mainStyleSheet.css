@@ -153,6 +153,11 @@ h2 {
     font-family: 'Roboto';
 }
 
+.error {
+    font-family: 'Roboto';
+    color: red;
+}
+
 #forgot {
     font-family: 'Roboto';
 }

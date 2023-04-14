@@ -151,7 +151,12 @@ h2 {
 
 }
 
-h3 {
+#fieldInfo h3,
+#fieldInfo p {
+    display: inline;
+}
+
+h3 {    
     font-family: 'Roboto';
     color: #008ca8;
     text-align: left;
