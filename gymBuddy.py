@@ -18,8 +18,7 @@ class User:
     id = 1
     username = 'brenden'
     password = 'test123'
-    name = 'brendenC'
-    nname = 'bc'
+    prefName = 'bc'
     dob = '5/5/5'
     gender = 'male'
 
@@ -52,6 +51,9 @@ def loginPage():
             return render_template("html/login.html", error="Invalid Login")
     return render_template("html/login.html")
 
+
+    # Below is for JSON data only.
+    ##############################
     # jsonData = request.get_json()
     # usr = (jsonData['uname'])
     # pwd = (jsonData['psw'])
@@ -102,8 +104,8 @@ def createAccount():
         print(prefGym)
 
         if(valid):
-            #Generate ID?
-            #Input into DB?
+            # Generate ID?
+            # Input into DB?
             return redirect(url_for('welcomePage'))
         else:
             return render_template("html/createAccount.html", error = msg)
@@ -117,8 +119,8 @@ def profilePage(userID):
 
     return render_template("html/profilePage.html", 
         profileHeader = currentUser.username + "'s",
-        uName = currentUser.name, 
-        nname = currentUser.nname, 
+        uName = currentUser.username, 
+        prefName = currentUser.prefName, 
         dob = currentUser.dob, 
         gender = currentUser.gender)
 
@@ -128,13 +130,13 @@ def findBuddy():
     cUser = currentUser
     if request.method == "POST":
         exSquats = request.form.get('squats')
+        exTriceps = request.form.get('triceps')
         if(exSquats):
-            print("YES")
+            # MATCHING OCCURS HERE?
             return redirect(url_for('welcomePage'))
         
-
     return render_template("html/findBuddy.html", id = getUserID(currentUser))
-    # return profilePage(currentUser)
+
 
 @app.route('/welcomePage')
 def welcomePage():
