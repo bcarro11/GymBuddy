@@ -25,6 +25,11 @@ class User:
 
 currentUser = User()
 
+def getUserID(user):
+    return user.id
+
+def getCurrentUser():
+    return currentUser
 
 
 @login_manager.user_loader
@@ -41,10 +46,8 @@ def loginPage():
         pwd = request.form.get('psw')
 
         if (usr == currentUser.username and pwd == currentUser.password):
-            # return redirect(url_for('profilePage'))
-            # return redirect(url_for('profilePage', user = userID))
-            return profilePage(currentUser)
-            # return render_template("html/profilePage.html")
+            id = getUserID(currentUser)
+            return redirect(url_for('profilePage', userID = id))
         else:
             return render_template("html/login.html", error="Invalid Login")
     return render_template("html/login.html")
@@ -108,8 +111,10 @@ def createAccount():
     return render_template("html/createAccount.html")
 
 
-@app.route('/profilePage')
-def profilePage(currentUser):
+
+@app.route('/profilePage/<userID>')
+def profilePage(userID):
+
     return render_template("html/profilePage.html", 
         profileHeader = currentUser.username + "'s",
         uName = currentUser.name, 
@@ -125,10 +130,10 @@ def findBuddy():
         exSquats = request.form.get('squats')
         if(exSquats):
             print("YES")
-            return welcomePage()
+            return redirect(url_for('welcomePage'))
         
 
-    return render_template("html/findBuddy.html", cUser = cUser)
+    return render_template("html/findBuddy.html", id = getUserID(currentUser))
     # return profilePage(currentUser)
 
 @app.route('/welcomePage')

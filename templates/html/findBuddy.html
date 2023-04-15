@@ -186,8 +186,8 @@
                 </div>
             </div>
             <div class="grid3">
-                <button id="startSearch" type="submit" form="exerciseForm">Accept</button>
-                <button id="cancelSearch" type="button" onclick="history.back()">Cancel</button>                                
+                <button id="startSearch" type="submit" form="exerciseForm">Accept</button>                    
+                <a href="{{ url_for('profilePage', userID=id) }}"> <button id="cancelSearch" type="button">Cancel</button></a>
             </div>
         </div>
         <!-- <script src="{{ url_for('static', filename='js/findBuddy.js')}}"></script> -->
