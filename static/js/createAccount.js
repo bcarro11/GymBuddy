@@ -17,30 +17,49 @@ function getAccInfo(event){
     let value = Object.fromEntries(data.entries());
 
     console.log(value);
+
+    const options =  {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;'
+        },
+        body: JSON.stringify(value)
+    }
+    
+    fetch('/createAccount', options)
+        .then(function (res){            
+        }).then(function (res){
+            let x = res.json()
+            if(x['response'] == success){
+                window.location.href="/login";
+            }
+        })
+        // .then(data => console.log(res))
+        .catch(e => console.error(e));
     
 
-    fetch('/createAccount', {
-        headers : {
-            'Content-Type' : 'application/json'
-        },
-        method : 'POST',
-        body : JSON.stringify(value)
-    })
-    .then(function (response){
+    // fetch('/createAccount', {
+    //     headers : {
+    //         'Content-Type' : 'application/json'
+    //     },
+    //     method : 'POST',
+    //     body : JSON.stringify(value)
+    // })
+    // .then(function (response){
 
-        if(response.ok) {
-            response.json()
-            .then(function(response) {
-                console.log(response);
-            });
-        }
-        else {
-            throw Error('Something went wrong');
-        }
-    })
-    .catch(function(error) {
-        console.log(error);
-    });
+    //     if(response.ok) {
+    //         response.json()
+    //         .then(function(response) {
+    //             console.log(response);
+    //         });
+    //     }
+    //     else {
+    //         throw Error('Something went wrong');
+    //     }
+    // })
+    // .catch(function(error) {
+    //     console.log(error);
+    // });
     
     // for multi-selects
     // value.name = data.getAll('name');

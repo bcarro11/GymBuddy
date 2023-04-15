@@ -60,11 +60,48 @@ def loginPage():
 @app.route('/createAccount', methods=["GET", "POST"])
 def createAccount():
     if request.method == "POST":
-        jsonData = request.get_json()
-        print(jsonData)
-        return {
-            'response' : jsonData
-        }
+        msg = ""
+        valid = True
+
+        prefName = str(request.form.get('prefName'))
+        email = str(request.form.get('email'))
+        password1 = str(request.form.get('pwd1'))
+        password2 = str(request.form.get('pwd2'))
+        dob = str(request.form.get('dateOfBirth'))
+        gender = str(request.form.get('gender'))
+        prefGym = str(request.form.get('prefGym'))
+
+        #Validation here?
+        if not (len(password1) >= 8):
+            valid = False
+            msg = "Password invalid"
+        
+        if not (len(password2) >= 8):
+            valid = False
+            msg = "Password invalid"
+
+        if not (password1 == password2):
+            valid = False
+            msg = "Passwords don't match"
+
+        #Generate ID?
+        #Input into DB?
+
+        print(prefName)
+        print(email)
+        print(password1)
+        print(password2)
+        print(dob)
+        print(gender)
+        print(prefGym)
+
+        if(valid):
+            return render_template("html/login.html", error="Welcome!")
+        else:
+            return render_template("html/createAccount.html", error = msg)
+
+        return render_template("html/login.html", error="Welcome!")
+
     return render_template("html/createAccount.html")
 
 
