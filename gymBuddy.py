@@ -4,7 +4,7 @@
 # FILE: gymBuddy.py
 # DATE: April 9, 2023
 
-from flask import Flask, render_template, request, flash
+from flask import Flask, render_template, request, flash, redirect, url_for
 from flask_login.login_manager import LoginManager
 
 app = Flask(__name__)
@@ -96,24 +96,30 @@ def createAccount():
         print(prefGym)
 
         if(valid):
-            return render_template("html/login.html", error="Welcome!")
+            return redirect(url_for('welcomePage'))
         else:
             return render_template("html/createAccount.html", error = msg)
-
-        return render_template("html/login.html", error="Welcome!")
 
     return render_template("html/createAccount.html")
 
 
 @app.route('/profilePage')
 def profilePage(name):
-    return render_template("html/profilePage.html", test=name + "'s",
-        uName=User.name, nname=User.nname, dob=User.dob, gender=User.gender)
+    return render_template("html/profilePage.html", 
+        profileHeader=name + "'s",
+        uName=User.name, 
+        nname=User.nname, 
+        dob=User.dob, 
+        gender=User.gender)
 
 
 @app.route('/findBuddy')
 def findBuddyPage():
     return render_template("html/findBuddy.html")
+
+@app.route('/welcomePage')
+def welcomePage():
+    return render_template("html/welcomePage.html")
 
 if __name__ == "__main__":
     app.run(debug=True, use_debugger=False, use_reloader=True, port=5000)

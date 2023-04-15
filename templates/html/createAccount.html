@@ -24,8 +24,8 @@
                         <h1 id="createAccountTitle">Gym Buddy</h1>
                         <h2>Create Account</h2>
                         {% if error %}
-                        <p class="error"><strong>{{error}}</strong>
-                    {% endif %} 
+                            <p class="error"><strong>{{error}}</strong>
+                        {% endif %} 
                     </div>
                     <!--
                         Create User Form:
@@ -69,8 +69,7 @@
                 
             </div>
             <!-- <script src="..\js\createAccount.js"></script> -->
-            <!-- <script src="{{ url_for('static', filename='js/createAccount.js')}}"></script> -->
-        <!-- </form> -->
+            <script src="{{ url_for('static', filename='js/createAccount.js')}}"></script>
     </body>
     
 </html>
