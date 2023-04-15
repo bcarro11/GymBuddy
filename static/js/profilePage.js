@@ -7,8 +7,8 @@
  */
 
 
-const createAcc = document.getElementById("searchForBuddy").addEventListener("click", goToFindBuddy);
+// const createAcc = document.getElementById("searchForBuddy").addEventListener("click", goToFindBuddy);
 
-function goToFindBuddy(){
-    window.location.href="findBuddy";  
-}
+// function goToFindBuddy(){
+//     window.location.href="findBuddy";  
+// }

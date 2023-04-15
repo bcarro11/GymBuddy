@@ -3,7 +3,7 @@
     GROUP: Gym Buddy
     MEMBERS: ​Brenden Carroll, Stefani Page, Elina Tsykhmistrenko, Justin White, Hamza Zgidou​ 
     COURSE: CMSC 495:7383
-    FILE: login.html
+    FILE: profilePage.html
     DATE: April 1, 2023
 -->
 
@@ -29,7 +29,7 @@
 
             <div class="grid2">
                 <H1>
-                    {{ profileHeader }} Profile Information 
+                    {{ profileHeader}} Profile Information
                 </H1>
             </div>
 
@@ -54,7 +54,8 @@
                         <span> Preferred Gym </span>
                 </div>
                 <div class="searchForBuddyBtn">
-                    <button id="searchForBuddy" type="button">Search for Buddy</button>
+                    <a href={{ url_for('findBuddy') }}> <button id="searchForBuddy" type="button"> Search For Buddy</button></a>
+                    <!-- <button id="searchForBuddy" type="button">Search for Buddy</button> -->
                 </div>
             </div>
 

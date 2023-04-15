@@ -20,10 +20,11 @@
             <div class="grid1">
                 <h1 id="createAccountTitle">Gym Buddy</h1>
                 <h2>Select Exercises</h2>
+                <p class="error"><strong>{{currentUserName}}</strong>
             </div>
             <div class="grid2">
                 <div class="scrollable">
-                    <form>
+                    <form id="exerciseForm" method="post">
                         
                         <input type="checkbox" id="Squats" name="squats" value="squats">
                         <label id="defaultLabel" for="Squats">Squats</label><br>
@@ -31,19 +32,7 @@
                         <input type="checkbox" id="Triceps" name="triceps" value="triceps">
                         <label id="defaultLabel" for="Triceps">Triceps</label><br>
                         
-                        <input type="checkbox" id="Squats" name="squats" value="squats">
-                        <label id="defaultLabel" for="Squats">Squats</label><br>
-
-                        <input type="checkbox" id="Triceps" name="triceps" value="triceps">
-                        <label id="defaultLabel" for="Triceps">Triceps</label><br>
-
-                        <input type="checkbox" id="Squats" name="squats" value="squats">
-                        <label id="defaultLabel" for="Squats">Squats</label><br>
-
-                        <input type="checkbox" id="Triceps" name="triceps" value="triceps">
-                        <label id="defaultLabel" for="Triceps">Triceps</label><br>
-                        
-                        <input type="checkbox" id="Squats" name="squats" value="squats">
+                        <!-- <input type="checkbox" id="Squats" name="squats" value="squats">
                         <label id="defaultLabel" for="Squats">Squats</label><br>
 
                         <input type="checkbox" id="Triceps" name="triceps" value="triceps">
@@ -180,16 +169,29 @@
 
                         <input type="checkbox" id="Triceps" name="triceps" value="triceps">
                         <label id="defaultLabel" for="Triceps">Triceps</label><br>
+
+                        <input type="checkbox" id="Squats" name="squats" value="squats">
+                        <label id="defaultLabel" for="Squats">Squats</label><br>
+
+                        <input type="checkbox" id="Triceps" name="triceps" value="triceps">
+                        <label id="defaultLabel" for="Triceps">Triceps</label><br>
+                        
+                        <input type="checkbox" id="Squats" name="squats" value="squats">
+                        <label id="defaultLabel" for="Squats">Squats</label><br>
+
+                        <input type="checkbox" id="Triceps" name="triceps" value="triceps">
+                        <label id="defaultLabel" for="Triceps">Triceps</label><br> -->
 
                     </form>
                 </div>
             </div>
             <div class="grid3">
-                <button id="startSearch" type="submit">Accept</button>
-                <button id="cancelSearch" type="button">Cancel</button>
+                <button id="startSearch" type="submit" form="exerciseForm">Accept</button>
+                <button id="cancelSearch" type="button" onclick="history.back()">Cancel</button>
+                <!-- <a href={{ url_for('profilePage', name=uName)}}> <button id="cancelSearch" type="button">Cancel</button></a> -->
             </div>
         </div>
-        <script src="{{ url_for('static', filename='js/findBuddy.js')}}"></script>
+        <!-- <script src="{{ url_for('static', filename='js/findBuddy.js')}}"></script> -->
         <!-- <script src="..\js\findBuddy.js"></script> -->
     </body>
     

@@ -14,14 +14,16 @@ login_manager.init_app(app)
 
 
 
-class User():
-    user_id = 1
+class User:
+    id = 1
     username = 'brenden'
     password = 'test123'
-    name = 'brenden carroll'
+    name = 'brendenC'
     nname = 'bc'
     dob = '5/5/5'
     gender = 'male'
+
+currentUser = User()
 
 
 @login_manager.user_loader
@@ -37,8 +39,8 @@ def loginPage():
         usr = request.form.get('uname')
         pwd = request.form.get('psw')
 
-        if (usr == User.username and pwd == User.password):
-            return profilePage(User.username)
+        if (usr == currentUser.username and pwd == currentUser.password):
+            return profilePage(currentUser)
         else:
             return render_template("html/login.html", error="Invalid Login")
     return render_template("html/login.html")
@@ -84,9 +86,6 @@ def createAccount():
             valid = False
             msg = "Passwords don't match"
 
-        #Generate ID?
-        #Input into DB?
-
         print(prefName)
         print(email)
         print(password1)
@@ -96,6 +95,8 @@ def createAccount():
         print(prefGym)
 
         if(valid):
+            #Generate ID?
+            #Input into DB?
             return redirect(url_for('welcomePage'))
         else:
             return render_template("html/createAccount.html", error = msg)
@@ -104,18 +105,26 @@ def createAccount():
 
 
 @app.route('/profilePage')
-def profilePage(name):
+def profilePage(currentUser):
     return render_template("html/profilePage.html", 
-        profileHeader=name + "'s",
-        uName=User.name, 
-        nname=User.nname, 
-        dob=User.dob, 
-        gender=User.gender)
+        profileHeader = currentUser.username + "'s",
+        uName = currentUser.name, 
+        nname = currentUser.nname, 
+        dob = currentUser.dob, 
+        gender = currentUser.gender)
 
 
-@app.route('/findBuddy')
-def findBuddyPage():
+@app.route('/findBuddy', methods=["GET", "POST"])
+def findBuddy():
+    if request.method == "POST":
+        exSquats = request.form.get('squats')
+        if(exSquats):
+            print("YES")
+            return welcomePage()
+        
+
     return render_template("html/findBuddy.html")
+    # return profilePage(currentUser)
 
 @app.route('/welcomePage')
 def welcomePage():
