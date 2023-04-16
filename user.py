@@ -47,11 +47,11 @@ class User:
 
                 continue
 
-            print('INSIDE', user_pool[i])
             partneruser_set = user_pool[i].routineset
+            print ('partner set', partneruser_set)
             overlap_set = currentuser_set.intersection(partneruser_set)
             length_overlap = len(overlap_set)
-            routinematchdictionary[id] = length_overlap
+            routinematchdictionary[user_pool[i]] = length_overlap
 
         sorted_routinematchdictionary = sorted(routinematchdictionary.items(),
         key = lambda x:x[1], reverse = True)
@@ -59,20 +59,4 @@ class User:
         final_dictionary = dict(sorted_routinematchdictionary)
 
         return final_dictionary
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     
