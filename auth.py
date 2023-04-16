@@ -16,3 +16,7 @@ def findBuddy():
             return redirect(url_for('welcomePage'))
         
     return render_template("html/findBuddy.html", id = current_user.id)
+
+@auth.route('/matchesPage')
+def matchesPage():
+    return render_template("html/matchesPage.html")
