@@ -13,7 +13,7 @@ def findBuddy():
         exTriceps = request.form.get('triceps')
         if(exSquats):
             # MATCHING OCCURS HERE?
-            return redirect(url_for('welcomePage'))
+            return redirect(url_for('matchesPage'))
         
     return render_template("html/findBuddy.html", id = current_user.id)
 
