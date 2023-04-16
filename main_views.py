@@ -1,0 +1,88 @@
+from flask import Blueprint, render_template, request, redirect, url_for
+from flask_login import current_user, user_logged_in, user_unauthorized, login_user
+from datetime import date
+from gymBuddy import db
+from models import User
+
+main_views = Blueprint('main_views', __name__)
+
+@main_views.route('/', methods=["GET", "POST"])
+@main_views.route('/login', methods=["GET", "POST"])
+def loginPage():
+    if request.method == "POST":
+        usr = request.form.get('email')
+        pwd = request.form.get('psw')
+
+        user = User.passwordIsMatch(usr, pwd)
+        if user:
+            login_user(user)
+            return redirect(url_for('profilePage', userID = user.id))
+        else:
+            return render_template("html/login.html", error="Invalid Login")
+    return render_template("html/login.html")
+
+@main_views.route('/createAccount', methods=["GET", "POST"])
+def createAccount():
+    if request.method == "POST":
+        msg = ""
+        valid = True
+
+        prefName = str(request.form.get('prefName'))
+        email = str(request.form.get('email'))
+        password1 = str(request.form.get('pwd1'))
+        password2 = str(request.form.get('pwd2'))
+        dob = str(request.form.get('dateOfBirth'))
+        gender = str(request.form.get('gender'))
+        prefGym = str(request.form.get('prefGym'))
+
+        #Validation here?
+        if not (len(password1) >= 8):
+            valid = False
+            msg = "Password invalid"
+        
+        if not (len(password2) >= 8):
+            valid = False
+            msg = "Password invalid"
+
+        if not (password1 == password2):
+            valid = False
+            msg = "Passwords don't match"
+
+        if "@" not in email:
+            valid = False
+            msg = "Invalid email address"
+
+        print(prefName)
+        print(email)
+        print(password1)
+        print(password2)
+        print(dob)
+        print(gender)
+        print(prefGym)
+
+        if(valid):
+            # Generate ID?
+            # Input into DB?
+            user = User(email=email, password=password1, dob=dob, gender=gender, preferredGym=prefGym, prefname=prefName)
+            db.session.add(user)
+            db.commit()
+            return redirect(url_for('welcomePage'))
+        else:
+            return render_template("html/createAccount.html", error = msg)
+
+    return render_template("html/createAccount.html")
+
+@main_views.route('/profilePage/<userID>')
+def profilePage(userID):
+    user = db.get_or_404(User, userID)
+
+    return render_template("html/profilePage.html", 
+        profileHeader = user.prefname + "'s",
+        uName = user.prefname, 
+        prefName = user.prefName, 
+        dob = str(user.dob), 
+        gender = user.gender)
+
+@main_views.route('/welcomePage')
+def welcomePage():
+    return render_template("html/welcomePage.html")

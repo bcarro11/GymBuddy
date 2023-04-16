@@ -6,45 +6,58 @@
 
 from flask import Flask, render_template, request, flash, redirect, url_for
 from flask_login.login_manager import LoginManager
+from flask_login import current_user
+from models import User, Exercise, db
+
+SECRET = "dasibasdbhjalfhjblahjksdfb"
 
 app = Flask(__name__)
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///gymbuddy.db"
+app.config["SECRET_KEY"] = SECRET
+db.init_app(app)
+
 
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+from main_views import main_views
+app.register_blueprint(main_views)
+from auth import auth
+app.register_blueprint(auth)
 
 
-class User:
+
+""" class User:
     id = 1
     username = 'brenden'
     password = 'test123'
     prefName = 'bc'
     dob = '5/5/5'
-    gender = 'male'
+    gender = 'male' """
 
-currentUser = User()
-
+""" currentUser = User() """
+""" 
 def getUserID(user):
     return user.id
 
 def getCurrentUser():
-    return currentUser
+    return current_user """
 
 
 @login_manager.user_loader
 def load_user(user_id):
     # return User.get(user_id)
-    return User
+    return User.findUserByID(user_id)
 
 
-@app.route('/', methods=["GET", "POST"])
+""" @app.route('/', methods=["GET", "POST"])
 @app.route('/login', methods=["GET", "POST"])
 def loginPage():
     if request.method == "POST":
-        usr = request.form.get('uname')
+        usr = request.form.get('email')
         pwd = request.form.get('psw')
 
-        if (usr == currentUser.username and pwd == currentUser.password):
+        if (usr == current_user.username and pwd == currentUser.password):
             id = getUserID(currentUser)
             return redirect(url_for('profilePage', userID = id))
         else:
@@ -127,7 +140,7 @@ def profilePage(userID):
 
 @app.route('/findBuddy', methods=["GET", "POST"])
 def findBuddy():
-    cUser = currentUser
+    cUser = current_user
     if request.method == "POST":
         exSquats = request.form.get('squats')
         exTriceps = request.form.get('triceps')
@@ -140,7 +153,7 @@ def findBuddy():
 
 @app.route('/welcomePage')
 def welcomePage():
-    return render_template("html/welcomePage.html")
+    return render_template("html/welcomePage.html") """
 
 if __name__ == "__main__":
     app.run(debug=True, use_debugger=False, use_reloader=True, port=5000)
