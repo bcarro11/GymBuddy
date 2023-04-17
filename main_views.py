@@ -1,8 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import current_user, user_logged_in, user_unauthorized, login_user
 from datetime import date
-from gymBuddy import db
-from models import User
+from models import db, User
 
 main_views = Blueprint('main_views', __name__)
 
@@ -16,7 +15,7 @@ def loginPage():
         user = User.passwordIsMatch(usr, pwd)
         if user:
             login_user(user)
-            return redirect(url_for('profilePage', userID = user.id))
+            return redirect(url_for('main_views.profilePage', userID = user.id))
         else:
             return render_template("html/login.html", error="Invalid Login")
     return render_template("html/login.html")
@@ -31,7 +30,12 @@ def createAccount():
         email = str(request.form.get('email'))
         password1 = str(request.form.get('pwd1'))
         password2 = str(request.form.get('pwd2'))
-        dob = str(request.form.get('dateOfBirth'))
+        dobstr = str(request.form.get('dateOfBirth'))
+        print(dobstr)
+        month = int(dobstr[5:7])
+        day = int(dobstr[8:])
+        year = int(dobstr[:4])
+        dob = date(year, month, day)
         gender = str(request.form.get('gender'))
         prefGym = str(request.form.get('prefGym'))
 
@@ -65,8 +69,8 @@ def createAccount():
             # Input into DB?
             user = User(email=email, password=password1, dob=dob, gender=gender, preferredGym=prefGym, prefname=prefName)
             db.session.add(user)
-            db.commit()
-            return redirect(url_for('welcomePage'))
+            db.session.commit()
+            return redirect(url_for('main_views.welcomePage'))
         else:
             return render_template("html/createAccount.html", error = msg)
 
@@ -79,7 +83,7 @@ def profilePage(userID):
     return render_template("html/profilePage.html", 
         profileHeader = user.prefname + "'s",
         uName = user.prefname, 
-        prefName = user.prefName, 
+        prefName = user.prefname, 
         dob = str(user.dob), 
         gender = user.gender)
 

@@ -34,11 +34,14 @@ class User(db.Model):
 
     @staticmethod
     def findUserByEmail(em):
-        return db.session.execute(db.select(User).filter_by(email=em)).scalare_one()
+        # return db.session.execute(db.select(User).filter_by(email=em)).scalar_one()
+        print(em)
+        return User.query.filter(User.email == em).first()
     
     @staticmethod
     def findUserByID(id):
-        return db.session.execute(db.select(User).filter_by(id=id)).scalare_one()
+        #return db.session.execute(db.select(User).filter_by(id=id)).scalar_one()
+        return User.query.filter(User.id == id).first()
     
     @staticmethod
     def passwordIsMatch(em, pw):

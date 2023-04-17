@@ -1,7 +1,7 @@
 from flask import Blueprint, request, redirect, url_for, render_template
 from flask_login import current_user
 from models import User
-from gymBuddy import db
+from models import db, User
 
 auth = Blueprint('auth', __name__)
 
@@ -13,7 +13,7 @@ def findBuddy():
         exTriceps = request.form.get('triceps')
         if(exSquats):
             # MATCHING OCCURS HERE?
-            return redirect(url_for('matchesPage'))
+            return redirect(url_for('auth.matchesPage'))
         
     return render_template("html/findBuddy.html", id = current_user.id)
 
