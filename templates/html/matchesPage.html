@@ -32,7 +32,7 @@
                         </h2>
                         <p>
                             {% for buddy in matches %}
-                                <li><a href="{{ buddy.email }}">{{ buddy.prefName }}</a></li>
+                                <li><a href="mailto:{{ buddy.email }}">{{ buddy.prefname }}</a></li>
                             {% endfor %}
                         </p>
                         <button id="exitBtn" type="button">Exit</button>              

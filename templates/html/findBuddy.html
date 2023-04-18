@@ -25,12 +25,18 @@
             <div class="grid2">
                 <div class="scrollable">
                     <form id="exerciseForm" method="post">
-                        
-                        <input type="checkbox" id="Squats" name="squats" value="squats">
-                        <label id="defaultLabel" for="Squats">Squats</label><br>
 
+                        {% for exercise in exercises %}
+                        
+                        <input type="checkbox" id="{{ exercise.name }}" name="{{ exercise.name }}" value="{{ exercise.name }}">
+                        <label id="defaultLabel" for="{{ exercise.name }}">{{ exercise.name }}</label><br>
+
+                        {% endfor %}
+
+                        <!--
                         <input type="checkbox" id="Triceps" name="triceps" value="triceps">
-                        <label id="defaultLabel" for="Triceps">Triceps</label><br>                                        
+                        <label id="defaultLabel" for="Triceps">Triceps</label><br>     
+                        -->                                   
 
                     </form>
                 </div>

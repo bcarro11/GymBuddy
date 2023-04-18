@@ -85,7 +85,8 @@ def profilePage(userID):
         uName = user.prefname, 
         prefName = user.prefname, 
         dob = str(user.dob), 
-        gender = user.gender)
+        gender = user.gender,
+        prefGym = user.preferredGym)
 
 @main_views.route('/welcomePage')
 def welcomePage():

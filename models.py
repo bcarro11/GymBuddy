@@ -50,6 +50,54 @@ class User(db.Model):
             return user
         else:
             return None
+        
+    """ def routine_match(self, user_pool):
+        print('User pool:', user_pool)
+        currentuser_set = user_pool[self.id]
+        routinematchdictionary = {}
+        final_dictionary = {}
+
+        for i in range(len(user_pool)):
+
+            if user_pool[i] == self:
+
+                continue
+
+            partneruser_set = user_pool[i].routineset
+            print ('partner set', partneruser_set)
+            overlap_set = currentuser_set.intersection(partneruser_set)
+            length_overlap = len(overlap_set)
+            routinematchdictionary[user_pool[i]] = length_overlap
+
+        sorted_routinematchdictionary = sorted(routinematchdictionary.items(),
+        key = lambda x:x[1], reverse = True)
+
+        final_dictionary = dict(sorted_routinematchdictionary)
+
+        return final_dictionary """
+    
+    def routine_match(self, user_pool):
+        print('User pool:', user_pool)
+        currentuser_set = user_pool[self.id]
+        routinematchdict = {}
+        final_dictionary = {}
+
+        for id in user_pool:
+            if id == self.id:
+                continue
+
+            partneruser_set = user_pool[id]
+            print('partner set: ', partneruser_set)
+            overlap_set = currentuser_set.intersection(partneruser_set)
+            length_overlap = len(overlap_set)
+            routinematchdict[id] = length_overlap
+
+        sorted_routinematchdictionary = sorted(routinematchdict.items(),
+        key = lambda x:x[1], reverse = True)
+
+        print(sorted_routinematchdictionary)
+
+        return sorted_routinematchdictionary
 
 
 class Gym(db.Model):
@@ -57,6 +105,13 @@ class Gym(db.Model):
     name = db.Column(db.String, nullable=False)
     address = db.Column(db.String, unique=True)
 
+    def __init__(self, name, address):
+        self.name = name
+        self.address = address
+
 class Exercise(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, unique=True)
+
+    def __init__(self, name):
+        self.name = name
