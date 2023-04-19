@@ -35,12 +35,13 @@
                                 <li><a href="mailto:{{ buddy.email }}">{{ buddy.prefname }}</a></li>
                             {% endfor %}
                         </p>
-                        <button id="exitBtn" type="button">Exit</button>              
+                        <!-- <button id="exitBtn" type="button">Exit</button>               -->
+                        <a href="{{ url_for('main_views.profilePage', userID=current_user.id) }}"> <button id="cancelSearch" type="button">Cancel</button></a>
                 </div>
                 
             </div>
             <!-- <script src="..\js\loginPage.js"></script> -->
-            <script src="{{ url_for('static', filename='js/matchesPage.js')}}"></script>
+            <!-- <script src="{{ url_for('static', filename='js/matchesPage.js')}}"></script> -->
 
     </body>
     
