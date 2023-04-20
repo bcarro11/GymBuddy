@@ -73,11 +73,11 @@ class User:
 
     #Get the average rating for a user
     def get_average_rating(self):
-        total = 0
+        running_total = 0
         count = 0
         
         for rating in self.user_ratings.values():
-            total += rating
+            running_total += rating
             count += 1
 
-        return total/count
+        return running_total/count

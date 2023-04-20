@@ -31,6 +31,7 @@ Jim.routineset = {1, 2, 3, 4, 5, 6}
 Stefani.add_rating(Tracy, 4)
 Stefani.add_rating(Kate, 1)
 Stefani.add_rating(Jim, 5)
+Stefani.add_rating(Sam, 3)
 Stefani.avg_user_rating = Stefani.get_average_rating()
 print(str(Stefani.avg_user_rating))
 print(str(Stefani.get_rating(Tracy)))
