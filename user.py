@@ -15,6 +15,9 @@ class User:
     preferredgym = None
     #usericon = None
 
+    avg_user_rating = None #added to keep track of the average user rating
+    user_ratings = {}
+
     routineset = set()
     routinematchdictionary = {}
 
@@ -60,3 +63,21 @@ class User:
 
         return final_dictionary
     
+    #Add a new rating for a user
+    def add_rating(self, user, rating):
+        self.user_ratings[user] = rating
+
+    #Get the rating for a specific user
+    def get_rating(self, user):
+        return self.user_ratings.get(user)
+
+    #Get the average rating for a user
+    def get_average_rating(self):
+        total = 0
+        count = 0
+        
+        for rating in self.user_ratings.values():
+            total += rating
+            count += 1
+
+        return total/count
