@@ -79,6 +79,19 @@ def createAccount():
 @main_views.route('/profilePage/<userID>')
 def profilePage(userID):
     user = db.get_or_404(User, userID)
+    
+    #Get user rating from DB?
+    ratingNumber = 3
+
+    #Check user rating and display picture?
+    if (ratingNumber == 1):
+        rating = "imgs/oneStar.png"
+    elif (ratingNumber == 2):
+        rating = "imgs/twoStar.png"
+    elif (ratingNumber == 3):
+        rating = "imgs/threeStar.png"
+    else:
+        rating = "imgs/noRating.png"
 
     return render_template("html/profilePage.html", 
         profileHeader = user.prefname + "'s",
@@ -86,7 +99,8 @@ def profilePage(userID):
         prefName = user.prefname, 
         dob = str(user.dob), 
         gender = user.gender,
-        prefGym = user.preferredGym)
+        prefGym = user.preferredGym,
+        ratingImg = rating)
 
 @main_views.route('/welcomePage')
 def welcomePage():
