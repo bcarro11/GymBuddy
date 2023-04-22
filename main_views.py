@@ -90,8 +90,9 @@ def profilePage(userID):
     #Get Rating
     getRating = 3
 
-    #Submit user rating
+    #HANLE POST METHOD
     if request.method == "POST":
+        #Check if POST is for rating user form.
         if 'rateUser' in request.form:
             #Get Rating that was given by user
             rateUser = request.form['rateUser']
@@ -99,14 +100,44 @@ def profilePage(userID):
             #Add rating to DB here?
             print(rateUser)
 
-            #Toggle Already Rated
+            #Check for and/or toggle Already Rated
             alreadyRated = True
+        
+        #Check if POST is for toggling edit ability on user profile.
         elif 'editProf' in request.form:
             edit = request.form['editProf']  
             print(edit)
+        
+        #Get edited fields.
         elif 'saveEdit' in request.form:
+            
+            #Get updated info and add to DB here?
             prefName = str(request.form.get('prefName'))
+            dob = str(request.form.get('dateOfBirth'))
+            gender = str(request.form.get('gender'))
+            favExerciseStr = str(request.form.get('favExercise'))
+            favMusicStr = str(request.form.get('favMusic'))
+            fitGoalsStr = str(request.form.get('fitGoals'))
+            exFreqStr = str(request.form.get('exFreq'))
+            exLengthStr = str(request.form.get('exLength'))
+            warmUpsStr = str(request.form.get('warmUps'))
+            spottingStr = str(request.form.get('spotting'))
+            LFPartnerStr = str(request.form.get('LFPartner'))
+            occupationStr = str(request.form.get('occupation'))
+            hobbiesStr = str(request.form.get('hobbies'))
             print(prefName)
+            print(dob)
+            print(gender)
+            print(favExerciseStr)
+            print(favMusicStr)
+            print(fitGoalsStr)
+            print(exFreqStr)
+            print(exLengthStr)
+            print(warmUpsStr)
+            print(spottingStr)
+            print(LFPartnerStr)
+            print(occupationStr)
+            print(hobbiesStr)
 
     return render_template("html/profilePage.html", 
         profileHeader = user.prefname,
