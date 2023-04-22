@@ -84,8 +84,8 @@
                             <button class="rateUserBtn" id="star5" name="rateUser" value="5" type="submit">★</button>
                             <button class="rateUserBtn" id="star4" name="rateUser" value="4" type="submit">★</button>
                             <button class="rateUserBtn" id="star3" name="rateUser" value="3" type="submit">★</button>
-                            <button class="rateUserBtn" id="star2" name="rateUser" value="2" type="submit">★</button>
-                            <button class="rateUserBtn" id="star1" name="rateUser" value="1" type="submit">★</button>
+                            <button class="rateUserBtn" id="star2" name="rateUser" value="2" type="submit">★</button>                        
+                            <button class="rateUserBtn" id="star1" name="else" value="1" type="submit">★</button>
                         </form>
                     {% endif %}
                 </div>                              
@@ -93,28 +93,60 @@
 
             <div class="aboutPane">
                     <div id="fieldInfo">
-                        <h2>About</h2>
-                        <h3>Name: </h3><p>{{ uName }}</p><br>
-                        <h3>Preferred Name: </h3><p id="prefNickName">{{ prefName }}</p><br>
-                        <h3>Birthday: </h3><p id="prefBirthday">{{ dob }}</p><br>
-                        <h3>Gender: </h3><p id="prefGender">{{ gender }}</p><br>
-                        <h2>Additional Info</h2><br>
-                        <h3>Favorite Exercise: </h3><p id="profFavExercise"></p><br>
-                        <h3>Favorite Workout Music: </h3><p id="profFavMusic"></p><br>
-                        <h3>Fitness Goals: </h3><p id="profFitnessGoals"></p><br>
-                        <h3>How Frequently Do You Workout: </h3><p id="profFrequency"></p><br>
-                        <h3>How Long Have You Been Working Out: </h3><p id="profHowLong"></p><br>
-                        <h3>Do You Warm-Up Before Exercising: </h3><p id ="profWarmup"></p><br>
-                        <h3>Are You Available For Spotting: </h3><p id="profSpotting"></p><br>
-                        <h3>Fitness Goals: </h3><p id="profFitnessGoals"></p><br>
-                        <h3>Are You Looking For An Exercise Partner: </h3> <p id="profPartner"></p><br>
-                        <h3>What Do You Do For A Living: </h3> <p id="profLiving"></p><br>
-                        <h3>What Are Your Favorite Hobbies: </h3> <p id="profHobbies"></p><br>
+                        {% if not editPage +%}
+                            <form class="editProf" method="post">
+                                <!-- <button class="editProf" id="editProf" name="editProf" value="1" type="submit">&#9998</button> -->
+                            
+                                <h2>About<button class="editProf" id="editProf" name="editProf" value="1" type="submit">&#9998</button></h2>
+                            </form>
+                            <!-- <h3>Name</h3><p>{{ uName }}</p><br> -->
+                            <h3>Preferred Name: </h3><p id="prefNickName">{{ prefName }}</p><br>
+                            <h3>Birthday: </h3><p id="prefBirthday">{{ dob }}</p><br>
+                            <h3>Gender: </h3><p id="prefGender">{{ gender }}</p><br>
+                            <h2>Additional Info</h2><br>
+                            <h3>Favorite Exercise: </h3><p id="profFavExercise"></p><br>
+                            <h3>Favorite Workout Music: </h3><p id="profFavMusic"></p><br>
+                            <h3>Fitness Goals: </h3><p id="profFitnessGoals"></p><br>
+                            <h3>How Frequently Do You Workout: </h3><p id="profFrequency"></p><br>
+                            <h3>How Long Have You Been Working Out: </h3><p id="profHowLong"></p><br>
+                            <h3>Do You Warm-Up Before Exercising: </h3><p id ="profWarmup"></p><br>
+                            <h3>Are You Available For Spotting: </h3><p id="profSpotting"></p><br>
+                            <h3>Are You Looking For An Exercise Partner: </h3> <p id="profPartner"></p><br>
+                            <h3>What Do You Do For A Living: </h3> <p id="profLiving"></p><br>
+                            <h3>What Are Your Favorite Hobbies: </h3> <p id="profHobbies"></p><br>
+                            
+                        {% else +%}
+                        <form class="saveEdit" method="post">
+                            <button class="saveEditBtn" id="saveEdit" name="saveEdit" value="2" type="submit">&#128190</button>
+                            <input class="saveEdit" id="saveEdit" type="text" value={{prefName}} name="prefName" required></input>
+                            <input class="saveEdit" id="saveEdit" type="date" value={{dob}} name="dateOfBirth" required></input>
+                            <select class="saveEdit" name="gender" id="gender" value={{gender}} required>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="nonBinary">Non-Binary</option>
+                            </select>
+                            <input class="saveEdit" id="saveEdit" type="text" value={{favExercise}} name="favExercise"></input>
+                            <input class="saveEdit" id="saveEdit" type="text" value={{favMusic}} name="favMusic"></input>
+                            <input class="saveEdit" id="saveEdit" type="text" value={{fitGoals}} name="fitGoals"></input>
+                            <input class="saveEdit" id="saveEdit" type="text" value={{exFreq}} name="exFreq"></input>
+                            <input class="saveEdit" id="saveEdit" type="text" value={{exLength}} name="exLength"></input>
+                            <input class="saveEdit" id="saveEdit" type="text" value={{warmUp}} name="warmUps"></input>
+                            <input class="saveEdit" id="saveEdit" type="text" value={{spotting}} name="spotting"></input>
+                            <input class="saveEdit" id="saveEdit" type="text" value={{LFPartner}} name="LFPartner"></input>
+                            <input class="saveEdit" id="saveEdit" type="text" value={{occupation}} name="occupation"></input>
+                            <input class="saveEdit" id="saveEdit" type="text" value={{hobbies}} name="hobbies"></input>
+                            <button class="saveEditBtn" id="saveEdit" name="saveEdit" value="2" type="submit">&#128190</button>
+                        </form>
+                        {% endif %}
                     </div>
             </div>
 
             <div class="findBuddyPane">
-                <a class="searchForBuddyBtn" href="{{ url_for('auth.findBuddy') }}"> <button class="searchForBuddyBtn" id="searchForBuddy" type="button"> Search For Buddy</button></a>
+                {% if editPage +%}
+                <a class="searchForBuddyBtn" href="{{ url_for('auth.findBuddy') }}"> <button class="searchForBuddyBtn" id="searchForBuddy" type="button" disabled>&#128683</button></a>
+                {% else +%}
+                <a class="searchForBuddyBtn" href="{{ url_for('auth.findBuddy') }}"> <button class="searchForBuddyBtn" id="searchForBuddyDisabled" type="button">Search For Buddy</button></a>
+                {% endif %}
             </div>
 
         </div><!--End of div.container-->

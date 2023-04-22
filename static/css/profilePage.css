@@ -210,9 +210,27 @@ h1.navItems {
     margin-right: auto;
 }
 
+
+button.saveEditBtn{    
+    background-color: #008ca8;
+    width: 90%;
+    padding: 15px 20px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: block;
+    border: 1px solid #008ca8;
+    box-sizing: border-box;
+    border-radius: 25px;
+    font-size: x-large;
+
+}
+
+.saveEditBtn:hover,
 .searchForBuddyBtn:hover {
     opacity: 90%;
 }
+
 
 
 h2 {
@@ -234,6 +252,56 @@ h3 {
     color: #008ca8;
 }
 
+input.saveEdit {
+    width: 90%;
+    padding: 15px 20px;
+    margin: auto;
+    margin-bottom: 10px;
+    display: block;
+    border: 1px solid #008ca8;
+    box-sizing: border-box;
+    border-radius: 25px;
+    
+}
+
+select.saveEdit {
+    width: 90%;
+    padding: 15px 20px;
+    margin: auto;
+    margin-bottom: 10px;
+    display: block;
+    border: 1px solid #008ca8;
+    box-sizing: border-box;
+    border-radius: 25px;
+    
+}
+
+
+button.editProf {
+    float: right;
+    margin-right: 10px;
+    background-color: #ffffff;
+    border-style: none;
+    color:r#008ca8;
+    font-size:xx-large;
+}
+
+button.editProf:hover{
+    /* opacity:90%; */
+    color:red;
+}
+
+button.saveEdit{
+    display:grid;
+    text-align: center;
+    justify-content: center;
+    text-justify: center;
+    margin-left: 50px;
+}
+
+button.saveEdit:hover{
+    opacity: 80%;
+}
 
 /* h1 {
     font-family: 'Roboto';

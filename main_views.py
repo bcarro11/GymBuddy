@@ -79,7 +79,10 @@ def createAccount():
 @main_views.route('/profilePage/<userID>',  methods=["GET", "POST"])
 def profilePage(userID):
     user = db.get_or_404(User, userID)
-    
+
+    #default edit
+    edit = False
+
     #Check if it's user's own profile page or if they have rated the other user before.
     myProfilePage = False
     alreadyRated = False
@@ -89,14 +92,21 @@ def profilePage(userID):
 
     #Submit user rating
     if request.method == "POST":
-        #Get Rating that was given by user
-        rateUser = request.form['rateUser']
-        
-        #Add rating to DB here?
-        print(rateUser)
+        if 'rateUser' in request.form:
+            #Get Rating that was given by user
+            rateUser = request.form['rateUser']
+            
+            #Add rating to DB here?
+            print(rateUser)
 
-        #Toggle Already Rated
-        alreadyRated = True
+            #Toggle Already Rated
+            alreadyRated = True
+        elif 'editProf' in request.form:
+            edit = request.form['editProf']  
+            print(edit)
+        elif 'saveEdit' in request.form:
+            prefName = str(request.form.get('prefName'))
+            print(prefName)
 
     return render_template("html/profilePage.html", 
         profileHeader = user.prefname,
@@ -106,8 +116,9 @@ def profilePage(userID):
         gender = user.gender,
         prefGym = user.preferredGym,
         myPage = myProfilePage,
-        rated = alreadyRated,
-        rating = getRating)
+        rated = alreadyRated,        
+        rating = getRating,
+        editPage = edit)
 
 @main_views.route('/welcomePage')
 def welcomePage():
