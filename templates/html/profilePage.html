@@ -19,83 +19,102 @@
     <body>
         
         <div class="container"> 
-            
-            <div class="grid1">                
-                    <a href="#">
-                        <img class="profilePic" src="{{ url_for('static', filename='imgs/profile.png')}}" alt="">
-                         <!-- <img class="profilePic" src="..\imgs\profile.png" alt="" >                         -->
-                    </a>        
+            <div class="navBar">                
+                <!-- <div class="navItems"> -->
+                    <h4 class="navItems">
+                        <!-- <a href="#home">&#127960</a> -->
+                        <div>
+                        <a id="mail" href="#mail">&#9993</a>
+                        </div>
+                        <!-- <a href="#logout">&#9032</a> -->
+                    </h4>
+                    <!-- <a href="#home"><h4 class="homeNav">&#127960</h4></a>
+                    <a href="#mail"><h4 class="mailNav">&#9993</h4></a>
+                    <a href="#logout"><h4 class="logoutNav">&#9032</h4></a>       -->
+                <!-- </div> -->
             </div>
-
-            <div class="grid2">
-                <H1>
-                    {{ profileHeader}} Profile Information
-                </H1>
-            </div>
-
-            <div class="mailGrid">
-                <div class="messagesIcon">
-                    <a href="#">
-                        <!-- <img src="..\imgs\mail.png" alt=""> -->
-                        <img class="mailPic" src="{{ url_for('static', filename='imgs/mail.png')}}" alt="">
-                        <!-- <img class="mailPic" src="..\imgs\mail.png" alt=""> -->
-                    </a>
-                </div>
-                <div class="messagesIcon">
-                    <a href="#">
-                        <!-- <img src="..\imgs\mail.png" alt=""> -->
-                        <img class="ratingPic" src="{{url_for('static', filename=ratingImg)}}" alt="">
-                        <!-- <img class="mailPic" src="..\imgs\mail.png" alt=""> -->
-                    </a>
-                </div>
-            </div>
-
-            <div class="grid3">
-                <div class="status">
-                    <!-- <a href="#"> -->
-                        <span> Status </span>
-                        <!-- <img src="..\imgs\GymLogo.png" alt=""> -->
-                    <!-- </a> -->
-                </div>
-                <div class="prefGym">
-                        <span> Preferred Gym </span>
-                        <span> {{ prefGym }}</span>
-                </div>
-                <div class="searchForBuddyBtn">
-                    <a href="{{ url_for('auth.findBuddy') }}"> <button id="searchForBuddy" type="button"> Search For Buddy</button></a>
-                    <!-- <button id="searchForBuddy" type="button">Search for Buddy</button> -->
-                </div>
-            </div>
-
-            <div class="grid4">
-                <div class="basicInfo">
-                    <h2>Basic Info</h2>
+            <div class="userPane">                
+                <div>
+                    <a href="#"><img class="profilePic" src="{{ url_for('static', filename='imgs/profile.png')}}" alt=""></a>
                     <br>
-                    <div id="fieldInfo">                    
+                    {{ profileHeader}}
+                    <br>
+                    <br>
+                    Pref Gym: {{ prefGym }}
+                    <br>
+                    <br>
+
+                    <!--
+                        Rating system implementation
+                    -->
+                    {% if myPage or rated +%}
+                        {% if rating == 1 %}
+                            <button class="rateUserBtn" id="star5Disabled1" name="rateUser" value="5" type="submit" disabled>★</button>
+                            <button class="rateUserBtn" id="star4Disabled1" name="rateUser" value="4" type="submit" disabled>★</button>
+                            <button class="rateUserBtn" id="star3Disabled1" name="rateUser" value="3" type="submit" disabled>★</button>
+                            <button class="rateUserBtn" id="star2Disabled1" name="rateUser" value="2" type="submit" disabled>★</button>
+                            <button class="rateUserBtn" id="star1Disabled1" name="rateUser" value="1" type="submit" disabled>★</button>
+                        {% elif rating == 2 %}
+                            <button class="rateUserBtn" id="star5Disabled2" name="rateUser" value="5" type="submit" disabled>★</button>
+                            <button class="rateUserBtn" id="star4Disabled2" name="rateUser" value="4" type="submit" disabled>★</button>
+                            <button class="rateUserBtn" id="star3Disabled2" name="rateUser" value="3" type="submit" disabled>★</button>
+                            <button class="rateUserBtn" id="star2Disabled2" name="rateUser" value="2" type="submit" disabled>★</button>
+                            <button class="rateUserBtn" id="star1Disabled2" name="rateUser" value="1" type="submit" disabled>★</button>
+                        {% elif rating == 3 %}
+                            <button class="rateUserBtn" id="star5Disabled3" name="rateUser" value="5" type="submit" disabled>★</button>
+                            <button class="rateUserBtn" id="star4Disabled3" name="rateUser" value="4" type="submit" disabled>★</button>
+                            <button class="rateUserBtn" id="star3Disabled3" name="rateUser" value="3" type="submit" disabled>★</button>
+                            <button class="rateUserBtn" id="star2Disabled3" name="rateUser" value="2" type="submit" disabled>★</button>
+                            <button class="rateUserBtn" id="star1Disabled3" name="rateUser" value="1" type="submit" disabled>★</button>
+                        {% elif rating == 4 %}
+                            <button class="rateUserBtn" id="star5Disabled4" name="rateUser" value="5" type="submit" disabled>★</button>
+                            <button class="rateUserBtn" id="star4Disabled4" name="rateUser" value="4" type="submit" disabled>★</button>
+                            <button class="rateUserBtn" id="star3Disabled4" name="rateUser" value="3" type="submit" disabled>★</button>
+                            <button class="rateUserBtn" id="star2Disabled4" name="rateUser" value="2" type="submit" disabled>★</button>
+                            <button class="rateUserBtn" id="star1Disabled4" name="rateUser" value="1" type="submit" disabled>★</button>
+                        {% elif rating == 5 %}
+                            <button class="rateUserBtn" id="star5Disabled5" name="rateUser" value="5" type="submit" disabled>★</button>
+                            <button class="rateUserBtn" id="star4Disabled5" name="rateUser" value="4" type="submit" disabled>★</button>
+                            <button class="rateUserBtn" id="star3Disabled5" name="rateUser" value="3" type="submit" disabled>★</button>
+                            <button class="rateUserBtn" id="star2Disabled5" name="rateUser" value="2" type="submit" disabled>★</button>
+                            <button class="rateUserBtn" id="star1Disabled5" name="rateUser" value="1" type="submit" disabled>★</button>
+                        {% endif %}
+                    {% else +%}
+                        <form class="rateUser" method="post">                        
+                            <button class="rateUserBtn" id="star5" name="rateUser" value="5" type="submit">★</button>
+                            <button class="rateUserBtn" id="star4" name="rateUser" value="4" type="submit">★</button>
+                            <button class="rateUserBtn" id="star3" name="rateUser" value="3" type="submit">★</button>
+                            <button class="rateUserBtn" id="star2" name="rateUser" value="2" type="submit">★</button>
+                            <button class="rateUserBtn" id="star1" name="rateUser" value="1" type="submit">★</button>
+                        </form>
+                    {% endif %}
+                </div>                              
+            </div>
+
+            <div class="aboutPane">
+                    <div id="fieldInfo">
+                        <h2>About</h2>
                         <h3>Name: </h3><p>{{ uName }}</p>
-                    </div>
-                    <br>
-                    <div id="fieldInfo"> 
                         <h3>Preferred Name: </h3><p id="prefNickName">{{ prefName }}</p>
-                    </div>
-                    <br>
-                    <div id="fieldInfo"> 
                         <h3>Birthday: </h3><p id="prefBirthday">{{ dob }}</p>
-                    </div>
-                    <br>
-                    <div id="fieldInfo"> 
                         <h3>Gender: </h3><p id="prefGender">{{ gender }}</p>
+                        <h2>Additional Info</h2>
+                        <h3>Favorite Exercise: </h3><p id="profFavExercise"></p>
+                        <h3>Favorite Workout Music: </h3><p id="profFavMusic"></p>
+                        <h3>Fitness Goals: </h3><p id="profFitnessGoals"></p>
+                        <h3>How Frequently Do You Workout: </h3><p id="profFrequency"></p>
+                        <h3>How Long Have You Been Working Out: </h3><p id="profHowLong"></p>
+                        <h3>Do You Warm-Up Before Exercising: </h3><p id ="profWarmup"></p>
+                        <h3>Are You Available For Spotting: </h3><p id="profSpotting"></p>
+                        <h3>Fitness Goals: </h3><p id="profFitnessGoals"></p>
+                        <h3>Are You Looking For An Exercise Partner: </h3> <p id="profPartner"></p>
+                        <h3>What Do You Do For A Living: </h3> <p id="profLiving"></p>
+                        <h3>What Are Your Favorite Hobbies: </h3> <p id="profHobbies"></p>
                     </div>
-                </div>
             </div>
 
-            <div class="grid5">
-                <div class="additionalInfo">
-                    <h2>Additional Info</h2>
-                    <h3>Favorite Exercise: </h3><p id="profFavExercise"></p>
-                    <h3>Favorite Workout Music: </h3><p id="profFavMusic"></p>                
-                    <h3>Fitness Goals: </h3><p id="profFitnessGoals"></p>
-                </div>
+            <div class="findBuddyPane">
+                <a class="searchForBuddyBtn" href="{{ url_for('auth.findBuddy') }}"> <button class="searchForBuddyBtn" id="searchForBuddy" type="button"> Search For Buddy</button></a>
             </div>
 
         </div><!--End of div.container-->

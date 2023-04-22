@@ -76,31 +76,38 @@ def createAccount():
 
     return render_template("html/createAccount.html")
 
-@main_views.route('/profilePage/<userID>')
+@main_views.route('/profilePage/<userID>',  methods=["GET", "POST"])
 def profilePage(userID):
     user = db.get_or_404(User, userID)
     
-    #Get user rating from DB?
-    ratingNumber = 3
+    #Check if it's user's own profile page or if they have rated the other user before.
+    myProfilePage = False
+    alreadyRated = False
 
-    #Check user rating and display picture?
-    if (ratingNumber == 1):
-        rating = "imgs/oneStar.png"
-    elif (ratingNumber == 2):
-        rating = "imgs/twoStar.png"
-    elif (ratingNumber == 3):
-        rating = "imgs/threeStar.png"
-    else:
-        rating = "imgs/noRating.png"
+    #Get Rating
+    getRating = 3
+
+    #Submit user rating
+    if request.method == "POST":
+        #Get Rating that was given by user
+        rateUser = request.form['rateUser']
+        
+        #Add rating to DB here?
+        print(rateUser)
+
+        #Toggle Already Rated
+        alreadyRated = True
 
     return render_template("html/profilePage.html", 
-        profileHeader = user.prefname + "'s",
+        profileHeader = user.prefname,
         uName = user.prefname, 
         prefName = user.prefname, 
         dob = str(user.dob), 
         gender = user.gender,
         prefGym = user.preferredGym,
-        ratingImg = rating)
+        myPage = myProfilePage,
+        rated = alreadyRated,
+        rating = getRating)
 
 @main_views.route('/welcomePage')
 def welcomePage():
