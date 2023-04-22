@@ -61,6 +61,18 @@ h1.navItems {
     align-content: right;
 }
 
+
+.userPane {
+    grid-column: 2 / 3;
+    grid-row: 2 / 9;
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    object-fit: cover;
+    background-color: #ffffff;
+    border-radius: 25px;
+}
+
 .rateUserBtn{
     float: right;
     text-align: center;
@@ -133,16 +145,6 @@ h1.navItems {
     color:rgb(189, 189, 26);
 }
 
-.userPane {
-    grid-column: 2 / 3;
-    grid-row: 2 / 9;
-    display: grid;
-    justify-content: center;
-    text-align: center;
-    object-fit: cover;
-    background-color: #ffffff;
-    border-radius: 25px;
-}
 
 .aboutPane {
     grid-column: 3 / 6;
@@ -150,6 +152,7 @@ h1.navItems {
     display: grid;    
     background-color: #ffffff;
     border-radius: 25px;
+    overflow-y: scroll;
 }
 
 .findBuddyPane {
@@ -207,43 +210,47 @@ h1.navItems {
     margin-right: auto;
 }
 
-#fieldInfo {
-    overflow-y: scroll;
-    padding: 20px;
-}
-
-button:hover {
+.searchForBuddyBtn:hover {
     opacity: 90%;
-}
-
-h1 {
-    font-family: 'Roboto';
-    color: #008ca8;
-    text-align: center;
-    /* padding: 15px 20px; */
-    font-size: 2.5rem;
 }
 
 
 h2 {
     font-family: 'Roboto';
     text-align: left;
-    /* padding: 2px 20px; */
-
+    margin-left: 5px;
 }
+
 
 #fieldInfo h3,
-#fieldInfo p {
-    display: inline-block;
+#fieldInfo p{
+    overflow-y: scroll;
+    display: inline-grid;
+    text-align: left;
+    margin-left: 15px
 }
-
 h3 {
-    display: grid;
     font-family: 'Roboto';
     color: #008ca8;
-    text-align: left;
-    justify-content: left;
+}
+
+
+/* h1 {
+    font-family: 'Roboto';
+    color: #008ca8;
     text-align: center;
+    padding: 15px 20px;
+    font-size: 2.5rem;
+}
+
+
+
+
+
+
+ */
+    /* text-align: left; */
+    /* justify-content: left; */
+    /* text-align: center; */
     /* padding: 2px 20px; */
     /* text-decoration: underline; */
-}
