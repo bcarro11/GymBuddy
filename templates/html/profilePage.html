@@ -105,7 +105,7 @@
                             <h3>Favorite Exercise: </h3><p id="profFavExercise"></p><br>
                             <h3>Favorite Workout Music: </h3><p id="profFavMusic"></p><br>
                             <h3>Fitness Goals: </h3><p id="profFitnessGoals"></p><br>
-                            <h3>How Frequently Do You Workout: </h3><p id="profFrequency"></p><br>
+                            <h3>How Many Days Of The Week Do You Workout: </h3><p id="profFrequency"></p><br>
                             <h3>How Long Have You Been Working Out: </h3><p id="profHowLong"></p><br>
                             <h3>Do You Warm-Up Before Exercising: </h3><p id ="profWarmup"></p><br>
                             <h3>Are You Available For Spotting: </h3><p id="profSpotting"></p><br>
@@ -126,11 +126,33 @@
                             <input class="saveEdit" id="saveEdit" type="text" value={{favExercise}} name="favExercise"></input>
                             <input class="saveEdit" id="saveEdit" type="text" value={{favMusic}} name="favMusic"></input>
                             <input class="saveEdit" id="saveEdit" type="text" value={{fitGoals}} name="fitGoals"></input>
-                            <input class="saveEdit" id="saveEdit" type="text" value={{exFreq}} name="exFreq"></input>
-                            <input class="saveEdit" id="saveEdit" type="text" value={{exLength}} name="exLength"></input>
-                            <input class="saveEdit" id="saveEdit" type="text" value={{warmUp}} name="warmUps"></input>
-                            <input class="saveEdit" id="saveEdit" type="text" value={{spotting}} name="spotting"></input>
-                            <input class="saveEdit" id="saveEdit" type="text" value={{LFPartner}} name="LFPartner"></input>
+                            <select class="saveEdit" name="exFreq" id="exFreq" value={{exFreq}}>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                            </select>
+                            <select class="saveEdit" name="exLength" id="exLength" value={{exLength}}>
+                                <option value="lessthan1">Less Than A Year</option>
+                                <option value="oneyear">A Year</option>
+                                <option value="twotofive">Two To Five Years</option>
+                                <option value="morethan">Five Or More Years</option>
+                            </select>
+                            <select class="saveEdit" name="warmUps" id="warmUps" value={{warmUps}}>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <select class="saveEdit" name="spotting" id="spotting" value={{spotting}}>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <select class="saveEdit" name="LFPartner" id="LFPartner" value={{LFPartner}}>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
                             <input class="saveEdit" id="saveEdit" type="text" value={{occupation}} name="occupation"></input>
                             <input class="saveEdit" id="saveEdit" type="text" value={{hobbies}} name="hobbies"></input>
                             <button class="saveEditBtn" id="saveEdit" name="saveEdit" type="submit">&#128190</button>
