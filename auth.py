@@ -8,6 +8,10 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/findBuddy', methods=["GET", "POST"])
 def findBuddy():
+    """
+    Renders the view for finding a partner. Initial GET request allows you to set your exercise.
+    POST requests will reroute to the matches page.
+    """
     if request.method == "POST":
         exSquats = request.form.get('squats')
         exTriceps = request.form.get('triceps')
@@ -25,6 +29,9 @@ def findBuddy():
 
 @auth.route('/matchesPage')
 def matchesPage():
+    """
+    Renders the page for user matching given the current user pool.
+    """
     matches = list(map(lambda tup: User.findUserByID(tup[0]), current_user.routine_match(userpool)))
     print(matches)
     return render_template("html/matchesPage.html", matches=list(map(lambda tup: User.findUserByID(tup[0]), current_user.routine_match(userpool))))

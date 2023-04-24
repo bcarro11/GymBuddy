@@ -8,6 +8,11 @@ main_views = Blueprint('main_views', __name__)
 @main_views.route('/', methods=["GET", "POST"])
 @main_views.route('/login', methods=["GET", "POST"])
 def loginPage():
+    """
+    View for the login page which will allow the user to sign into their account. GET requests are handled as page requests
+    while POST requests are handled as the user attempting to log in, verifying their identity first and then logging in
+    through flask-login.
+    """
     if request.method == "POST":
         usr = request.form.get('email')
         pwd = request.form.get('psw')
@@ -22,6 +27,11 @@ def loginPage():
 
 @main_views.route('/createAccount', methods=["GET", "POST"])
 def createAccount():
+    """
+    View for the registration page. GET request will render the registration page in the browser,
+    POST requests will be handled as a new user attempting to register based on information provided
+    in the registration page's form.
+    """
     if request.method == "POST":
         msg = ""
         valid = True
@@ -78,6 +88,10 @@ def createAccount():
 
 @main_views.route('/profilePage/<userID>',  methods=["GET", "POST"])
 def profilePage(userID):
+    """
+    Page to display user profiles. If own profile, will allow user to edit. POST requests will be ratings or
+    a user editing their own profile.
+    """
     user = db.get_or_404(User, userID)
 
     #default edit

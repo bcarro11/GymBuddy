@@ -1,5 +1,11 @@
 import itertools
 
+"""
+This module is used as a staging ground of sorts. Not utilized directly, but to allow
+the team to conceptualize different things prior to implementing them into the system
+such as user matching and the user objects themselves. Will be removed in Phase 4.
+"""
+
 class User:
 
     id_iter = itertools.count() #increments the user id

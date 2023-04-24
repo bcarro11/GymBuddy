@@ -1,5 +1,10 @@
 from user import User
 
+"""
+A staging ground much like user.py. Is not used directly or in the final product at all.
+Will be removed in phase 4.
+"""
+
 global user_pool
 
 user_pool = []
