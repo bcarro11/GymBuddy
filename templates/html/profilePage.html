@@ -48,7 +48,13 @@
                         Rating system implementation
                     -->
                     {% if myPage or rated +%}
-                        {% if rating == 1 %}
+                        {% if rating == none %}
+                            <button class="rateUserBtn" id="star5Disabled0" name="rateUser" value="5" type="submit" disabled>★</button>
+                            <button class="rateUserBtn" id="star4Disabled0" name="rateUser" value="4" type="submit" disabled>★</button>
+                            <button class="rateUserBtn" id="star3Disabled0" name="rateUser" value="3" type="submit" disabled>★</button>
+                            <button class="rateUserBtn" id="star2Disabled0" name="rateUser" value="2" type="submit" disabled>★</button>
+                            <button class="rateUserBtn" id="star1Disabled0" name="rateUser" value="1" type="submit" disabled>★</button>
+                        {% elif rating == 1 %}
                             <button class="rateUserBtn" id="star5Disabled1" name="rateUser" value="5" type="submit" disabled>★</button>
                             <button class="rateUserBtn" id="star4Disabled1" name="rateUser" value="4" type="submit" disabled>★</button>
                             <button class="rateUserBtn" id="star3Disabled1" name="rateUser" value="3" type="submit" disabled>★</button>
