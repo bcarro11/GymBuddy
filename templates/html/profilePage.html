@@ -94,12 +94,12 @@
             <div class="aboutPane">
                     <div id="fieldInfo">
                         {% if not editPage +%}
-                            {% if myPage +%}
                                 <form class="editProf" method="post">
-                                    <h2>About<button class="editProf" id="editProf" name="editProf" value=True type="submit">&#9998</button></h2>
+                                    <h2>About{% if myPage +%}<button class="editProf" id="editProf" name="editProf" value=True type="submit">&#9998</button>{% endif %}</h2>
                                 </form>
-                            {% endif %}
+
                             <!-- <h3>Name</h3><p>{{ uName }}</p><br> -->
+                            <!-- <h2>About:</h2><br> -->
                             <h3>Preferred Name: </h3><p id="prefNickName">{{ prefName }}</p><br>
                             <h3>Birthday: </h3><p id="prefBirthday">{{ dob }}</p><br>
                             <h3>Gender: </h3><p id="prefGender">{{ gender }}</p><br>
