@@ -130,10 +130,10 @@ h1.navItems {
     color:rgb(189, 189, 26);
 }
 
-#star5Disabled4,
-#star5Disabled4 ~ #star4Disabled4,
-#star5Disabled4 ~ #star3Disabled4,
-#star5Disabled4 ~ #star2Disabled4 {
+#star4Disabled4,
+#star4Disabled4 ~ #star3Disabled4,
+#star4Disabled4 ~ #star2Disabled4,
+#star5Disabled4 ~ #star1Disabled4 {
     color:rgb(189, 189, 26);
 }
 
