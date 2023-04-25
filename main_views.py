@@ -2,6 +2,13 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import current_user, user_logged_in, user_unauthorized, login_user
 from datetime import date
 from models import db, User, Rating
+from dotenv import load_dotenv
+from os import getenv
+from hashlib import sha256
+
+#Load in enviornment variables held by .env
+load_dotenv()
+SALT = getenv("SALT")
 
 main_views = Blueprint('main_views', __name__)
 
@@ -16,8 +23,9 @@ def loginPage():
     if request.method == "POST":
         usr = request.form.get('email')
         pwd = request.form.get('psw')
+        hashedpwd = sha256((str(SALT) + pwd).encode('utf-8')).digest()
 
-        user = User.passwordIsMatch(usr, pwd)
+        user = User.passwordIsMatch(usr, hashedpwd)
         if user:
             login_user(user)
             return redirect(url_for('main_views.profilePage', userID = user.id))
@@ -75,9 +83,8 @@ def createAccount():
         print(prefGym)
 
         if(valid):
-            # Generate ID?
-            # Input into DB?
-            user = User(email=email, password=password1, dob=dob, gender=gender, preferredGym=prefGym, prefname=prefName)
+            # Input into DB with hashed password
+            user = User(email=email, password=sha256((str(SALT) + password1).encode('utf-8')).digest(), dob=dob, gender=gender, preferredGym=prefGym, prefname=prefName)
             db.session.add(user)
             db.session.commit()
             return redirect(url_for('main_views.welcomePage'))
