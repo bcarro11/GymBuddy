@@ -149,12 +149,18 @@ class Rating(db.Model):
 
     @staticmethod
     def getRating(userID):
-        result = Rating.query.filter(Rating.ratee==userID).first()
-        if result:
-            return round(result.rating)
-        return None
+        results = Rating.query.filter(Rating.ratee==userID).all()
+        print(results)
+        if len(results) == 0:
+            return None
+        sum = 0
+        for result in results:
+            sum += result.rating
+        print(round(sum / len(results)))
+        return round(sum / len(results))
 
     @staticmethod
     def getRatingFromUser(raterID, rateeID):
         result = Rating.query.filter(Rating.ratee==rateeID, Rating.rater==raterID).first()
+        print("getRatingFromUser: " + str(result))
         return result

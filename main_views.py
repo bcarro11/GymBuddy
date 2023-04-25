@@ -99,7 +99,8 @@ def profilePage(userID):
 
     #Check if it's user's own profile page or if they have rated the other user before.
     myProfilePage = user.id == current_user.id
-    alreadyRated = False
+    pairRating = Rating.getRatingFromUser(current_user.id, user.id)
+    alreadyRated = pairRating is not None
 
     #Get Rating
     getRating = Rating.getRating(user.id)
@@ -113,16 +114,13 @@ def profilePage(userID):
             
             #Add rating to DB
             print(rateUser)
-            pairRating = Rating.getRatingFromUser(current_user.id, user.id)
-            if pairRating:
+            #pairRating = Rating.getRatingFromUser(current_user.id, user.id)
+            if alreadyRated:
                 pairRating.rating = rateUser
             else:
                 rating = Rating(current_user.id, user.id, rateUser)
                 db.session.add(rating)
             db.session.commit()
-
-            #Check for and/or toggle Already Rated
-            alreadyRated = pairRating is not None
         
         #Check if POST is for toggling edit ability on user profile.
         elif 'editProf' in request.form:
