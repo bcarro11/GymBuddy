@@ -94,24 +94,26 @@
             <div class="aboutPane">
                     <div id="fieldInfo">
                         {% if not editPage +%}
-                            <form class="editProf" method="post">
-                                <h2>About<button class="editProf" id="editProf" name="editProf" value=True type="submit">&#9998</button></h2>
-                            </form>
+                            {% if myPage +%}
+                                <form class="editProf" method="post">
+                                    <h2>About<button class="editProf" id="editProf" name="editProf" value=True type="submit">&#9998</button></h2>
+                                </form>
+                            {% endif %}
                             <!-- <h3>Name</h3><p>{{ uName }}</p><br> -->
                             <h3>Preferred Name: </h3><p id="prefNickName">{{ prefName }}</p><br>
                             <h3>Birthday: </h3><p id="prefBirthday">{{ dob }}</p><br>
                             <h3>Gender: </h3><p id="prefGender">{{ gender }}</p><br>
                             <h2>Additional Info</h2><br>
-                            <h3>Favorite Exercise: </h3><p id="profFavExercise"></p><br>
-                            <h3>Favorite Workout Music: </h3><p id="profFavMusic"></p><br>
-                            <h3>Fitness Goals: </h3><p id="profFitnessGoals"></p><br>
-                            <h3>How Many Days Of The Week Do You Workout: </h3><p id="profFrequency"></p><br>
-                            <h3>How Long Have You Been Working Out: </h3><p id="profHowLong"></p><br>
-                            <h3>Do You Warm-Up Before Exercising: </h3><p id ="profWarmup"></p><br>
-                            <h3>Are You Available For Spotting: </h3><p id="profSpotting"></p><br>
-                            <h3>Are You Looking For An Exercise Partner: </h3> <p id="profPartner"></p><br>
-                            <h3>What Do You Do For A Living: </h3> <p id="profLiving"></p><br>
-                            <h3>What Are Your Favorite Hobbies: </h3> <p id="profHobbies"></p><br>
+                            <h3>Favorite Exercise: </h3><p id="profFavExercise">{{ favExercise }}</p><br>
+                            <h3>Favorite Workout Music: </h3><p id="profFavMusic">{{ favMusic }}</p><br>
+                            <h3>Fitness Goals: </h3><p id="profFitnessGoals">{{ fitGoals }}</p><br>
+                            <h3>How Many Days Of The Week Do You Workout: </h3><p id="profFrequency">{{ exFreq }}</p><br>
+                            <h3>How Long Have You Been Working Out: </h3><p id="profHowLong">{{ exLength }}</p><br>
+                            <h3>Do You Warm-Up Before Exercising: </h3><p id ="profWarmup">{{ warmUps }}</p><br>
+                            <h3>Are You Available For Spotting: </h3><p id="profSpotting">{{ spotting }}</p><br>
+                            <h3>Are You Looking For An Exercise Partner: </h3> <p id="profPartner">{{ LFPartner }}</p><br>
+                            <h3>What Do You Do For A Living: </h3> <p id="profLiving">{{ occupation }}</p><br>
+                            <h3>What Are Your Favorite Hobbies: </h3> <p id="profHobbies">{{ hobbies }}</p><br>
                             
                         {% else +%}
                         <form class="saveEdit" method="post">

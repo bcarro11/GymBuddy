@@ -24,6 +24,16 @@ class User(db.Model):
     dob = db.Column(db.Date)
     gender = db.Column(db.String)
     preferredGym = db.Column(db.Integer)
+    favExerciseStr = db.Column(db.String)
+    favMusicStr = db.Column(db.String)
+    fitGoalsStr = db.Column(db.String)
+    exFreqStr = db.Column(db.String)
+    exLengthStr = db.Column(db.String)
+    warmUpsStr = db.Column(db.String)
+    spottingStr = db.Column(db.String)
+    LFPartnerStr = db.Column(db.String)
+    occupationStr = db.Column(db.String)
+    hobbiesStr = db.Column(db.String)
 
     def __init__(self, email, password, prefname, dob, gender, preferredGym):
         self.email = email
@@ -69,31 +79,6 @@ class User(db.Model):
             return user
         else:
             return None
-        
-    """ def routine_match(self, user_pool):
-        print('User pool:', user_pool)
-        currentuser_set = user_pool[self.id]
-        routinematchdictionary = {}
-        final_dictionary = {}
-
-        for i in range(len(user_pool)):
-
-            if user_pool[i] == self:
-
-                continue
-
-            partneruser_set = user_pool[i].routineset
-            print ('partner set', partneruser_set)
-            overlap_set = currentuser_set.intersection(partneruser_set)
-            length_overlap = len(overlap_set)
-            routinematchdictionary[user_pool[i]] = length_overlap
-
-        sorted_routinematchdictionary = sorted(routinematchdictionary.items(),
-        key = lambda x:x[1], reverse = True)
-
-        final_dictionary = dict(sorted_routinematchdictionary)
-
-        return final_dictionary """
     
     def routine_match(self, user_pool):
         # Matching algorithm for exercise routines, will be rewritten for Levenshtein Distance
@@ -150,3 +135,26 @@ class Exercise(db.Model):
 
     def __init__(self, name):
         self.name = name
+
+class Rating(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    rater = db.Column(db.Integer, nullable=False)
+    ratee = db.Column(db.Integer, nullable=False)
+    rating = db.Column(db.Integer, nullable=False)
+
+    def __init__(self, raterID, rateeID, rating):
+        self.rater = raterID
+        self.ratee = rateeID
+        self.rating = rating
+
+    @staticmethod
+    def getRating(userID):
+        result = Rating.query.filter(Rating.ratee==userID).first()
+        if result:
+            return round(result.rating)
+        return None
+
+    @staticmethod
+    def getRatingFromUser(raterID, rateeID):
+        result = Rating.query.filter(Rating.ratee==rateeID, Rating.rater==raterID).first()
+        return result

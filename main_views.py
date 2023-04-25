@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import current_user, user_logged_in, user_unauthorized, login_user
 from datetime import date
-from models import db, User
+from models import db, User, Rating
 
 main_views = Blueprint('main_views', __name__)
 
@@ -98,11 +98,11 @@ def profilePage(userID):
     edit = False
 
     #Check if it's user's own profile page or if they have rated the other user before.
-    myProfilePage = False
+    myProfilePage = user.id == current_user.id
     alreadyRated = False
 
     #Get Rating
-    getRating = 3
+    getRating = Rating.getRating(user.id)
 
     #HANLE POST METHOD
     if request.method == "POST":
@@ -111,11 +111,18 @@ def profilePage(userID):
             #Get Rating that was given by user
             rateUser = request.form['rateUser']
             
-            #Add rating to DB here?
+            #Add rating to DB
             print(rateUser)
+            pairRating = Rating.getRatingFromUser(current_user.id, user.id)
+            if pairRating:
+                pairRating.rating = rateUser
+            else:
+                rating = Rating(current_user.id, user.id, rateUser)
+                db.session.add(rating)
+            db.session.commit()
 
             #Check for and/or toggle Already Rated
-            alreadyRated = True
+            alreadyRated = pairRating is not None
         
         #Check if POST is for toggling edit ability on user profile.
         elif 'editProf' in request.form:
@@ -125,33 +132,25 @@ def profilePage(userID):
         #Get edited fields.
         elif 'saveEdit' in request.form:
             
-            #Get updated info and add to DB here?
-            prefName = str(request.form.get('prefName'))
-            dob = str(request.form.get('dateOfBirth'))
-            gender = str(request.form.get('gender'))
-            favExerciseStr = str(request.form.get('favExercise'))
-            favMusicStr = str(request.form.get('favMusic'))
-            fitGoalsStr = str(request.form.get('fitGoals'))
-            exFreqStr = str(request.form.get('exFreq'))
-            exLengthStr = str(request.form.get('exLength'))
-            warmUpsStr = str(request.form.get('warmUps'))
-            spottingStr = str(request.form.get('spotting'))
-            LFPartnerStr = str(request.form.get('LFPartner'))
-            occupationStr = str(request.form.get('occupation'))
-            hobbiesStr = str(request.form.get('hobbies'))
-            print(prefName)
-            print(dob)
-            print(gender)
-            print(favExerciseStr)
-            print(favMusicStr)
-            print(fitGoalsStr)
-            print(exFreqStr)
-            print(exLengthStr)
-            print(warmUpsStr)
-            print(spottingStr)
-            print(LFPartnerStr)
-            print(occupationStr)
-            print(hobbiesStr)
+            #Get updated info and add to DB
+            current_user.prefName = str(request.form.get('prefName'))
+            dobstr = str(request.form.get('dateOfBirth'))
+            month = int(dobstr[5:7])
+            day = int(dobstr[8:])
+            year = int(dobstr[:4])
+            current_user.dob = date(year, month, day)
+            current_user.gender = str(request.form.get('gender'))
+            current_user.favExerciseStr = str(request.form.get('favExercise'))
+            current_user.favMusicStr = str(request.form.get('favMusic'))
+            current_user.fitGoalsStr = str(request.form.get('fitGoals'))
+            current_user.exFreqStr = str(request.form.get('exFreq'))
+            current_user.exLengthStr = str(request.form.get('exLength'))
+            current_user.warmUpsStr = str(request.form.get('warmUps'))
+            current_user.spottingStr = str(request.form.get('spotting'))
+            current_user.LFPartnerStr = str(request.form.get('LFPartner'))
+            current_user.occupationStr = str(request.form.get('occupation'))
+            current_user.hobbiesStr = str(request.form.get('hobbies'))
+            db.session.commit()
 
     return render_template("html/profilePage.html", 
         profileHeader = user.prefname,
@@ -163,7 +162,18 @@ def profilePage(userID):
         myPage = myProfilePage,
         rated = alreadyRated,        
         rating = getRating,
-        editPage = edit)
+        editPage = edit,
+        favExercise = user.favExerciseStr,
+        favMusic = user.favMusicStr,
+        fitGoals = user.fitGoalsStr,
+        exFreq = user.exFreqStr,
+        exLength = user.exLengthStr,
+        warmUps = user.warmUpsStr,
+        spotting = user.spottingStr,
+        LFPartner = user.LFPartnerStr,
+        occupation = user.occupationStr,
+        hobbies = user.hobbiesStr
+        )
 
 @main_views.route('/welcomePage')
 def welcomePage():
