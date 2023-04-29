@@ -15,7 +15,7 @@ def findBuddy():
     """
 
     # Sets limit on number of exercises in routine.
-    exerciseLimit = 3 
+    exerciseLimit = 12
 
     if request.method == "POST":
         

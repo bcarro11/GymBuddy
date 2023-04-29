@@ -23,12 +23,13 @@
                 <ul class="navList">
                     <li><a title="Home" id="home" href="{{ url_for('main_views.loginPage') }}">&#x1F3E0</a></li>
                     <li><a title="Messages" id="mail" href="#mail">&#x1F4EC</a></li>
-                    <li><a title="Logout" id="logout" href="#logout">👋</a></li>  
+                    <li><a title="Logout" id="logout" href="#logout">👋</a></li>
+                    <!-- <li><a title="Logout" id="logout" href="#logout">&#x1F44B</a></li> -->
                 </ul>
             </div>
             <div class="userPane">                
                 <div>
-                    <a href="{{ url_for('auth.profPicUpload') }}"><img class="profilePic" src="{{ url_for('static', filename='imgs/profile.png')}}" alt=""></a>                    
+                    <img class="profilePic" src="{{ url_for('static', filename='imgs/profile.png')}}" alt="">
                     <br>
                     {% if myPage +%}
                     <div class="uploadProfPicBtn">
