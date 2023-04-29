@@ -11,6 +11,13 @@ from models import User, Exercise, db
 from dotenv import load_dotenv
 from os import getenv
 
+import os
+from flask import Flask, flash, request, redirect, url_for
+from werkzeug.utils import secure_filename
+
+UPLOAD_FOLDER = './static/profPics/'
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+
 #Load in enviornment variables held by .env
 load_dotenv()
 
@@ -19,6 +26,7 @@ app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///gymbuddy.db"
 app.config["SECRET_KEY"] = getenv('SECRET_KEY')
 db.init_app(app)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 #Attach the default login manager to the flask server
 login_manager = LoginManager()

@@ -1,14 +1,53 @@
+<!DOCTYPE html>
 <!--
     GROUP: Gym Buddy
     MEMBERS: ​Brenden Carroll, Stefani Page, Elina Tsykhmistrenko, Justin White, Hamza Zgidou​ 
     COURSE: CMSC 495:7383
-    FILE: profPicUpload.html
-    DATE: April 26th, 2023
+    FILE: login.html
+    DATE: April 1, 2023
 -->
+ <html>
+    <head>
+        <!-- <link rel="stylesheet" href="..\css\mainStyleSheet.css"> -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/mainStyleSheet.css')}}">
 
-<!DOCTYPE html>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet"> 
+    </head>
+    
+    <body>
+
+            <div class="defaultContainer">
+                <!-- <div class="grid1">
+                    <img src="{{ url_for('static', filename='imgs/GymLogo.png')}}" class="logo">
+                </div> -->
+                
+                <div class="grid2">
+                        <h1>
+                            Upload Profile Picture
+                        </h1>                      
+                        {% for messages in get_flashed_messages() %}
+                        <h2>{{ messages }}</h2>
+                        {% endfor %}
+                        <form method="POST" enctype=multipart/form-data>
+                            <!-- <label for="file"><h2>Upload Profile Picture</h2></label> -->
+                            <input class=profPicIn id="file" name="file" type="file"/>
+                            <a class="uploadProfPicBtn" href="{{ url_for('main_views.profSuccess') }}"> <button class="uploadProfPicBtn" id="uploadProfPic" type="submit">Upload</button></a>
+                        </form>        
+                </div>
+                
+            </div>
+            <!-- <script src="..\js\loginPage.js"></script> -->
+            <script src="{{ url_for('static', filename='js/loginPage.js')}}"></script>
+
+    </body>
+    
+</html>
+
+<!-- <!DOCTYPE html>
 <html>
-
+<link rel="stylesheet" href="{{ url_for('static', filename='css/mainStyleSheet.css')}}">
 <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
 <style>
 body {
@@ -17,12 +56,14 @@ body {
 </style>
 
 <body style="background-color:#b6f3ff">
-
-    <form method="POST">
+    {% for messages in get_flashed_messages() %}
+      <h1>{{ messages }}</h1>
+    {% endfor %}
+    <form method="POST" enctype=multipart/form-data>
         <label for="file">Upload Profile Picture</label>
-        <input id="file" name="file" type="file" accept="image/*"/>
-        <a class="uploadProfPicBtn" href="{{ url_for('main_views.profSuccess') }}"> <button class="uploadProfPicBtn" id="uploadProfPic" type="button">Upload</button></a>
+        <input class=profPicIn id="file" name="file" type="file"/>
+        <a class="uploadProfPicBtn" href="{{ url_for('main_views.profSuccess') }}"> <button class="uploadProfPicBtn" id="uploadProfPic" type="submit">Upload</button></a>
       </form>
 
 </body>
-</html>
+</html> -->

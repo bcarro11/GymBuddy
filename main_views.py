@@ -6,9 +6,20 @@ from dotenv import load_dotenv
 from os import getenv
 from hashlib import sha256
 
+#added imports for file upload
+import gymBuddy
+from gymBuddy import app
+from flask import flash
+import os
+from flask import Flask, flash, request, redirect, url_for
+from werkzeug.utils import secure_filename
+
 #Load in enviornment variables held by .env
 load_dotenv()
 SALT = getenv("SALT")
+
+#DELETE ME ONCE PROFILE PIC LOCATION IS IN DB!
+tempProfilePic = 'default.png'
 
 main_views = Blueprint('main_views', __name__)
 
@@ -112,7 +123,7 @@ def profilePage(userID):
     #Get Rating
     getRating = Rating.getRating(user.id)
 
-    #HANLE POST METHOD
+    #HANDLE POST METHOD
     if request.method == "POST":
         #Check if POST is for rating user form.
         if 'rateUser' in request.form:
@@ -177,17 +188,47 @@ def profilePage(userID):
         spotting = user.spottingStr,
         LFPartner = user.LFPartnerStr,
         occupation = user.occupationStr,
-        hobbies = user.hobbiesStr
+        hobbies = user.hobbiesStr,
+        profilePic = tempProfilePic
         )
 
 @main_views.route('/welcomePage')
 def welcomePage():
     return render_template("html/welcomePage.html")
 
-@main_views.route('/profPicUpload')
+# From Flask documentation.
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in gymBuddy.ALLOWED_EXTENSIONS
+
+
+@main_views.route('/profPicUpload',  methods=["GET", "POST"])
 def profPicUpload():
+
+    if request.method == "POST":
+        file = request.files['file']
+        print(file.filename)
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            
+            # upload to DB here
+            print(filename)
+            global tempProfilePic
+            tempProfilePic = filename
+
+            return redirect(url_for('main_views.profSuccess'))
+        else:
+            flash ('Invalid file extension')
     return render_template("html/profPicUpload.html")
 
 @main_views.route('/profSuccess')
 def profSuccess():
     return render_template("html/profSuccess.html")
+
+@main_views.route('/messageList')
+def messageList():
+    return render_template("html/messageList.html")

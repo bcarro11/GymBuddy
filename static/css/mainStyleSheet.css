@@ -88,6 +88,18 @@ html {
     border-radius: 25px;
     
 } */
+input.profPicIn {
+    width: 90%;
+    padding: 15px 20px;
+    margin: auto;
+    margin-bottom: 10px;
+    display: block;
+    /* border: 1px solid #008ca8; */
+    box-sizing: border-box;
+    border-radius: 25px;
+    text-align: center;
+    
+}
 
 #defaultInput {
     width: 90%;
@@ -124,7 +136,7 @@ select.createAccInput {
     border-radius: 25px;
     
 }
-
+input::file-selector-button,
 button {
     background-color: #008ca8;
     color: white;

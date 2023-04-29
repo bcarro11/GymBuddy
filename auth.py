@@ -50,6 +50,3 @@ def matchesPage():
     print(matches)
     return render_template("html/matchesPage.html", matches=list(map(lambda tup: User.findUserByID(tup[0]), current_user.routine_match(userpool))))
 
-@auth.route('/profPicUpload')
-def profPicUpload():
-    return render_template("html/profPicUpload.html")
