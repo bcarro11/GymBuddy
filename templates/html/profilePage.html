@@ -33,7 +33,8 @@
                     {% if myPage +%}
                     <div class="uploadProfPicBtn">
                         <!-- Routes to welcome page as place holder -->
-                        <a class="uploadProfPicBtn" href="{{ url_for('auth.profPicUpload') }}"> <button class="uploadProfPicBtn" id="uploadProfPic" type="button">Upload Picture</button></a>
+                        <button onclick="window.open('{{ url_for('main_views.profPicUpload') }}', '_blank')" " class="uploadProfPicBtn" id="uploadProfPic" type="button">Upload Picture</button></a>
+
                     </div> 
                     {% endif %}
                     <br>
@@ -130,9 +131,9 @@
                             <input class="saveEdit" id="saveEdit" type="date" value={{dob}} name="dateOfBirth" required></input>
                             <h3>Gender: </h3>
                             <select class="saveEdit" name="gender" id="gender" value={{gender}} required>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                                <option value="nonBinary">Non-Binary</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Non-Binary">Non-Binary</option>
                             </select>
                             <h3>Favorite Exercise: </h3>
                             <input class="saveEdit" id="saveEdit" type="text" value={{favExercise}} name="favExercise"></input>
@@ -142,6 +143,7 @@
                             <input class="saveEdit" id="saveEdit" type="text" value={{fitGoals}} name="fitGoals"></input>
                             <h3>How Many Days Of The Week Do You Workout: </h3>
                             <select class="saveEdit" name="exFreq" id="exFreq" value={{exFreq}}>
+                                <option value="Unknown">Unknown</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -152,6 +154,7 @@
                             </select>
                             <h3>How Long Have You Been Working Out: </h3>
                             <select class="saveEdit" name="exLength" id="exLength" value={{exLength}}>
+                                <option value=""Unknown">Unknown</option>
                                 <option value="Less Than A Year">Less Than A Year</option>
                                 <option value="A Year">A Year</option>
                                 <option value="Two To Five Years">Two To Five Years</option>
@@ -159,16 +162,19 @@
                             </select>
                             <h3>Do You Warm-Up Before Exercising: </h3>
                             <select class="saveEdit" name="warmUps" id="warmUps" value={{warmUps}}>
+                                <option value=""Unknown">Unknown</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
                             <h3>Are You Available For Spotting: </h3>
                             <select class="saveEdit" name="spotting" id="spotting" value={{spotting}}>
+                                <option value=""Unknown">Unknown</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
                             <h3>Are You Looking For An Exercise Partner: </h3>
                             <select class="saveEdit" name="LFPartner" id="LFPartner" value={{LFPartner}}>
+                                <option value=""Unknown">Unknown</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>

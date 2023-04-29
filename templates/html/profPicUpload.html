@@ -21,7 +21,7 @@ body {
     <form method="POST">
         <label for="file">Upload Profile Picture</label>
         <input id="file" name="file" type="file" accept="image/*"/>
-        <button>Upload</button>
+        <a class="uploadProfPicBtn" href="{{ url_for('main_views.profSuccess') }}"> <button class="uploadProfPicBtn" id="uploadProfPic" type="button">Upload</button></a>
       </form>
 
 </body>
