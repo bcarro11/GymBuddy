@@ -196,12 +196,14 @@ def profilePage(userID):
 def welcomePage():
     return render_template("html/welcomePage.html")
 
-# From Flask documentation.
+# From Flask documentation:
+# https://flask.palletsprojects.com/en/2.2.x/patterns/fileuploads/
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in gymBuddy.ALLOWED_EXTENSIONS
 
-
+# From Flask documentation:
+# https://flask.palletsprojects.com/en/2.2.x/patterns/fileuploads/
 @main_views.route('/profPicUpload',  methods=["GET", "POST"])
 def profPicUpload():
 
