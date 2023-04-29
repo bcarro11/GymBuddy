@@ -183,3 +183,11 @@ def profilePage(userID):
 @main_views.route('/welcomePage')
 def welcomePage():
     return render_template("html/welcomePage.html")
+
+@main_views.route('/profPicUpload')
+def profPicUpload():
+    return render_template("html/profPicUpload.html")
+
+@main_views.route('/profSuccess')
+def profSuccess():
+    return render_template("html/profSuccess.html")

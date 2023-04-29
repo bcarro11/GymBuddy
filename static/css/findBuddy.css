@@ -69,6 +69,14 @@ h2 {
     font-family: 'Roboto';
     text-align: center;
 }
+h3 {
+    font-family: 'Roboto';
+    text-align: center;
+}
+
+#exerciseDropDownLbl{
+    font-family: 'Roboto';
+}
 
 button {
     background-color: #008ca8;
@@ -85,6 +93,22 @@ button {
     margin-top: 10px;
 }
 
+#exerciseForm {
+    justify-content: center;
+}
+select.findBuddyOption {
+    width: 95%;
+    padding: 15px 20px;
+    /* margin: auto; */
+    margin-bottom: 5px;
+    display: inline-flex;
+    border: 1px solid #008ca8;
+    /* box-sizing: border-box; */
+    border-radius: 25px;
+    background-color: #008ca8;
+    color: white;
+    justify-content: center;
+}
 
 button:hover {
     opacity: 90%;

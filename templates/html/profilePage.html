@@ -28,12 +28,12 @@
             </div>
             <div class="userPane">                
                 <div>
-                    <a href="#"><img class="profilePic" src="{{ url_for('static', filename='imgs/profile.png')}}" alt=""></a>                    
+                    <a href="{{ url_for('auth.profPicUpload') }}"><img class="profilePic" src="{{ url_for('static', filename='imgs/profile.png')}}" alt=""></a>                    
                     <br>
                     {% if myPage +%}
                     <div class="uploadProfPicBtn">
                         <!-- Routes to welcome page as place holder -->
-                        <a class="uploadProfPicBtn" href="{{ url_for('main_views.welcomePage') }}"> <button class="uploadProfPicBtn" id="uploadProfPic" type="button">Upload Picture</button></a>
+                        <a class="uploadProfPicBtn" href="{{ url_for('auth.profPicUpload') }}"> <button class="uploadProfPicBtn" id="uploadProfPic" type="button">Upload Picture</button></a>
                     </div> 
                     {% endif %}
                     <br>

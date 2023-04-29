@@ -19,24 +19,39 @@
         <div class="container">
             <div class="grid1">
                 <h1 id="createAccountTitle">Gym Buddy</h1>
-                <h2>Select Exercises</h2>
+                <h2>Your Routine</h2>
                 <p class="error"><strong>{{currentUserName}}</strong>
             </div>
             <div class="grid2">
                 <div class="scrollable">
-                    <form id="exerciseForm" method="post">
+                    <!-- <form id="exerciseForm" method="post">
 
                         {% for exercise in exercises %}
                         
                         <input type="checkbox" id="{{ exercise.name }}" name="{{ exercise.name }}" value="{{ exercise.name }}">
                         <label id="defaultLabel" for="{{ exercise.name }}">{{ exercise.name }}</label><br>
 
-                        {% endfor %}
+                        {% endfor %}                               
 
-                        <!--
-                        <input type="checkbox" id="Triceps" name="triceps" value="triceps">
-                        <label id="defaultLabel" for="Triceps">Triceps</label><br>     
-                        -->                                   
+                    </form> -->
+                    <h3> Enter your exercise routine: </h3>
+                    <hr>
+                    <form id="exerciseForm" method="post" name="exer">
+                        {% set ns = namespace(count = 1) %}
+                        {% for exercise in exercises %}                       
+                            {% if ns.count <= limit %}
+                            <label for="exerciseDropDown" id="exerciseDropDownLbl">{{ns.count}}:</label>
+                            <select class="findBuddyOption" id="exerciseDropDown" name="{{ ns.count }}">
+                                <option value="None">None</option>
+                                {% for exercise in exercises %}
+                                    <option value="{{ exercise.name }}" name="{{ exercise.name }}">{{ exercise.name }}</option>
+                                {% endfor %}
+                                <option value="Break">Break</option>
+                            </select>
+                            <br>
+                            {% endif %}
+                            {% set ns.count = ns.count + 1 %}                                                        
+                        {% endfor %}
 
                     </form>
                 </div>
