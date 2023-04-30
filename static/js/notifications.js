@@ -4,7 +4,7 @@ async function fetchNotifications(){
     if(json){
         window.alert(json)
     }
-    setTimeout(fetchNotifications, 30);
+    setTimeout(fetchNotifications, 3000);
 }
 
 fetchNotifications();
