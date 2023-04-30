@@ -1,4 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import func
+import datetime
 
 db = SQLAlchemy()
 
@@ -164,3 +166,30 @@ class Rating(db.Model):
         result = Rating.query.filter(Rating.ratee==rateeID, Rating.rater==raterID).first()
         print("getRatingFromUser: " + str(result))
         return result
+    
+class Message(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    sender = db.Column(db.Integer, nullable=False)
+    receiver = db.Column(db.Integer, nullable=False)
+    time = db.Column(db.DateTime, nullable=False)
+    contents = db.Column(db.String(2000), nullable=False)
+    seen = db.Column(db.Boolean)
+
+    def __init__(self, sender, receiver, contents):
+        self.seen = False
+        self.time = datetime.datetime.now()
+        self.sender = sender
+        self.receiver = receiver
+        self.contents = contents
+
+    def markSeen(self):
+        self.seen = True
+        db.session.commit()
+
+    @staticmethod
+    def getMessageList(userID):
+        return db.session.query(User, func.max(Message.time)).group_by(Message.sender).all()
+    
+    @staticmethod
+    def getMessagesBetweenUsers(user1, user2):
+        return Message.query.filter(((Message.sender==user1) & (Message.receiver==user2)) | ((Message.sender==user2) & (Message.receiver==user1))).all()

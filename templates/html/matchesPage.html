@@ -13,7 +13,7 @@
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
     </head>
     
     <body>
@@ -32,11 +32,11 @@
                         </h2>
                         <p>
                             {% for buddy in matches %}
-                                <li><a href="mailto:{{ buddy.email }}">{{ buddy.prefname }}</a></li>
+                                <li><a href="/match/{{ buddy.id }}">{{ buddy.prefname }}</a></li>
                             {% endfor %}
                         </p>
                         <!-- <button id="exitBtn" type="button">Exit</button>               -->
-                        <a href="{{ url_for('main_views.profilePage', userID=current_user.id) }}"> <button id="cancelSearch" type="button">Cancel</button></a>
+                        <a href="{{ url_for('auth.leavepool') }}"> <button id="cancelSearch" type="button">Cancel</button></a>
                 </div>
                 
             </div>
