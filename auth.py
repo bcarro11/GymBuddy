@@ -1,5 +1,5 @@
 from flask import Blueprint, request, redirect, url_for, render_template
-from flask_login import current_user, login_required
+from flask_login import current_user, login_required, logout_user
 from models import db, User, Exercise, Message, Gym
 from json import dumps
 from collections import deque
@@ -120,3 +120,10 @@ def match(userID):
 def leavepool():
     userpool[current_user.preferredGym].pop(current_user.id, None)
     return redirect(url_for('main_views.profilePage', userID=current_user.id))
+
+@auth.route('/deleteaccount')
+@login_required
+def deleteaccount():
+    db.session.delete(current_user)
+    logout_user()
+    return redirect(url_for("main_vies.welcomePage"))
