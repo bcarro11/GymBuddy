@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from flask_login import current_user, user_logged_in, user_unauthorized, login_user
+from flask_login import current_user, user_logged_in, user_unauthorized, login_user, login_required
 from datetime import date
 from models import db, User, Rating
 from dotenv import load_dotenv
@@ -94,6 +94,7 @@ def createAccount():
     return render_template("html/createAccount.html")
 
 @main_views.route('/profilePage/<userID>',  methods=["GET", "POST"])
+@login_required
 def profilePage(userID):
     """
     Page to display user profiles. If own profile, will allow user to edit. POST requests will be ratings or

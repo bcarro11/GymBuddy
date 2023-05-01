@@ -5,8 +5,6 @@ from json import dumps
 from collections import deque
 
 userpool = dict()
-for id in Gym.query().all():
-    userpool[id] = dict()
 notifications = dict()
 
 auth = Blueprint('auth', __name__)
@@ -40,6 +38,8 @@ def findBuddy():
             if request.form.get(exercise.name):
                 current_user.routineset.add(exercise.name)
 
+        if current_user.preferredGym not in userpool.keys():
+            userpool[current_user.preferredGym] = dict()
         userpool[current_user.preferredGym][current_user.id] = current_user.routineset
 
         return redirect(url_for('auth.matchesPage'))
@@ -62,18 +62,13 @@ def messagesPage():
     """
     Renders the page with a list of all the user's messages.
     """
-    msg1 = Message(1, current_user.id, "Test 1 | Date Today | Unread")
-    msg1.seen = False
-    msg2 = Message(current_user.id, current_user.id, "Test 2 | Date Yesterday | Read")
-    msg2.seen = True
     #PLACEHOLDER
     #This section is for testing while I set up querying with SQLAlchemy
-    messagepairs = [
-        (User.findUserByID(msg1.sender), msg1),
-        (User.findUserByID(msg2.sender), msg2)
-    ]
-
-    render_template("html/messageList.html", messagepairs=messagepairs)
+    messagepairs = []
+    for message in Message.getMessageList(current_user.id):
+        print(type(message))
+        messagepairs.append([User.findUserByID(message.sender), message])
+    return render_template("html/messageList.html", messagepairs=messagepairs)
     #END PLACEHOLDER
 
 @auth.route('/message/<int:userID>', methods=['GET', 'POST'])
@@ -83,13 +78,17 @@ def messagingPage(userID):
     Renders the page with the conversation between the current user and one other specific user
     """
     messageList = Message.getMessagesBetweenUsers(current_user.id, userID)
+    for message in messageList:
+        message.seen = True
+    db.session.commit()
     if request.method == 'POST':
-        messageContents = request.form.get('Send-Message')
+        messageContents = request.form.get('msg')
         if messageContents.strip():
             msg = Message(current_user.id, userID, messageContents)
             db.session.add(msg)
             db.session.commit()
             notifications[userID] = "New messsage from: " + current_user.prefname
+            return redirect(url_for('auth.messagingPage', userID=userID))
 
     return render_template('html/conversation.html', partner=User.findUserByID(userID), messageTuples=[(User.findUserByID(m.sender), m) for m in messageList])
 
@@ -107,7 +106,7 @@ def getnotifications():
     """
     return dumps(notifications.pop(current_user.id, None))
 
-@auth.route('/match/<int:userID')
+@auth.route('/match/<int:userID>')
 @login_required
 def match(userID):
     userpool[current_user.preferredGym].pop(userID, None)
@@ -127,3 +126,9 @@ def deleteaccount():
     db.session.delete(current_user)
     logout_user()
     return redirect(url_for("main_vies.welcomePage"))
+
+@auth.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for("main_views.welcomePage"))

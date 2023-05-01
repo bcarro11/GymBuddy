@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import func
+from sqlalchemy import func, text
 import datetime
 
 db = SQLAlchemy()
@@ -182,14 +182,17 @@ class Message(db.Model):
         self.receiver = receiver
         self.contents = contents
 
-    def markSeen(self):
-        self.seen = True
-        db.session.commit()
+    @staticmethod
+    def getTime(msg):
+        return msg.time
+
 
     @staticmethod
     def getMessageList(userID):
-        return db.session.query(User, func.max(Message.time)).group_by(Message.sender).all()
+        #return db.session.query(User, func.max(Message.time)).group_by(Message.sender).all()
+        stmt = text("SELECT *, max(time) FROM message WHERE receiver = :uid GROUP BY sender ORDER BY time")
+        return db.session.execute(stmt, {"uid": userID})
     
     @staticmethod
     def getMessagesBetweenUsers(user1, user2):
-        return Message.query.filter(((Message.sender==user1) & (Message.receiver==user2)) | ((Message.sender==user2) & (Message.receiver==user1))).all()
+        return sorted(Message.query.filter(((Message.sender==user1) & (Message.receiver==user2)) | ((Message.sender==user2) & (Message.receiver==user1))).all(), key=Message.getTime, reverse=True)

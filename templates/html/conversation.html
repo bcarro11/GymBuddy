@@ -10,8 +10,8 @@
  <html>
     <head>
         <!-- <link rel="stylesheet" href="..\css\profilePage.css"> -->
-        <link rel="stylesheet" href="mainStyleSheet.css">
-        <link rel="stylesheet" href="profilePage.css">
+        <link rel="stylesheet" href="/static/css/mainStyleSheet.css">
+        <link rel="stylesheet" href="/static/css/profilePage.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet"> 
@@ -21,37 +21,33 @@
         <!DOCTYPE html>
 <html>
   <head>
-    <title>Messages Received</title>
+    <title>Messages - {{ partner.prefname }}</title>
   </head>
   <body>
-    <h1>Messages Received</h1>
-    <div class="msg-header box">
-        <div>
-          <th>From</th>
-          <th>Date</th>
-          <th>Message</th>
-        </div>
-      <div class="msg-lsit box">
-        <div class="msg-card box">
-            <div>Sender</div>
-            <div>Date</div>
-            <div>Some Text</div>
-        </div>
-        <div class="msg-card box">
-            <div>Sender</div>
-            <div>Date</div>
-            <div>Some Text</div>
-        </div>
-        <div class="msg-card box">
-            <div>Sender</div>
-            <div>Date</div>
-            <div>Some Text</div>
-        </div>
-    </div>
-    <div class="msg-input box">
-      <input type="text" class="msg" name="msg" style="width: calc(100% - 80px);">
-        <button class="send-btn">Send</button>
+    <h1>Messages</h1>
+      <div class="msg-list box" id="msg-list" style="height: 80vh; overflow-y: auto;">
+        {% for messagetuple in messageTuples %}
+          {% if messagetuple[0].id == partner.id %}
+            <div class="msg-card box"  style="background-color:lightskyblue; align-self: flex-start; max-width: 45%;">
+                <div>{{ messagetuple[0].prefname }}</div>
+                <div>{{ messagetuple[1].time }}</div>
+                <div>{{ messagetuple[1].contents }}</div>
+            </div>
+          {% else %}
+            <div class="msg-card box" style="background-color: lightgreen; align-self:flex-end; max-width: 45%;">
+              <div>{{ messagetuple[0].prefname }}</div>
+              <div>{{ messagetuple[1].time }}</div>
+              <div>{{ messagetuple[1].contents }}</div>
+            </div>
+          {% endif %}
+        {% endfor %}
       </div>
+    <div class="msg-input box">
+      <form id="sendmsg" method="post" onsubmit="() => document.getElementById('msg').value = '';">
+        <input id="msg" type="text" class="msg" name="msg" style="width: 80%;">
+        <button class="send-btn" type="submit" style="width: 15%;">Send</button>
+      </form>
+    </div>
   </body>
 </html>
         <script src="main.js"></script>
