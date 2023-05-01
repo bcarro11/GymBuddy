@@ -22,8 +22,8 @@
             <div class="navBar">
                 <ul class="navList">
                     <li><a title="Home" id="home" href="{{ url_for('main_views.loginPage') }}">&#x1F3E0</a></li>
-                    <li><a title="Messages" id="mail" href="{{ url_for('main_views.messageList') }}">&#x1F4EC</a></li>
-                    <li><a title="Logout" id="logout" href="{{ url_for('main_views.loginPage') }}">👋</a></li>
+                    <li><a title="Messages" id="mail" href="{{ url_for('auth.messagesPage') }}">&#x1F4EC</a></li>
+                    <li><a title="Logout" id="logout" href="{{ url_for('auth.logout') }}">👋</a></li>
                     <!-- <li><a title="Logout" id="logout" href="#logout">&#x1F44B</a></li> -->
                 </ul>
             </div>
@@ -35,7 +35,7 @@
                     {% if myPage +%}
                     <div class="uploadProfPicBtn">
                         <!-- Routes to welcome page as place holder -->
-                        <button onclick="window.open('{{ url_for('main_views.profPicUpload') }}', '_blank')" " class="uploadProfPicBtn" id="uploadProfPic" type="button">Upload Picture</button></a>
+                        <button onclick={{ " }}window.open('{{ url_for('main_views.profPicUpload') }}', '_blank'){{ " }} class="uploadProfPicBtn" id="uploadProfPic" type="button">Upload Picture</button></a>
 
                     </div> 
                     {% endif %}

@@ -1,13 +1,16 @@
 from flask import Blueprint, request, redirect, url_for, render_template
-from flask_login import current_user
-from models import db, User, Exercise
+from flask_login import current_user, login_required, logout_user
+from models import db, User, Exercise, Message, Gym
+from json import dumps
 from collections import deque
 
 userpool = dict()
+notifications = dict()
 
 auth = Blueprint('auth', __name__)
 
 @auth.route('/findBuddy', methods=["GET", "POST"])
+@login_required
 def findBuddy():
     """
     Renders the view for finding a partner. Initial GET request allows you to set your exercise.
@@ -35,18 +38,97 @@ def findBuddy():
             if request.form.get(exercise.name):
                 current_user.routineset.add(exercise.name)
 
-        userpool[current_user.id] = current_user.routineset
+        if current_user.preferredGym not in userpool.keys():
+            userpool[current_user.preferredGym] = dict()
+        userpool[current_user.preferredGym][current_user.id] = current_user.routineset
 
         return redirect(url_for('auth.matchesPage'))
         
     return render_template("html/findBuddy.html", id=current_user.id, exercises=Exercise.query.all(), limit=exerciseLimit)
 
 @auth.route('/matchesPage')
+@login_required
 def matchesPage():
     """
     Renders the page for user matching given the current user pool.
     """
-    matches = list(map(lambda tup: User.findUserByID(tup[0]), current_user.routine_match(userpool)))
+    matches = list(map(lambda tup: User.findUserByID(tup[0]), current_user.routine_match(userpool[current_user.preferredGym])))
     print(matches)
     return render_template("html/matchesPage.html", matches=list(map(lambda tup: User.findUserByID(tup[0]), current_user.routine_match(userpool))))
 
+@auth.route('/messages')
+@login_required
+def messagesPage():
+    """
+    Renders the page with a list of all the user's messages.
+    """
+    #PLACEHOLDER
+    #This section is for testing while I set up querying with SQLAlchemy
+    messagepairs = []
+    for message in Message.getMessageList(current_user.id):
+        print(type(message))
+        messagepairs.append([User.findUserByID(message.sender), message])
+    return render_template("html/messageList.html", messagepairs=messagepairs)
+    #END PLACEHOLDER
+
+@auth.route('/message/<int:userID>', methods=['GET', 'POST'])
+@login_required
+def messagingPage(userID):
+    """
+    Renders the page with the conversation between the current user and one other specific user
+    """
+    messageList = Message.getMessagesBetweenUsers(current_user.id, userID)
+    for message in messageList:
+        message.seen = True
+    db.session.commit()
+    if request.method == 'POST':
+        messageContents = request.form.get('msg')
+        if messageContents.strip():
+            msg = Message(current_user.id, userID, messageContents)
+            db.session.add(msg)
+            db.session.commit()
+            notifications[userID] = "New messsage from: " + current_user.prefname
+            return redirect(url_for('auth.messagingPage', userID=userID))
+
+    return render_template('html/conversation.html', partner=User.findUserByID(userID), messageTuples=[(User.findUserByID(m.sender), m) for m in messageList])
+
+@auth.route('/profPicUpload')
+@login_required
+def profPicUpload():
+    return render_template("html/profPicUpload.html")
+
+@auth.route('/getnotifications')
+@login_required
+def getnotifications():
+    """
+    Notification handler for ajax requests, will return a notification message if there is any for the current user.
+    Should be rendered as an alert.
+    """
+    return dumps(notifications.pop(current_user.id, None))
+
+@auth.route('/match/<int:userID>')
+@login_required
+def match(userID):
+    userpool[current_user.preferredGym].pop(userID, None)
+    userpool[current_user.preferredGym].pop(current_user.id, None)
+    notifications[userID] = "Matched with " + current_user.prefname
+    return redirect(url_for('auth.message', userID=userID))
+
+@auth.route('/leavepool')
+@login_required
+def leavepool():
+    userpool[current_user.preferredGym].pop(current_user.id, None)
+    return redirect(url_for('main_views.profilePage', userID=current_user.id))
+
+@auth.route('/deleteaccount')
+@login_required
+def deleteaccount():
+    db.session.delete(current_user)
+    logout_user()
+    return redirect(url_for("main_vies.welcomePage"))
+
+@auth.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for("main_views.welcomePage"))

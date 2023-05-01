@@ -10,9 +10,8 @@
  <html>
     <head>
         <!-- <link rel="stylesheet" href="..\css\profilePage.css"> -->
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/mainStyleSheet.css')}}">
-        <!-- <link rel="stylesheet" href="mainStyleSheet.css"> -->
-        <link rel="stylesheet" href="profilePage.css">
+        <link rel="stylesheet" href="static/css/mainStyleSheet.css">
+        <link rel="stylesheet" href="static/css/profilePage.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet"> 
@@ -27,6 +26,22 @@
   <body>
     <h1>Messages Received</h1>
     <div class="msg-list box">
+      {% for messagepair in messagepairs %}
+        {% if messagepair[1].seen %}
+          <div class="msg-card box" style="background-color: lightgray;">
+            <div><a href="/message/{{ messagepair[0].id }}">{{ messagepair[0].prefname }}</a></div>
+            <div>{{ messagepair[1].time }}</div>
+            <div>{{ messagepair[1].contents[:30] }}</div>
+          </div>
+        {% else %}
+          <div class="msg-card box" style="background-color: lightcoral;">
+            <div><a href="/message/{{ messagepair[0].id }}">{{ messagepair[0].prefname }}</a></div>
+            <div>{{ messagepair[1].time }}</div>
+            <div>{{ messagepair[1].contents[:30] }}</div>
+          </div>
+        {% endif %}
+      {% endfor %}
+      <!--
       <div class="msg-card box">
         <div><a href="conversation.html">Profile 1</a></div>
         <div>Date</div>
@@ -41,7 +56,8 @@
         <div><a href="conversation.html">Profile 3</a></div>
         <div>Date</div>
         <div>Some Text</div>
-        </div>
+      </div>
+      -->
     </div>
   </body>
 </html>
