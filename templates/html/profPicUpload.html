@@ -33,8 +33,10 @@
                         <form method="POST" enctype=multipart/form-data>
                             <!-- <label for="file"><h2>Upload Profile Picture</h2></label> -->
                             <input class=profPicIn id="file" name="file" type="file"/>
+                            <p id="fileSize"></p> 
                             <a class="uploadProfPicBtn" href="{{ url_for('main_views.profSuccess') }}"> <button class="uploadProfPicBtn" id="uploadProfPic" type="submit">Upload</button></a>
-                        </form>        
+                        </form>
+                        <button name="close" class="uploadProfPicBtn" id="close" type="button">Back to Profile</button>        
                 </div>
                 
             </div>

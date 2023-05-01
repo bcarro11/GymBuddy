@@ -7,8 +7,19 @@
  */
 
 
-// const createAcc = document.getElementById("searchForBuddy").addEventListener("click", goToFindBuddy);
 
-// function goToFindBuddy(){
-//     window.location.href="findBuddy";  
-// }
+var uploadBtn = document.getElementById("uploadProfPic");
+var refresh = false;
+
+uploadBtn.onclick = function() {
+    refresh = true;
+};
+
+document.onvisibilitychange = () => {
+
+    if (document.visibilityState === "visible" && refresh) {
+        refresh = false;
+        location.reload();        
+    }
+
+};

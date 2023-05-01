@@ -7,10 +7,23 @@
  */
 
 var uploadField = document.getElementById("file");
+var closeTab = document.getElementById("close");
+var fSize = document.getElementById("fileSize");
 
 uploadField.onchange = function() {
-    if(this.files[0].size > 2200000){
-       alert("File is too big!");
+    let size = this.files[0].size;
+    if (size >= 1000000){
+        fSize.innerHTML = (size / 1000000) + "MB";
+    } else {
+        fSize.innerHTML = (size / 1000) + "KB";
+    }
+    //Limit picture to 1MB
+    if(this.files[0].size > 1000000){
+       alert("File is too big!\nFile must be less than 1MB");
        this.value = "";
     };
+};
+
+closeTab.onclick = function() {
+    close();
 };

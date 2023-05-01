@@ -1,66 +1,56 @@
 <!DOCTYPE html>
 <!--
     GROUP: Gym Buddy
-    MEMBERS: ​Brenden Carroll, Stefani Page, Elina Tsykhmisdivenko, Justin White, Hamza Zgclassou​ 
+    MEMBERS: ​Brenden Carroll, Stefani Page, Elina Tsykhmistrenko, Justin White, Hamza Zgidou​ 
     COURSE: CMSC 495:7383
-    FILE: profilePage.html
+    FILE: createAccount.html
     DATE: April 1, 2023
 -->
-
  <html>
     <head>
-        <!-- <link rel="stylesheet" href="..\css\profilePage.css"> -->
-        <link rel="stylesheet" href="static/css/mainStyleSheet.css">
-        <link rel="stylesheet" href="static/css/profilePage.css">
+        <!-- <link rel="stylesheet" href="..\css\findBuddy.css"> -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/messageList.css')}}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet"> 
     </head>
-    
-    <body>
-        <!DOCTYPE html>
-<html>
-  <head>
-    <title>Messages Received</title>
-  </head>
-  <body>
-    <h1>Messages Received</h1>
-    <div class="msg-list box">
-      {% for messagepair in messagepairs %}
-        {% if messagepair[1].seen %}
-          <div class="msg-card box" style="background-color: lightgray;">
-            <div><a href="/message/{{ messagepair[0].id }}">{{ messagepair[0].prefname }}</a></div>
-            <div>{{ messagepair[1].time }}</div>
-            <div>{{ messagepair[1].contents[:30] }}</div>
-          </div>
-        {% else %}
-          <div class="msg-card box" style="background-color: lightcoral;">
-            <div><a href="/message/{{ messagepair[0].id }}">{{ messagepair[0].prefname }}</a></div>
-            <div>{{ messagepair[1].time }}</div>
-            <div>{{ messagepair[1].contents[:30] }}</div>
-          </div>
-        {% endif %}
-      {% endfor %}
-      <!--
-      <div class="msg-card box">
-        <div><a href="conversation.html">Profile 1</a></div>
-        <div>Date</div>
-        <div>Some Text</div>
-      </div>
-      <div class="msg-card box">
-        <div><a href="conversation.html">Profile 2</a></div>
-        <div>Date</div>
-        <div>Some Text</div>
-      </div>
-      <div class="msg-card box">
-        <div><a href="conversation.html">Profile 3</a></div>
-        <div>Date</div>
-        <div>Some Text</div>
-      </div>
-      -->
-    </div>
-  </body>
-</html>
-        <script src="main.js"></script>
+
+    <body>        
+        <div class="container">
+            <div class="grid1">
+                <h1 id="createAccountTitle">Gym Buddy</h1>
+                <h2>Your Messages</h2>
+                <p class="error"><strong>{{currentUserName}}</strong>
+            </div>
+            <div class="grid2">
+                <div class="scrollable">                    
+                    {% for messagepair in messagepairs %}
+                    {% if messagepair[1].seen %}
+                    <a href="/message/{{ messagepair[0].id }}" id="messagesBox">
+                      <div class="msg-card-box">
+                      <div>{{ messagepair[0].prefname }}</div>
+                      <div>{{ messagepair[1].time }}</div>
+                      <div>{{ messagepair[1].contents[:30] }}</div>
+                      </div>
+                    </a>
+                    {% else %}
+                    <a href="/message/{{ messagepair[0].id }}" id="messagesBox">
+                      <div class="msg-card-box">
+                      <div>{{ messagepair[0].prefname }}</div>
+                      <div>{{ messagepair[1].time }}</div>
+                      <div>{{ messagepair[1].contents[:30] }}</div>
+                      </div>
+                    </a>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+            </div>
+            <div class="grid3">                  
+                <a href="{{ url_for('main_views.profilePage', userID=id) }}"> <button id="cancelSearch" type="button">Return To Profile</button></a>
+            </div>
+        </div>
+        <!-- <script src="{{ url_for('static', filename='js/findBuddy.js')}}"></script> -->
+        <!-- <script src="..\js\findBuddy.js"></script> -->
     </body>
+    
 </html>

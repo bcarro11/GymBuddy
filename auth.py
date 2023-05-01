@@ -68,7 +68,7 @@ def messagesPage():
     for message in Message.getMessageList(current_user.id):
         print(type(message))
         messagepairs.append([User.findUserByID(message.sender), message])
-    return render_template("html/messageList.html", messagepairs=messagepairs)
+    return render_template("html/messageList.html", messagepairs=messagepairs, id=current_user.id)
     #END PLACEHOLDER
 
 @auth.route('/message/<int:userID>', methods=['GET', 'POST'])

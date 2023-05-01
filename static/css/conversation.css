@@ -1,0 +1,141 @@
+/*
+    GROUP: Gym Buddy
+    MEMBERS: ​Brenden Carroll, Stefani Page, Elina Tsykhmistrenko, Justin White, Hamza Zgidou​ 
+    COURSE: CMSC 495:7383
+    FILE: findBuddy.css
+    DATE: April 8, 2023
+*/
+
+html {
+    background: linear-gradient(-45deg, #f6f8f7, #b6f3ff);
+    background-color: #ffffff;
+    background-size: 250% 250%;
+    height: auto;
+}
+
+body {
+    overflow: hidden;
+}
+
+.container {
+    height: 98vh;
+    display: grid;
+    grid-template-columns: 50%;
+    grid-template-rows: 120px 1fr 130px;
+    justify-content: center;
+    gap: 1px;
+}
+
+
+.grid1 {
+    grid-row: 1 / 2;
+    background-color: #ffffff;
+    border: #008ca8;
+    border-style: solid;
+    overflow: hidden;
+}
+
+.grid2 {
+    grid-row: 2 / 3;
+    display: flex;
+    background-color: #ffffff;
+    border: #008ca8;
+    border-style: solid;
+    overflow-y: scroll;
+    padding: 20px;
+    flex-direction: column-reverse;
+}
+
+.grid3 {
+    grid-row: 3 / 4;    
+    background-color: #ffffff;
+    border: #008ca8;
+    border-style: solid;
+}
+
+.msg-card-box {
+    background-color: #ffffff;
+    padding: 5px;
+    font-family: 'Roboto';
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flexbox;
+    width: 45%;
+    margin-left: 50%;
+    margin-top: 10px;
+    word-break: break-all;
+    border-radius: 25px;
+}
+
+.msg-card-box-unread {
+    background-color: #b6f3ff;
+    padding: 10px;
+    font-family: 'Roboto';
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flexbox;
+    width: 45%;
+    margin-right: 50%;
+    margin-top: 10px;
+    word-break: break-all;
+    border-radius: 25px;
+    
+}
+
+#messagesBox {
+    text-decoration: none;
+    font-family: 'Roboto';
+    color:#008ca8;
+}
+
+h1 {
+    font-family: 'Roboto';
+    color: #008ca8;
+    text-align: center;
+}
+
+h2 {
+    font-family: 'Roboto';
+    text-align: center;
+}
+h3 {
+    font-family: 'Roboto';
+    text-align: center;
+}
+
+
+button {
+    background-color: #008ca8;
+    color: white;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    border-radius: 25px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+
+button:hover {
+    opacity: 90%;
+}
+
+#defaultLabel {
+    font-family: 'Roboto';
+}
+
+
+#msg {
+    width: 90%;
+    padding: 15px 20px;
+    margin: auto;
+    margin-bottom: 10px;
+    display: block;
+    border: 2px solid #008ca8;
+    box-sizing: border-box;
+    border-radius: 25px;
+    margin-top: 5px;
+    
+}

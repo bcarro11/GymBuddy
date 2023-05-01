@@ -1,55 +1,56 @@
+
 <!DOCTYPE html>
 <!--
     GROUP: Gym Buddy
-    MEMBERS: ​Brenden Carroll, Stefani Page, Elina Tsykhmisdivenko, Justin White, Hamza Zgclassou​ 
+    MEMBERS: ​Brenden Carroll, Stefani Page, Elina Tsykhmistrenko, Justin White, Hamza Zgidou​ 
     COURSE: CMSC 495:7383
-    FILE: profilePage.html
+    FILE: createAccount.html
     DATE: April 1, 2023
 -->
-
  <html>
     <head>
-        <!-- <link rel="stylesheet" href="..\css\profilePage.css"> -->
-        <link rel="stylesheet" href="/static/css/mainStyleSheet.css">
-        <link rel="stylesheet" href="/static/css/profilePage.css">
+        <!-- <link rel="stylesheet" href="..\css\findBuddy.css"> -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/conversation.css')}}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet"> 
     </head>
-    
-    <body>
-        <!DOCTYPE html>
-<html>
-  <head>
-    <title>Messages - {{ partner.prefname }}</title>
-  </head>
-  <body>
-    <h1>Messages</h1>
-      <div class="msg-list box" id="msg-list" style="height: 80vh; overflow-y: auto;">
-        {% for messagetuple in messageTuples %}
-          {% if messagetuple[0].id == partner.id %}
-            <div class="msg-card box"  style="background-color:lightskyblue; align-self: flex-start; max-width: 45%;">
-                <div>{{ messagetuple[0].prefname }}</div>
-                <div>{{ messagetuple[1].time }}</div>
-                <div>{{ messagetuple[1].contents }}</div>
+
+    <body>        
+        <div class="container">
+            <div class="grid1">
+                <h1 id="createAccountTitle">Gym Buddy</h1>
+                <h2>Your Messages</h2>
+                <strong class="error">{{currentUserName}}</strong>
             </div>
-          {% else %}
-            <div class="msg-card box" style="background-color: lightgreen; align-self:flex-end; max-width: 45%;">
-              <div>{{ messagetuple[0].prefname }}</div>
-              <div>{{ messagetuple[1].time }}</div>
-              <div>{{ messagetuple[1].contents }}</div>
+            <div class="grid2">
+                <!-- <div class="scrollable"> -->
+                  {% for messagetuple in messageTuples %}
+                  {% if messagetuple[0].id == partner.id %}
+                    <div class="msg-card-box">
+                        <div>{{ messagetuple[0].prefname }}</div>
+                        <div>{{ messagetuple[1].time }}</div>
+                        <p>{{ messagetuple[1].contents }}</p>
+                    </div>
+                  {% else %}
+                    <div class="msg-card-box-unread">
+                      <div>{{ messagetuple[0].prefname }}</div>
+                      <div>{{ messagetuple[1].time }}</div>
+                      <p> {{ messagetuple[1].contents }}</p>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+                <!-- </div> -->
             </div>
-          {% endif %}
-        {% endfor %}
-      </div>
-    <div class="msg-input box">
-      <form id="sendmsg" method="post" onsubmit="() => document.getElementById('msg').value = '';">
-        <input id="msg" type="text" class="msg" name="msg" style="width: 80%;">
-        <button class="send-btn" type="submit" style="width: 15%;">Send</button>
-      </form>
-    </div>
-  </body>
-</html>
-        <script src="main.js"></script>
+            <div class="grid3">                  
+              <form id="sendmsg" method="post" onsubmit="() => document.getElementById('msg').value = '';">
+                <input id="msg" type="text" class="msg" name="msg">
+                <button class="send-btn" type="submit">Send</button>
+              </form>
+            </div>
+        </div>
+        <!-- <script src="{{ url_for('static', filename='js/findBuddy.js')}}"></script> -->
+        <!-- <script src="..\js\findBuddy.js"></script> -->
     </body>
+    
 </html>
