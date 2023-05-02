@@ -74,6 +74,12 @@ class User(db.Model):
         return User.query.filter(User.id == id).first()
     
     @staticmethod
+    def emailExist(em):
+        # Retrieves a user object from the database given a user ID
+        if (User.query.filter(User.email == em).first()):
+            return True
+    
+    @staticmethod
     def passwordIsMatch(em, pw):
         # Verifies that the password of the user corresponding to the provided email matches the one stored in the database
         user = User.findUserByEmail(em)

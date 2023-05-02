@@ -85,13 +85,17 @@ def createAccount():
             valid = False
             msg = "Invalid email address"
 
+        if User.emailExist(email):
+            valid = False
+            msg = "email already exists"
+
         print(prefName)
         print(email)
         print(password1)
         print(password2)
         print(dob)
         print(gender)
-        print(prefGym)
+        print(prefGym) 
 
         if(valid):
             # Input into DB with hashed password
