@@ -32,7 +32,7 @@
                         </h2>
                         <p>
                             {% for buddy in matches %}
-                                <li><a href="/match/{{ buddy.id }}">{{ buddy.prefname }}</a></li>
+                                <li><a href="/match/{{ buddy[0].id }}">{{ buddy[0].prefname }}</a></li>
                             {% endfor %}
                         </p>
                         <!-- <button id="exitBtn" type="button">Exit</button>               -->

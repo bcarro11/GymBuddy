@@ -3,6 +3,7 @@ from flask_login import current_user, login_required, logout_user
 from models import db, User, Exercise, Message, Gym
 from json import dumps
 from collections import deque
+from fogsaaUtil import compareSequences
 
 userpool = dict()
 notifications = dict()
@@ -29,14 +30,12 @@ def findBuddy():
         # Index should be order of exercise (e.g., index 0 = first exercise in routine)
         exerciseList = list()
         for key, val in exerciseGenerator:
+            if val == "None" or val == "Break":
+                val = None
             exerciseList.append(val)
 
         # Will probably have to be updated to handle the list.
-        current_user.routineset = set()
-        for exercise in Exercise.query.all():
-            print(exercise)
-            if request.form.get(exercise.name):
-                current_user.routineset.add(exercise.name)
+        current_user.routineset = exerciseList
 
         if current_user.preferredGym not in userpool.keys():
             userpool[current_user.preferredGym] = dict()
@@ -52,9 +51,14 @@ def matchesPage():
     """
     Renders the page for user matching given the current user pool.
     """
-    matches = list(map(lambda tup: User.findUserByID(tup[0]), current_user.routine_match(userpool[current_user.preferredGym])))
-    print(matches)
-    return render_template("html/matchesPage.html", matches=list(map(lambda tup: User.findUserByID(tup[0]), current_user.routine_match(userpool))))
+    userHolder = list()
+    gymUsers = userpool[current_user.preferredGym]
+    for id in gymUsers:
+        if id == current_user.id:
+            continue
+        userHolder.append((User.findUserByID(id), compareSequences(gymUsers[current_user.id], gymUsers[id])))
+    # matches = list(map(lambda tup: User.findUserByID(tup[0]), current_user.routine_match(userpool[current_user.preferredGym])))
+    return render_template("html/matchesPage.html", matches=sorted(userHolder, key=lambda match: match[1], reverse=True))
 
 @auth.route('/messages')
 @login_required
@@ -109,10 +113,13 @@ def getnotifications():
 @auth.route('/match/<int:userID>')
 @login_required
 def match(userID):
-    userpool[current_user.preferredGym].pop(userID, None)
-    userpool[current_user.preferredGym].pop(current_user.id, None)
+    try:
+        userpool[current_user.preferredGym].pop(userID, None)
+        userpool[current_user.preferredGym].pop(current_user.id, None)
+    except:
+        print("Oh no!")
     notifications[userID] = "Matched with " + current_user.prefname
-    return redirect(url_for('auth.message', userID=userID))
+    return redirect(url_for('auth.messagingPage', userID=userID))
 
 @auth.route('/leavepool')
 @login_required
