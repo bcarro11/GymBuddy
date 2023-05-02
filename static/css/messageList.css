@@ -55,7 +55,7 @@ body {
 }
 .msg-card-box {
     background-color: #ffffff;
-    padding: 5px;
+    padding: 10px;
     font-family: 'Roboto';
     justify-self: right;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -63,7 +63,7 @@ body {
 
 .msg-card-box-unread {
     background-color: #b6f3ff;
-    padding: 5px;
+    padding: 10px;
     font-family: 'Roboto';
     justify-self: right;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -72,7 +72,7 @@ body {
 #messagesBox {
     text-decoration: none;
     font-family: 'Roboto';
-    color:#008ca8;
+    color:black;
 }
 
 .msg-card-box:hover,
@@ -96,7 +96,15 @@ h3 {
     text-align: center;
 }
 
+#subj {
+    font-family: 'Roboto';
+    color: #008ca8;
+}
 
+hr {
+    opacity: 70%;
+    color: #008ca8;
+}
 button {
     background-color: #008ca8;
     color: white;

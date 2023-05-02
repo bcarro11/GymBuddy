@@ -19,7 +19,7 @@
         <div class="container">
             <div class="grid1">
                 <h1 id="createAccountTitle">Gym Buddy</h1>
-                <h2>Your Messages</h2>
+                <h2>Your Inbox</h2>
                 <p class="error"><strong>{{currentUserName}}</strong>
             </div>
             <div class="grid2">
@@ -28,9 +28,10 @@
                     {% if messagepair[1].seen %}
                     <a href="/message/{{ messagepair[0].id }}" id="messagesBox">
                       <div class="msg-card-box">
-                      <div>{{ messagepair[0].prefname }}</div>
-                      <div>{{ messagepair[1].time }}</div>
-                      <div>{{ messagepair[1].contents[:30] }}</div>
+                      <div>From: {{ messagepair[0].prefname }}</div>                      
+                      <div>On: {{ messagepair[1].time }}</div>
+                      <hr>
+                      <div id="subj">{{ messagepair[1].contents[:30] }}</div>
                       </div>
                     </a>
                     {% else %}
