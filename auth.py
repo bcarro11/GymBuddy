@@ -125,10 +125,17 @@ def leavepool():
 def deleteaccount():
     db.session.delete(current_user)
     logout_user()
-    return redirect(url_for("main_vies.welcomePage"))
+    return redirect(url_for("main_views.welcomePage"))
 
 @auth.route('/logout')
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for("main_views.welcomePage"))
+    msg = "Logged Out Successfully!"
+    btn = "OK"
+    return splashPage(msg, btn)
+    # return redirect(url_for("main_views.login"))
+
+@auth.route('/splashPage')
+def splashPage(msg, btn):
+    return render_template("html/splashPage.html", message = msg, buttonName = btn )

@@ -227,7 +227,10 @@ def profPicUpload():
             global tempProfilePic
             tempProfilePic = filename
 
-            return redirect(url_for('main_views.profSuccess'))
+            # return redirect(url_for('main_views.profSuccess'))
+            msg = "Uploaded Successfully!"
+            btn = "Back"
+            return splashPage(msg, btn)
         else:
             flash ('Invalid file extension')
     return render_template("html/profPicUpload.html")
@@ -239,3 +242,7 @@ def profSuccess():
 @main_views.route('/messageList')
 def messageList():
     return render_template("html/messageList.html")
+
+@main_views.route('/splashPage')
+def splashPage(msg, btn):
+    return render_template("html/splashPage.html", message = msg, buttonName = btn, id=current_user.id )
