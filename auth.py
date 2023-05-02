@@ -107,12 +107,17 @@ def getnotifications():
     """
     Notification handler for ajax requests, will return a notification message if there is any for the current user.
     Should be rendered as an alert.
+    NOTE: Not currently implemented on front end, will be used in phase 4.
     """
     return dumps(notifications.pop(current_user.id, None))
 
 @auth.route('/match/<int:userID>')
 @login_required
 def match(userID):
+    """
+        Middleman route which will remove both users from the queue and redirect the triggering
+        user to the route to message the matched user.
+    """
     try:
         userpool[current_user.preferredGym].pop(userID, None)
         userpool[current_user.preferredGym].pop(current_user.id, None)
@@ -124,12 +129,20 @@ def match(userID):
 @auth.route('/leavepool')
 @login_required
 def leavepool():
+    """
+        Used for a user to cancel their search and be removed from the gym pool.
+    """
     userpool[current_user.preferredGym].pop(current_user.id, None)
     return redirect(url_for('main_views.profilePage', userID=current_user.id))
 
 @auth.route('/deleteaccount')
 @login_required
 def deleteaccount():
+    """
+        Will delete the current user from the database and log them out.
+        NOTE: Their messages and rating will remain. Could implement a "deleted user" style
+        placeholder profile to allow people to see a user they talked to left.
+    """
     db.session.delete(current_user)
     logout_user()
     return redirect(url_for("main_vies.welcomePage"))
@@ -137,5 +150,8 @@ def deleteaccount():
 @auth.route('/logout')
 @login_required
 def logout():
+    """
+        Logs out the current user and redirects to the welcome page.
+    """
     logout_user()
     return redirect(url_for("main_views.welcomePage"))
