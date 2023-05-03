@@ -104,7 +104,7 @@ class Node:
         """
         return (self.presentScore + self.futureScores[0], self.presentScore + self.futureScores[1])
     
-@staticmethod
+# @staticmethod
 def compareSequences(arr1, arr2):
     """Used to perform the FOGSAA comparison on any two sequences.
         NOTE: It returns the negative of the best fitness score achieved, as the fitness scores were only made
