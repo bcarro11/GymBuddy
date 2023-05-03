@@ -91,7 +91,11 @@ def messagingPage(userID):
             msg = Message(current_user.id, userID, messageContents)
             db.session.add(msg)
             db.session.commit()
-            notifications[userID] = "New messsage from: " + current_user.prefname
+            notifications[userID] = {
+                'type': 'Message',
+                'message': str(current_user.prefname) + ': ' + messageContents.strip()
+            }
+            #"New messsage from: " + current_user.prefname
             return redirect(url_for('auth.messagingPage', userID=userID))
 
     return render_template('html/conversation.html', partner=User.findUserByID(userID), messageTuples=[(User.findUserByID(m.sender), m) for m in messageList])
@@ -123,7 +127,11 @@ def match(userID):
         userpool[current_user.preferredGym].pop(current_user.id, None)
     except:
         print("Oh no!")
-    notifications[userID] = "Matched with " + current_user.prefname
+    notifications[userID] = {
+        'type': 'Match',
+        'message': str(current_user.prefname) + ' would like to workout!'
+    }
+    #"Matched with " + current_user.prefname
     return redirect(url_for('auth.messagingPage', userID=userID))
 
 @auth.route('/leavepool')
