@@ -55,7 +55,7 @@ body {
 
 .msg-card-box {
     background-color: #ffffff;
-    padding: 5px;
+    padding: 10px;
     font-family: 'Roboto';
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     display: flexbox;

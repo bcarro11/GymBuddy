@@ -53,6 +53,7 @@ body {
     overflow-y: scroll;
     padding: 20px;
 }
+
 .msg-card-box {
     background-color: #ffffff;
     padding: 10px;
@@ -62,22 +63,38 @@ body {
 }
 
 .msg-card-box-unread {
-    background-color: #b6f3ff;
+    background-color: lightskyblue;
     padding: 10px;
     font-family: 'Roboto';
     justify-self: right;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-#messagesBox {
-    text-decoration: none;
-    font-family: 'Roboto';
-    color:black;
-}
-
 .msg-card-box:hover,
 .msg-card-box-unread:hover{
     opacity: 40%;
+}
+
+.msgBox{
+    padding: 5px;
+    text-decoration: none;
+}
+
+.msgBoxUnread {
+    padding: 5px;
+    text-decoration: none;
+}
+
+#from,
+#on {
+    text-decoration: none;
+    font-family: 'Roboto';
+    color:black;  
+}
+
+#subj {
+    font-family: 'Roboto';
+    color: #008ca8;
 }
 
 
