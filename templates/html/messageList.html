@@ -31,7 +31,7 @@
                   {% for messagepair in messagepairs |reverse%}
                     {% if messagepair[1].seen %}
                     <a href="/message/{{ messagepair[0].id }}" id="messagesBoxUnread" class="msgBoxUnread">
-                      <div class="msg-card-box-unread">
+                      <div class="msg-card-box">
                         <div id="from">From: {{ messagepair[0].prefname }}</div>                      
                         <div id="on">On: {{ messagepair[1].time }}</div>
                         <hr>
@@ -40,7 +40,7 @@
                     </a>
                     {% else %}
                     <a href="/message/{{ messagepair[0].id }}" id="messagesBox" class="msgBox">
-                      <div class="msg-card-box">
+                      <div class="msg-card-box-unread">
                       <div id="from">From: {{ messagepair[0].prefname }}</div>                      
                       <div id="on">On: {{ messagepair[1].time }}</div>
                       <hr>

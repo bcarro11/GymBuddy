@@ -36,14 +36,16 @@ class User(db.Model):
     LFPartnerStr = db.Column(db.String)
     occupationStr = db.Column(db.String)
     hobbiesStr = db.Column(db.String)
+    profilePic = db.Column(db.String)
 
-    def __init__(self, email, password, prefname, dob, gender, preferredGym):
+    def __init__(self, email, password, prefname, dob, gender, preferredGym, profPic):
         self.email = email
         self.password = password
         self.prefname = prefname
         self.dob = dob
         self.gender = gender
         self. preferredGym = preferredGym
+        self.profilePic = profPic
 
     #The following 4 methods are required by flask-login
     def is_active(self):

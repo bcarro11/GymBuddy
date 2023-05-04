@@ -18,9 +18,6 @@ from werkzeug.utils import secure_filename
 load_dotenv()
 SALT = getenv("SALT")
 
-#DELETE ME ONCE PROFILE PIC LOCATION IS IN DB!
-tempProfilePic = 'default.png'
-
 main_views = Blueprint('main_views', __name__)
 
 @main_views.route('/', methods=["GET", "POST"])
@@ -67,6 +64,7 @@ def createAccount():
         dob = date(year, month, day)
         gender = str(request.form.get('gender'))
         prefGym = str(request.form.get('prefGym'))
+        profPic = str('default.png')
 
         #Validation here?
         if not (len(password1) >= 8):
@@ -99,7 +97,7 @@ def createAccount():
 
         if(valid):
             # Input into DB with hashed password
-            user = User(email=email, password=sha256((str(SALT) + password1).encode('utf-8')).digest(), dob=dob, gender=gender, preferredGym=prefGym, prefname=prefName)
+            user = User(email=email, password=sha256((str(SALT) + password1).encode('utf-8')).digest(), dob=dob, gender=gender, preferredGym=prefGym, prefname=prefName, profPic=profPic)
             db.session.add(user)
             db.session.commit()
             return redirect(url_for('main_views.welcomePage'))
@@ -194,7 +192,7 @@ def profilePage(userID):
         LFPartner = user.LFPartnerStr,
         occupation = user.occupationStr,
         hobbies = user.hobbiesStr,
-        profilePic = tempProfilePic
+        profilePic = str(user.profilePic)
         )
 
 @main_views.route('/welcomePage')
@@ -224,8 +222,8 @@ def profPicUpload():
             
             # upload to DB here
             print(filename)
-            global tempProfilePic
-            tempProfilePic = filename
+            current_user.profilePic = str(filename)
+            db.session.commit()
 
             # return redirect(url_for('main_views.profSuccess'))
             msg = "Uploaded Successfully!"
