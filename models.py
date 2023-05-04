@@ -36,16 +36,14 @@ class User(db.Model):
     LFPartnerStr = db.Column(db.String)
     occupationStr = db.Column(db.String)
     hobbiesStr = db.Column(db.String)
-    profilePic = db.Column(db.String)
 
-    def __init__(self, email, password, prefname, dob, gender, preferredGym, profPic):
+    def __init__(self, email, password, prefname, dob, gender, preferredGym):
         self.email = email
         self.password = password
         self.prefname = prefname
         self.dob = dob
         self.gender = gender
         self. preferredGym = preferredGym
-        self.profilePic = profPic
 
     #The following 4 methods are required by flask-login
     def is_active(self):
@@ -118,7 +116,6 @@ class User(db.Model):
 class Gym(db.Model):
     """
     Simple table to store the gym locations the application currently supports.
-
     @Attributes
     id [INT] - Unique identification number, created by database
     name [STR] - Gym name
@@ -135,7 +132,6 @@ class Gym(db.Model):
 class Exercise(db.Model):
     """
     Simple table to store all exercises available for selection by users.
-
     @Attributes
     id [INT] - Unique identification number, created by database
     name [STR] - Name of exercise, must be unique
