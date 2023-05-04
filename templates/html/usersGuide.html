@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<!--
+    GROUP: Gym Buddy
+    MEMBERS: ​Brenden Carroll, Stefani Page, Elina Tsykhmistrenko, Justin White, Hamza Zgidou​ 
+    COURSE: CMSC 495:7383
+    FILE: usersGuide.html
+    DATE: April 30, 2023
+-->
+
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+<style>
+body {
+    font-family: 'Roboto';font-size: 20px;
+}
+
+img {  
+        max-width: 50%;  
+        height: auto;  
+}  
+</style>
+
+   <body style="background-color:#b6f3ff">
+   <center><img src="{{ url_for('static', filename='imgs/GymLogo.png')}}" class="logo"></center>
+   <center><h1>Gym Buddy: User's Guide</h1></center>
+
+<h2>Preface</h2>
+
+<p>The "How-To Instructions" below should answer any questions about how to use the application.</p>
+
+<p>FAQs will detail answers to questions that are frequently asked.</p>  
+
+<p>We look forward to finding you your new gym buddy.</p>
+
+<hr style="width:100%;text-align:left;margin-left:0">
+
+<h2>How-To Instructions</h2>  
+
+<i>Signing Up</i>
+
+<p>1) The first time you use the application, you will be asked to sign-up.  Click the “Create Account” button.</p>  
+
+<p>2)  Here are all of the fields to be filled in:</p> 
+
+<p style="margin-left: 25px;">- First name (required)</p> 
+<p style="margin-left: 25px;">- Last name (required)</p> 
+<p style="margin-left: 25px;">- Nick name (required)</p> 
+<p style="margin-left: 25px;">- DOB (required)</p> 
+<p style="margin-left: 25px;">- Gender (required)</p> 
+<p style="margin-left: 25px;">- Email address (required)</p> 
+<p style="margin-left: 25px;">- Password (required)</p> 
+<p style="margin-left: 25px;">- Preferred Gym (required)</p> 
+
+<p>The password will be inputted twice for verification purposes.</p>  
+
+<p>3) A Congratulations page should load to verify your account has been created.  In the future, 
+when you log-in using your e-mail address and password, all of your personal information will already be stored for you.</p>
+
+<hr style="width:100%;text-align:left;margin-left:0">
+
+<i>Upload Profile Picture</i>
+
+<p>1) If you want to upload a profile picture, click on the “Upload Profile Picture” button located underneath your 
+current profile picture.</p>
+ 
+<p>2) You will be taken to a page where you can upload a profile picture from your own computer.</p>
+
+<p>3) Your new profile picture will be displayed on your profile page.</p> 
+
+<i>Update Additional Profile Information</i>
+<p>1) Besides the required profile information, you can edit the additional profile information section by selecting
+the “Edit” pencil button at the upper righthand corner of your profile.</p>
+
+<p>2) Enter your answers into the empty fields and then hit the “Save” button.  Your new profile will be saved
+and will now display on your profile page.</p>
+
+<hr style="width:100%;text-align:left;margin-left:0">
+
+<i>Searching For Matches</i>
+
+<p>1) After filling out your profile, to better match you with a buddy with a similar exercise routine, 
+you will be allowed to search for a gym buddy by entering the breakdown of the different
+exercises you will do at the gym by ticking all of the exercises you will perform from a list we provide.</p>
+
+<p>2) Then, click the “Search For A Buddy” button.</p> 
+
+<p>3) All of your matches are users that have selected the same “Preferred Gym” as you.  
+These matches will be listed based upon the person whose workout routine best matches yours using a Levenshtein distance.  
+You can read through the profiles of your matches and message the person who you think is the best fit.</p> 
+
+<hr style="width:100%;text-align:left;margin-left:0">
+
+<i>Messaging Your Buddy And Message History</i>
+
+<p>1)  If you click on the “Messages” tab, you can see a log of all of your previous messages sorted by date, 
+with the newest messages at the top of the page.</p>
+
+<p>2) All new, unread messages will be at the top and the unread ones will be bolded.  
+Click on any one of these messages to respond to that potential buddy.</p>
+
+<p>3) After you click on a specific message, a chat window should open for you to message with 
+that buddy where you can get to know them a little bit more and discuss the specific details of a workout session.</p>
+ 
+<p>4) After you have messaged someone and have agreed on a certain time, one of you will input the time
+to confirm the workout session. Then, click the “Accept” button.  Both of you will receive a message 
+which confirms the time of your workout.</p>
+
+<hr style="width:100%;text-align:left;margin-left:0">
+
+<i>Cancel A Scheduled Workout</i>
+
+<p>1) If you need to cancel your workout session after already confirming a time with your buddy, 
+go to the message between you and them and click “Cancel Workout.”</p>
+ 
+<p>2) Your buddy will be notified that the workout is canceled.  There is a text box where you
+can enter a reason for canceling if you so wish which your buddy will see.</p>
+
+<hr style="width:100%;text-align:left;margin-left:0">
+
+<i>While At The Gym</i>
+
+<p>1) It is the default setting that if you are already at the gym but you did not find a match, 
+you will still be in the search pool of potential buddies at your gym.</p>
+
+<p>2)  If someone messages you while you are at the gym, you will still receive a notification.  
+You can decide if you want to reply or not to this message depending on how busy you are.</p> 
+
+<p>3)  If you want to be removed from the search pool, logout of your account.</p>
+
+<hr style="width:100%;text-align:left;margin-left:0">
+
+<i>Rating Other Users</i>
+
+<p>1) The application allows you to rate any buddy you have been matched with.</p>
+
+<p>2)  Go to the profile of the user you want to rate and right under their user icon are 5 stars.  
+Click on the star out of 5 you would like to rate that specific buddy and your rating will be submitted 
+and averaged into all of the other ratings.</p>
+
+<p>3)  Future users can use this information at their discretion to help determine who they message.</p> 
+
+<hr style="width:100%;text-align:left;margin-left:0">
+
+<i>Canceling An Account</i>
+
+<p>1) When you are logged in, click on the “Cancel Account” button located in your profile.  
+Once you click that, you will be asked to confirm that you want to move forward with canceling your account.</p>  
+
+<p>2) After hitting the confirmation, your account will be taken out of the system.</p>
+
+<hr style="width:100%;text-align:left;margin-left:0">
+
+<h2>FAQs</h2>
+
+<p><i>Question</i>:  Do you have to have a log-in to use this application?</p>
+<p><i>Answer</i>: Yes, you are required to have a log-in or you cannot use this application.</p>
+
+<hr style="width:100%;text-align:left;margin-left:0">
+
+<p><i>Question</i>:  If I have trouble logging in, what should I do?</p>
+<p><i>Answer</i>:  First, you should make sure you are using the correct email address and password to login.  
+If you cannot detect an error and still cannot login, click “Forgot Password?” 
+and you will be asked to enter a new password and verify the new password.  
+Your new password will be saved and you should be able to log-in with your new password.</p>
+
+<hr style="width:100%;text-align:left;margin-left:0">
+
+<p><i>Question</i>:  Is it okay to cancel a gym appointment with a buddy?</p>
+<p><i>Answer</i>: Obviously, things happen in life so this application does have the capability to cancel
+a scheduled work out as well as let that buddy know the reason for the cancellation.</p>
+
+<hr style="width:100%;text-align:left;margin-left:0">
+
+<p><i>Question</i>: If someone cancels a workout, can you still find another match?</p>
+<p><i>Answer</i>: Yes, just do another search and you will be matched with other buddies that are currently available.</p>
+
+<hr style="width:100%;text-align:left;margin-left:0">
+
+<p><i>Question</i>: What should I do if I have an issue that is not covered in this user’s guide?</p>
+<p><i>Answer</i>:  At the bottom of the Gym Buddy website is a button labeled “Contact Gym Buddy.”  
+Click that button and let us know your issue.  We will respond to you as quickly as possible.</p>
+
+<hr style="width:100%;text-align:left;margin-left:0">
+
+<center><p>©Gym Buddy</p></center>
+</body>
+</html>
