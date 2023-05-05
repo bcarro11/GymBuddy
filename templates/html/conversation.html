@@ -47,14 +47,17 @@
                 <!-- </div> -->
             </div>
             <div class="grid3">                  
-              <form id="sendmsg" method="post" onsubmit="() => document.getElementById('msg').value = '';">
+              <form id="sendmsg" name="sendmsg" method="post" onsubmit="() => document.getElementById('msg').value = '';">
                 <input id="msg" type="text" class="msg" name="msg">
                 <button class="send-btn" type="submit">Send</button>
               </form>
+              <form id="Request Match" method="post">
+                <input type="hidden" id="confirmMatch" name="confirmMatch">
+                <button class="match-bnt" onClick="confSubmit(this.form);" type="submit">Match!</button>
+              </form>
             </div>
         </div>
-        <!-- <script src="{{ url_for('static', filename='js/findBuddy.js')}}"></script> -->
-        <!-- <script src="..\js\findBuddy.js"></script> -->
+        <script src="{{ url_for('static', filename='js/conversation.js')}}"></script>
     </body>
     
 </html>
