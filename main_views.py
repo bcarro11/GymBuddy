@@ -245,3 +245,20 @@ def messageList():
 @main_views.route('/splashPage')
 def splashPage(msg, btn):
     return render_template("html/splashPage.html", message = msg, buttonName = btn, id=current_user.id )
+
+@main_views.route('/usersGuide')
+def usersGuide():
+    return render_template("html/usersGuide.html")
+
+@main_views.route('/aboutUs')
+def aboutUs():
+    return render_template("html/aboutUs.html")
+
+@main_views.route('/submit', methods=['POST'])
+def get_input_text():
+    name = request.form['name']
+    email = request.form['email']
+    gymbuddyfeedback = request.form['gymbuddyfeedback']
+    with open('feedback.txt', 'a') as f:
+        f.write(f'Name: {name}\nE-mail: {email}\nFeedback: {gymbuddyfeedback}\n\n')
+    return 'Input received!'
