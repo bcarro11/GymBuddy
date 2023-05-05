@@ -25,21 +25,35 @@ body {
     height: 98vh;
     display: grid;
     grid-template-columns: 50%;
-    grid-template-rows: 120px 1fr 130px;
+    grid-template-rows: 60px 70px 1fr 130px;
     justify-content: center;
     gap: 1px;
 }
+.navBar {
+    grid-row: 1 / 2;
+    background-color: #008ca8;
+    border-radius: 25px;
+    list-style: none;
+    text-align: center;
+}
 
+.navList li {
+    display: inline-block;
+    list-style-type: none;
+    font-size: 20px;
+    padding-left: 5px;
+    font-size: xx-large;
+}
 
 .grid1 {
-    grid-row: 1 / 2;
+    grid-row: 2 / 3;
     background-color: #ffffff;
     border: #008ca8;
     border-style: solid;
 }
 
 .grid2 {
-    grid-row: 2 / 3;
+    grid-row: 3 / 4;
     display: grid;
     background-color: #ffffff;
     border: #008ca8;
@@ -53,7 +67,7 @@ body {
 }
 
 .grid3 {
-    grid-row: 3 / 4;    
+    grid-row: 4 / 5;    
     background-color: #ffffff;
     border: #008ca8;
     border-style: solid;
