@@ -30,7 +30,7 @@
                 <div class="scrollable">                    
                   {% for messagepair in messagepairs |reverse%}
                     {% if messagepair[1].seen %}
-                    <a href="/message/{{ messagepair[0].id }}" id="messagesBoxUnread" class="msgBoxUnread">
+                    <a href="/message/{{ messagepair[0].id }}" id="messagesBox" class="msgBox">
                       <div class="msg-card-box">
                         <object>
                           <a href="/profilePage/{{ messagepair[0].id }}">
@@ -45,7 +45,7 @@
                       </div>
                     </a>
                     {% else %}
-                    <a href="/message/{{ messagepair[0].id }}" id="messagesBox" class="msgBox">
+                    <a href="/message/{{ messagepair[0].id }}" id="messagesBoxUnread" class="msgBoxUnread">
                       <div class="msg-card-box-unread">
                         <object>
                           <a href="/profilePage/{{ messagepair[0].id }}">
@@ -67,7 +67,7 @@
                 <a href="{{ url_for('main_views.profilePage', userID=id) }}"> <button id="cancelSearch" type="button">Return To Profile</button></a>
             </div>
         </div>
-        <!-- <script src="{{ url_for('static', filename='js/findBuddy.js')}}"></script> -->
+        <script src="{{ url_for('static', filename='js/messageList.js')}}"></script>
         <!-- <script src="..\js\findBuddy.js"></script> -->
     </body>
     
