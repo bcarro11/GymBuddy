@@ -2,7 +2,7 @@
     GROUP: Gym Buddy
     MEMBERS: ​Brenden Carroll, Stefani Page, Elina Tsykhmistrenko, Justin White, Hamza Zgidou​ 
     COURSE: CMSC 495:7383
-    FILE: findBuddy.css
+    FILE: matchesPage.css
     DATE: April 8, 2023
 */
 
@@ -24,35 +24,6 @@ body {
     grid-template-rows: 60px 120px 1fr 130px;
     justify-content: center;
     gap: 1px;
-}
-
-.navBar {
-    grid-row: 1 / 2;
-    background-color: #008ca8;
-    border-radius: 25px;
-    list-style: none;
-    text-align: center;
-}
-
-.navList li {
-    display: inline-block;
-    list-style-type: none;
-    font-size: 20px;
-    padding-left: 5px;
-    font-size: xx-large;
-}
-
-#matchesList {
-    list-style-type: none;
-    border-style: solid;
-    padding: 5px;
-    color: #008ca8;
-}
-
-.profilePic {
-    border-radius: 50%;
-    width: 30px; 
-    height: 30px;
 }
 
 .grid1 {
@@ -81,8 +52,39 @@ body {
     overflow-y: scroll;
     padding: 20px;
 }
+.navBar {
+    grid-row: 1 / 2;
+    background-color: #008ca8;
+    border-radius: 25px;
+    list-style: none;
+    text-align: center;
+}
 
-.msg-card-box {
+.navList li {
+    display: inline-block;
+    list-style-type: none;
+    font-size: 20px;
+    padding-left: 5px;
+    font-size: xx-large;
+}
+
+#matchesList {
+    list-style-type: none;
+    border-style: solid;
+    padding: 5px;
+    color: #008ca8;
+}
+
+#profilePic {
+    border-radius: 50%;
+    width: 132px; 
+    height: 132px;
+    float: left;
+}
+
+
+
+.matchBoxes {
     background-color: #ffffff;
     padding: 10px;
     font-family: 'Roboto';
@@ -90,38 +92,29 @@ body {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.msg-card-box-unread {
-    background-color: lightskyblue;
-    padding: 10px;
-    font-family: 'Roboto';
-    justify-self: right;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-#from:hover {
-    opacity: 40%;
-}
-
-.msgBox{
+.match{
     padding: 5px;
     text-decoration: none;
 }
 
-.msgBoxUnread {
-    padding: 5px;
-    text-decoration: none;
-}
-
-#from,
-#on {
+#matchInfo {
     text-decoration: none;
     font-family: 'Roboto';
-    color:black;  
+    color:black;
+    text-align: center;
 }
 
-#subj {
+hr {
+    width: 50%;
+    align-self: center;
+}
+
+#matchInfoName {
+    text-decoration: none;
     font-family: 'Roboto';
-    color: #008ca8;
+    color:#008ca8;
+    text-align: center;
+    font-size: large;
 }
 
 a {
@@ -138,10 +131,12 @@ h2 {
     font-family: 'Roboto';
     text-align: center;
 }
+
 h3 {
     font-family: 'Roboto';
     text-align: center;
 }
+
 h4 {
     font-family: 'Roboto';
     text-align: left;
@@ -159,6 +154,7 @@ hr {
     opacity: 70%;
     color: #008ca8;
 }
+
 button {
     background-color: #008ca8;
     color: white;
@@ -173,7 +169,6 @@ button {
     margin-right: auto;
     margin-top: 10px;
 }
-
 
 button:hover {
     opacity: 90%;

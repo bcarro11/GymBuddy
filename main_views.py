@@ -36,6 +36,8 @@ def loginPage():
         user = User.passwordIsMatch(usr, hashedpwd)
         if user:
             login_user(user)
+            # current_user.hasMatches = False
+            # db.session.commit()
             return redirect(url_for('main_views.profilePage', userID = user.id))
         else:
             return render_template("html/login.html", error="Invalid Login")
@@ -194,6 +196,7 @@ def profilePage(userID):
         occupation = user.occupationStr,
         hobbies = user.hobbiesStr,
         profilePic = str(user.profilePic)
+        # hasMatches = user.hasMatches
         )
 
 @main_views.route('/welcomePage')

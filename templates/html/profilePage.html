@@ -198,7 +198,11 @@
                 {% if editPage +%}
                 <a class="searchForBuddyBtn" href="{{ url_for('auth.findBuddy') }}"> <button class="searchForBuddyBtn" id="searchForBuddy" type="button" disabled>&#128683</button></a>
                 {% else +%}
-                <a class="searchForBuddyBtn" href="{{ url_for('auth.findBuddy') }}"> <button class="searchForBuddyBtn" id="searchForBuddyDisabled" type="button">Search For Buddy</button></a>
+                    {% if hasMatches +%}
+                    <a class="searchForBuddyBtn" href="{{ url_for('auth.matchesPage') }}"> <button class="searchForBuddyBtn" id="searchForBuddyDisabled" type="button">See Matches</button></a>
+                    {% else +%}
+                    <a class="searchForBuddyBtn" href="{{ url_for('auth.findBuddy') }}"> <button class="searchForBuddyBtn" id="searchForBuddyDisabled" type="button">Search For Buddy</button></a>
+                    {% endif %}
                 {% endif %}
             </div>
 

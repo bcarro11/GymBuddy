@@ -57,8 +57,12 @@ def matchesPage():
         if id == current_user.id:
             continue
         userHolder.append((User.findUserByID(id), compareSequences(gymUsers[current_user.id], gymUsers[id])))
+        # if bool(userHolder):
+        #     print(bool(userHolder))
+        #     current_user.hasMatches = True
+        #     db.session.commit()
     # matches = list(map(lambda tup: User.findUserByID(tup[0]), current_user.routine_match(userpool[current_user.preferredGym])))
-    return render_template("html/matchesPage.html", matches=sorted(userHolder, key=lambda match: match[1], reverse=True))
+    return render_template("html/matchesPage.html", matches=sorted(userHolder, key=lambda match: match[1], reverse=True), id=current_user.id)
 
 @auth.route('/messages')
 @login_required
@@ -107,7 +111,7 @@ def messagingPage(userID):
                 #Decided not to request match
                 print("NO")
 
-    return render_template('html/conversation.html', partner=User.findUserByID(userID), messageTuples=[(User.findUserByID(m.sender), m) for m in messageList])
+    return render_template('html/conversation.html', partner=User.findUserByID(userID), messageTuples=[(User.findUserByID(m.sender), m) for m in messageList], id=current_user.id)
 
 @auth.route('/profPicUpload')
 @login_required
