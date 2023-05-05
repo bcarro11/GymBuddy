@@ -90,26 +90,26 @@ def messagingPage(userID):
         message.seen = True
     db.session.commit()
     if request.method == 'POST':
-        if 'sendmsg' in request.form:
-            messageContents = request.form.get('msg')
-            if messageContents.strip():
-                msg = Message(current_user.id, userID, messageContents)
-                db.session.add(msg)
-                db.session.commit()
-                notifications[userID] = {
-                    'type': 'Message',
-                    'message': str(current_user.prefname) + ': ' + messageContents.strip()
-                }
-                #"New messsage from: " + current_user.prefname
-                return redirect(url_for('auth.messagingPage', userID=userID))
-        else:
-            match = request.form.get("confirmMatch")
-            if match == "True":
-                # Requested match
-                print("REQUESTED MATCH")
-            else:
-                #Decided not to request match
-                print("NO")
+        # if 'sendmsg' in request.form:
+        messageContents = request.form.get('msg')
+        if messageContents.strip():
+            msg = Message(current_user.id, userID, messageContents)
+            db.session.add(msg)
+            db.session.commit()
+            notifications[userID] = {
+                'type': 'Message',
+                'message': str(current_user.prefname) + ': ' + messageContents.strip()
+            }
+            #"New messsage from: " + current_user.prefname
+            return redirect(url_for('auth.messagingPage', userID=userID))
+        # else:
+        #     match = request.form.get("confirmMatch")
+        #     if match == "True":
+        #         # Requested match
+        #         print("REQUESTED MATCH")
+        #     else:
+        #         #Decided not to request match
+        #         print("NO")
 
     return render_template('html/conversation.html', partner=User.findUserByID(userID), messageTuples=[(User.findUserByID(m.sender), m) for m in messageList], id=current_user.id)
 
