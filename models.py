@@ -177,6 +177,12 @@ class Rating(db.Model):
         print("getRatingFromUser: " + str(result))
         return result
     
+    @staticmethod
+    def getNumberRatings(userID):
+        numRating = Rating.query.filter(Rating.ratee==userID).count()
+        print("numRating: ", numRating)
+        return numRating
+    
 class Message(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     sender = db.Column(db.Integer, nullable=False)
