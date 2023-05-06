@@ -196,6 +196,7 @@ def profilePage(userID):
         occupation = user.occupationStr,
         hobbies = user.hobbiesStr,
         profilePic = str(user.profilePic)
+        numRating = str(Rating.getNumberRatings(userID))                   
         # hasMatches = user.hasMatches
         )
 
