@@ -37,7 +37,7 @@
             <div class="grid2">
                 <div class="scrollable">
                     {% for buddy in matches %}                     
-                    <a href="/match/{{ buddy[0].id }}" id="match" class="match">
+                    <a href="/message/{{ buddy[0].id }}" id="match" class="match">
                         <div class="matchBoxes">
                             <div>
                                 <img id="profilePic" src="{{ url_for('static', filename='profPics/' + buddy[0].profilePic)}}"></img>
@@ -46,7 +46,8 @@
                                 <p id="matchInfoName">{{ buddy[0].prefname }}</p>
                                 <hr>                            
                                 <p id="matchInfo">Preferred Gym: {{ buddy[0].preferredGym }}</p>
-                                <p id="matchInfo">Gender: {{ buddy[0].gender }} | DoB: {{ buddy[0].dob }} </p>                            
+                                <p id="matchInfo">Gender: {{ buddy[0].gender }} | DoB: {{ buddy[0].dob }} </p>
+                                <p id="matchInfo">Percent Match: {{ buddy[2] }}%</p>                       
                             </div>
                         </div>
                     </a>
@@ -55,7 +56,7 @@
             </div>
             <div class="grid3">                  
                 <a href="{{ url_for('main_views.profilePage', userID=id) }}"> <button id="cancelSearch" type="button">Return To Profile</button></a>
-                <a href="{{ url_for('auth.lavepool') }}"> <button id="leavePool" type="button">Leave Pool</button></a>
+                <a href="{{ url_for('auth.leavepool') }}"> <button id="leavePool" type="button">Leave Pool</button></a>
             </div>
         </div>
         <script src="{{ url_for('static', filename='js/messageList.js')}}"></script>

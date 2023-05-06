@@ -40,7 +40,7 @@
                   {% for messagetuple in messageTuples %}
                   {% if messagetuple[0].id == partner.id %}
                     <div class="msg-card-box">
-                        <div>{{ messagetuple[0].prefname }}</div>
+                        <div><a href="{{ url_for('main_views.profilePage', userID=partner.id)}}">{{ messagetuple[0].prefname }}</a></div>
                         <div>{{ messagetuple[1].time }}</div>
                         <p>{{ messagetuple[1].contents }}</p>
                     </div>

@@ -7,6 +7,7 @@ from fogsaaUtil import compareSequences
 
 userpool = dict()
 notifications = dict()
+matchrequests = dict()
 
 auth = Blueprint('auth', __name__)
 
@@ -17,6 +18,9 @@ def findBuddy():
     Renders the view for finding a partner. Initial GET request allows you to set your exercise.
     POST requests will reroute to the matches page.
     """
+
+    if (current_user.preferredGym in userpool.keys()) and (current_user.id in userpool[current_user.preferredGym].keys()):
+        return redirect(url_for('auth.matchesPage'))
 
     # Sets limit on number of exercises in routine.
     exerciseLimit = 12
@@ -56,7 +60,9 @@ def matchesPage():
     for id in gymUsers:
         if id == current_user.id:
             continue
-        userHolder.append((User.findUserByID(id), compareSequences(gymUsers[current_user.id], gymUsers[id])))
+        score = compareSequences(gymUsers[current_user.id], gymUsers[id])
+        percentMatch = ((score / 2) / len(gymUsers[current_user.id])) * 100
+        userHolder.append((User.findUserByID(id), score, percentMatch))
         # if bool(userHolder):
         #     print(bool(userHolder))
         #     current_user.hasMatches = True
@@ -98,7 +104,8 @@ def messagingPage(userID):
                 db.session.commit()
                 notifications[userID] = {
                     'type': 'Message',
-                    'message': str(current_user.prefname) + ': ' + messageContents.strip()
+                    'message': str(current_user.prefname) + ': ' + messageContents.strip(),
+                    'triggerUser': current_user.id
                 }
                 #"New messsage from: " + current_user.prefname
                 return redirect(url_for('auth.messagingPage', userID=userID))
@@ -107,6 +114,33 @@ def messagingPage(userID):
             if match == "True":
                 # Requested match
                 print("REQUESTED MATCH")
+                if current_user.id not in matchrequests.keys():
+                    matchrequests[current_user.id] = set()
+                if userID not in matchrequests.keys():
+                    matchrequests[userID] = set()
+
+                if userID in matchrequests[current_user.id]:
+                    matchrequests.pop(current_user.id)
+                    notifications[userID] = {
+                        'type': 'Match Confirmed!',
+                        'message': str(current_user.prefname) + ' has agreed to workout!',
+                        'triggerUser': current_user.id
+                    }
+                    notifications[current_user] = {
+                        'type': 'Match Confirmed!',
+                        'message': str(User.findUserByID(userID).prefname) + ' has agreed to workout!',
+                        'triggerUser': userID
+                    }
+                    userpool[current_user.preferredGym].pop(current_user.id, None)
+                    userpool[current_user.preferredGym].pop(userID, None)
+                else:
+                    matchrequests[userID].add(current_user.id)
+                    notifications[userID] = {
+                        'type': 'Match Request!',
+                        'message': str(current_user.prefname) + ' has requested to workout together!',
+                        'triggerUser': current_user.id
+                    }
+
             else:
                 #Decided not to request match
                 print("NO")
