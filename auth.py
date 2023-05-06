@@ -88,7 +88,7 @@ def messagingPage(userID):
     messageList = Message.getMessagesBetweenUsers(current_user.id, userID)
     for message in messageList:
         message.seen = True
-        db.session.commit()
+    db.session.commit()
     if request.method == 'POST':
         if 'msg' in request.form:
             messageContents = request.form.get('msg')
