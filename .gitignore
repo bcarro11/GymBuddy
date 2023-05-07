@@ -3,3 +3,6 @@
 /instance
 /__pycache__
 .env
+/gymBuddy_venv
+gymBuddy_venv/
+__pycache__/
