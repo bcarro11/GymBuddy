@@ -77,8 +77,8 @@ body {
 
 #profilePic {
     border-radius: 50%;
-    width: 132px; 
-    height: 132px;
+    width: 160px; 
+    height: 160px;
     float: left;
 }
 
@@ -97,10 +97,25 @@ body {
     text-decoration: none;
 }
 
+#matchInfoGood,
 #matchInfo {
     text-decoration: none;
     font-family: 'Roboto';
     color:black;
+    text-align: center;
+}
+
+#matchInfoBetter{
+    text-decoration: none;
+    font-family: 'Roboto';
+    color:silver;
+    text-align: center;
+}
+
+#matchInfoBest {
+    text-decoration: none;
+    font-family: 'Roboto';
+    color:goldenrod;
     text-align: center;
 }
 

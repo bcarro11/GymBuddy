@@ -61,12 +61,8 @@ def matchesPage():
         if id == current_user.id:
             continue
         score = compareSequences(gymUsers[current_user.id], gymUsers[id])
-        percentMatch = ((score / 2) / len(gymUsers[current_user.id])) * 100
+        percentMatch = int(((score / 2) / len(gymUsers[current_user.id])) * 100)
         userHolder.append((User.findUserByID(id), score, percentMatch))
-        # if bool(userHolder):
-        #     print(bool(userHolder))
-        #     current_user.hasMatches = True
-        #     db.session.commit()
     # matches = list(map(lambda tup: User.findUserByID(tup[0]), current_user.routine_match(userpool[current_user.preferredGym])))
     return render_template("html/matchesPage.html", matches=sorted(userHolder, key=lambda match: match[1], reverse=True), id=current_user.id)
 
