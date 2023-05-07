@@ -195,7 +195,7 @@ def profilePage(userID):
         LFPartner = user.LFPartnerStr,
         occupation = user.occupationStr,
         hobbies = user.hobbiesStr,
-        profilePic = str(user.profilePic)
+        profilePic = str(user.profilePic),
         numRating = str(Rating.getNumberRatings(userID))                   
         # hasMatches = user.hasMatches
         )
