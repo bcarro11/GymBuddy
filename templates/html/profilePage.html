@@ -103,6 +103,9 @@
                     {% endif %}                    
                 </div> 
                 <p>Number of ratings: {{ numRating }}</p>
+                {% if myPage +%}
+                <a class="deleteAccBtn" href="{{ url_for('auth.deleteaccount') }}" target="blank"> <button class="deleteAccBtn" id="deleteAccBtn" type="button">Delete Account</button></a>
+                {% endif %}
                 
             </div>
 
