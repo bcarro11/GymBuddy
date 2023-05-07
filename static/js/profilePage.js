@@ -23,3 +23,15 @@ document.onvisibilitychange = () => {
     }
 
 };
+
+function confSubmit(form) {
+    if (confirm("Are you sure you want to delete your account?")) {        
+        document.getElementById("deleteAccount").value = "True";
+    }
+
+    else {
+       alert("Your account is still active.");
+       document.getElementById("deleteAccount").value = "False";
+       return 0;
+    }
+}

@@ -174,6 +174,16 @@ def profilePage(userID):
             current_user.hobbiesStr = str(request.form.get('hobbies'))
             db.session.commit()
 
+        elif 'deleteAccount' in request.form:
+            deleted = request.form.get("deleteAccount")
+            if deleted == "True":
+                print("DelAccount")
+                print("True")
+                return redirect(url_for("auth.deleteaccount"))
+            else:
+                print("DelAccount")
+                print("False")
+
     return render_template("html/profilePage.html",
         id = current_user.id,
         profileHeader = user.prefname,

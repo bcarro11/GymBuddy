@@ -221,6 +221,7 @@ h1.navItems {
     margin-right: auto;
 }
 
+.deleteAccount,
 .uploadProfPicBtn {    
     background-color: #008ca8;
     color: white;

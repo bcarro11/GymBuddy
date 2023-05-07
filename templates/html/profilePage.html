@@ -106,7 +106,10 @@
                   
                 </div> 
                 {% if myPage +%}
-                <a class="deleteAccBtn" href="{{ url_for('auth.deleteaccount') }}" target="blank"> <button class="deleteAccBtn" id="deleteAccBtn" type="button">Delete Account</button></a>
+                <form id="delAccount" method="post">
+                    <input type="hidden" id="deleteAccount" name="deleteAccount">
+                    <button class="deleteAccount" onClick="confSubmit(this.form);" type="submit">Delete Account</button>
+                </form>
                 {% endif %}
                 
             </div>

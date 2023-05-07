@@ -189,7 +189,10 @@ def deleteaccount():
         NOTE: Their messages and rating will remain. Could implement a "deleted user" style
         placeholder profile to allow people to see a user they talked to left.
     """
+    print("Delete From DB: ")
+    print(current_user)
     db.session.delete(current_user)
+    db.session.commit()
     logout_user()
     return redirect(url_for("main_views.welcomePage"))
 
