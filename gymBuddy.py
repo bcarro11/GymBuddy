@@ -17,7 +17,7 @@ from werkzeug.utils import secure_filename
 
 # Profile Picture Upload location
 UPLOAD_FOLDER = './static/profPics/'
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+#ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 #Load in enviornment variables held by .env
 load_dotenv()

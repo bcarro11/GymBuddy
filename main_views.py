@@ -17,6 +17,7 @@ from werkzeug.utils import secure_filename
 #Load in enviornment variables held by .env
 load_dotenv()
 SALT = getenv("SALT")
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 main_views = Blueprint('main_views', __name__)
 
@@ -207,7 +208,7 @@ def welcomePage():
 # https://flask.palletsprojects.com/en/2.2.x/patterns/fileuploads/
 def allowed_file(filename):
     return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in gymBuddy.ALLOWED_EXTENSIONS
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 # From Flask documentation:
 # https://flask.palletsprojects.com/en/2.2.x/patterns/fileuploads/ 
