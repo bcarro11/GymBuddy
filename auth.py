@@ -38,7 +38,6 @@ def findBuddy():
                 val = None
             exerciseList.append(val)
 
-        # Will probably have to be updated to handle the list.
         current_user.routineset = exerciseList
 
         if current_user.preferredGym not in userpool.keys():
@@ -63,7 +62,6 @@ def matchesPage():
         score = compareSequences(gymUsers[current_user.id], gymUsers[id])
         percentMatch = int(((score / 2) / len(gymUsers[current_user.id])) * 100)
         userHolder.append((User.findUserByID(id), score, percentMatch))
-    # matches = list(map(lambda tup: User.findUserByID(tup[0]), current_user.routine_match(userpool[current_user.preferredGym])))
     return render_template("html/matchesPage.html", matches=sorted(userHolder, key=lambda match: match[1], reverse=True), id=current_user.id)
 
 @auth.route('/messages')
@@ -72,14 +70,11 @@ def messagesPage():
     """
     Renders the page with a list of all the user's messages.
     """
-    #PLACEHOLDER
-    #This section is for testing while I set up querying with SQLAlchemy
     messagepairs = []
     for message in Message.getMessageList(current_user.id):
         print(type(message))
         messagepairs.append([User.findUserByID(message.sender), message])
     return render_template("html/messageList.html", messagepairs=messagepairs, id=current_user.id)
-    #END PLACEHOLDER
 
 @auth.route('/message/<int:userID>', methods=['GET', 'POST'])
 @login_required
@@ -164,6 +159,7 @@ def match(userID):
     """
         Middleman route which will remove both users from the queue and redirect the triggering
         user to the route to message the matched user.
+        DEPRECATED
     """
     try:
         userpool[current_user.preferredGym].pop(userID, None)
@@ -174,7 +170,6 @@ def match(userID):
         'type': 'Match',
         'message': str(current_user.prefname) + ' would like to workout!'
     }
-    #"Matched with " + current_user.prefname
     return redirect(url_for('auth.messagingPage', userID=userID))
 
 @auth.route('/leavepool')
