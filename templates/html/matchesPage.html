@@ -61,6 +61,13 @@
                                 <p id="matchInfoName">{{ buddy[0].prefname }}</p>
                                 <p id="matchInfo">Preferred Gym: {{ buddy[0].preferredGym }}</p>
                                 <p id="matchInfo">Gender: {{ buddy[0].gender }} | DoB: {{ buddy[0].dob }} </p>
+                                <!--
+                                JINJA LOGIC:
+                                Checks for match percentage and relevant emoji.
+                                90% and above = Bicep
+                                66% - 90% = Thumbs Up
+                                Less than 66% = No Emoji
+                                -->
                                 {% if buddy[2] >= 90 %}
                                     <p id="matchInfo">&#128170; Percent Match: {{ buddy[2] }}% &#128170;</p>  
                                 {% elif buddy[2] >= 66 and buddy[2] <= 90 %}
