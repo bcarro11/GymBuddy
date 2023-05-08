@@ -275,6 +275,10 @@ def usersGuide():
 def aboutUs():
     return render_template("html/aboutUs.html")
 
+@main_views.route('/feedback')
+def feedbackDone():
+    return render_template("html/feedback.html")
+
 @main_views.route('/submit', methods=['POST'])
 def get_input_text():
     name = request.form['name']
@@ -282,4 +286,5 @@ def get_input_text():
     gymbuddyfeedback = request.form['gymbuddyfeedback']
     with open('feedback.txt', 'a') as f:
         f.write(f'Name: {name}\nE-mail: {email}\nFeedback: {gymbuddyfeedback}\n\n')
-    return 'Input received!'
+    f.close()
+    return render_template("html/feedback.html")
