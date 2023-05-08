@@ -148,7 +148,9 @@ def profilePage(userID):
                 pairRating.rating = rateUser
             else:
                 rating = Rating(current_user.id, user.id, rateUser)
-                db.session.add(rating)
+                db.session.add(rating)                                
+                db.session.commit()
+                return profilePage(userID)
             db.session.commit()
         
         #Check if POST is for toggling edit ability on user profile.

@@ -6,49 +6,50 @@
     FILE: login.html
     DATE: April 1, 2023
 -->
- <html>
-    <head>
-        <!--
+<html>
+
+<head>
+    <!--
         STYLE/SCRIPT REFERENCES
             CSS: findBuddy.css
             FONT: Roboto font from Google.
             JS: notification.js
-        -->         
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/mainStyleSheet.css')}}">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet"> 
-    </head>
-    
-    <body>
-        <!-- DEFAULT CONTAINER: main grid container -->
-        <div class="defaultContainer">
-            <!-- GRID1: GymBuddy Logo -->
-            <div class="grid1">
-                <img src="{{ url_for('static', filename='imgs/GymLogo.png')}}" class="logo">
-            </div>
-            <!-- GRID2: Welcome, Title, usernaame/pwd inputs, login button and create account button -->
-            <div class="grid2">
-                    <h1>
-                        Welcome
-                    </h1> 
-                    <h2>
-                        Sign in or Create Account
-                    </h2>
-                    {% if error %}
-                        <p class="error"><strong>{{error}}</strong>
-                    {% endif %}                        
-                    <form id="loginForm" method="post">
-                        <p id="loginError"></p>
-                        <input id="defaultInput" type="text" placeholder="Enter Username" name="email" required>
-                        <input id ="defaultInput" type="password" placeholder="Enter Password" name="psw" required>
-                        <button id="submitBtn" type="submit">Login</button>
-                    </form>
-                    <button id="createAccountBtn" type="button">Create Account</button>              
-            </div>            
+        -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mainStyleSheet.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- DEFAULT CONTAINER: main grid container -->
+    <div class="defaultContainer">
+        <!-- GRID1: GymBuddy Logo -->
+        <div class="grid1">
+            <img src="{{ url_for('static', filename='imgs/GymLogo.png')}}" class="logo">
         </div>
-        <!-- JS SCRIPT: Handles login and create account button routing -->
-        <script src="{{ url_for('static', filename='js/loginPage.js')}}"></script>
-    </body>
-    
+        <!-- GRID2: Welcome, Title, usernaame/pwd inputs, login button and create account button -->
+        <div class="grid2">
+            <h1>
+                Welcome
+            </h1>
+            <h2>
+                Sign in or Create Account
+            </h2>
+            {% if error %}
+            <p class="error"><strong>{{error}}</strong>
+                {% endif %}
+            <form id="loginForm" method="post">
+                <p id="loginError"></p>
+                <input id="defaultInput" type="text" placeholder="Enter Username" name="email" required>
+                <input id="defaultInput" type="password" placeholder="Enter Password" name="psw" required>
+                <button id="submitBtn" type="submit">Login</button>
+            </form>
+            <button id="createAccountBtn" type="button">Create Account</button>
+        </div>
+    </div>
+    <!-- JS SCRIPT: Handles login and create account button routing -->
+    <script src="{{ url_for('static', filename='js/loginPage.js')}}"></script>
+</body>
+
 </html>

@@ -40,6 +40,7 @@ html {
     width: 98vw;
     height: 98vh;
 }
+
 .navBar {
     grid-column: 2 / 6;
     grid-row: 1;
@@ -48,14 +49,16 @@ html {
     list-style: none;
     text-align: center;
 }
+
 .aboutPane {
     grid-column: 3 / 6;
     grid-row: 2 / 10;
-    display: grid;    
+    display: grid;
     background-color: #ffffff;
     border-radius: 25px;
     overflow-y: scroll;
 }
+
 .findBuddyPane {
     grid-column: 2;
     grid-row: 9;
@@ -65,6 +68,7 @@ html {
     object-fit: cover;
     border-radius: 25px;
 }
+
 .userPane {
     grid-column: 2 / 3;
     grid-row: 2 / 9;
@@ -87,14 +91,16 @@ html {
     padding-left: 5px;
     font-size: xx-large;
 }
+
 h1.navItems {
-    color:#ffffff;
+    color: #ffffff;
     align-items: left;
     text-align: center;
 }
+
 #mail {
-    color:#ffffff;
-    font-size:xx-large;
+    color: #ffffff;
+    font-size: xx-large;
     align-self: right;
     text-align: right;
     align-content: right;
@@ -105,41 +111,46 @@ h1.navItems {
     RATING SYSTEM
     Handles buttons for rating other users.
 */
-.rateUserBtn{
+.rateUserBtn {
     float: right;
     text-align: center;
     height: 46px;
     padding: 0 10px;
     background-color: #ffffff;
     border-style: none;
-    color:rgb(44, 44, 43);
-    font-size:large;
+    color: rgb(44, 44, 43);
+    font-size: large;
     display: inline;
 }
+
 #star1:hover {
-    color:rgb(189, 189, 26);
+    color: rgb(189, 189, 26);
 }
+
 #star2:hover,
-#star2:hover ~ #star1 {
-    color:rgb(189, 189, 26);
+#star2:hover~#star1 {
+    color: rgb(189, 189, 26);
 }
+
 #star3:hover,
-#star3:hover ~ #star2,
-#star3:hover ~ #star1 {
-    color:rgb(189, 189, 26);
+#star3:hover~#star2,
+#star3:hover~#star1 {
+    color: rgb(189, 189, 26);
 }
+
 #star4:hover,
-#star4:hover ~ #star3,
-#star4:hover ~ #star2,
-#star4:hover ~ #star1 {
-    color:rgb(189, 189, 26);
+#star4:hover~#star3,
+#star4:hover~#star2,
+#star4:hover~#star1 {
+    color: rgb(189, 189, 26);
 }
+
 #star5:hover,
-#star5:hover ~ #star4,
-#star5:hover ~ #star3,
-#star5:hover ~ #star2,
-#star5:hover ~ #star1 {
-    color:rgb(189, 189, 26);
+#star5:hover~#star4,
+#star5:hover~#star3,
+#star5:hover~#star2,
+#star5:hover~#star1 {
+    color: rgb(189, 189, 26);
 }
 
 /*
@@ -148,29 +159,33 @@ h1.navItems {
     and user pages that they've already rated.
 */
 #star1Disabled1 {
-    color:rgb(189, 189, 26);
+    color: rgb(189, 189, 26);
 }
+
 #star2Disabled2,
-#star2Disabled2 ~ #star1Disabled2 {
-    color:rgb(189, 189, 26);
+#star2Disabled2~#star1Disabled2 {
+    color: rgb(189, 189, 26);
 }
+
 #star3Disabled3,
-#star3Disabled3 ~ #star2Disabled3,
-#star3Disabled3 ~ #star1Disabled3 {
-    color:rgb(189, 189, 26);
+#star3Disabled3~#star2Disabled3,
+#star3Disabled3~#star1Disabled3 {
+    color: rgb(189, 189, 26);
 }
+
 #star4Disabled4,
-#star4Disabled4 ~ #star3Disabled4,
-#star4Disabled4 ~ #star2Disabled4,
-#star5Disabled4 ~ #star1Disabled4 {
-    color:rgb(189, 189, 26);
+#star4Disabled4~#star3Disabled4,
+#star4Disabled4~#star2Disabled4,
+#star5Disabled4~#star1Disabled4 {
+    color: rgb(189, 189, 26);
 }
+
 #star5Disabled5,
-#star5Disabled5 ~ #star4Disabled5,
-#star5Disabled5 ~ #star3Disabled5,
-#star5Disabled5 ~ #star2Disabled5,
-#star5Disabled5 ~ #star1Disabled5 {
-    color:rgb(189, 189, 26);
+#star5Disabled5~#star4Disabled5,
+#star5Disabled5~#star3Disabled5,
+#star5Disabled5~#star2Disabled5,
+#star5Disabled5~#star1Disabled5 {
+    color: rgb(189, 189, 26);
 }
 
 /*
@@ -179,13 +194,15 @@ h1.navItems {
 */
 .profilePic {
     border-radius: 50%;
-    width: 132px; 
+    width: 132px;
     height: 132px;
 }
+
 .ratingPic {
-    width: 132px; 
+    width: 132px;
     height: 132px;
 }
+
 .mailPic:hover {
     opacity: 90%;
 }
@@ -198,16 +215,19 @@ h1.navItems {
     padding: 15px 20px;
     text-align: center;
 }
+
 .prefGym {
     padding: 15px 20px;
     text-align: center;
 }
+
 #searchForBuddy {
     padding: 15px 20px;
     text-align: center;
 }
+
 #fieldInfo h3,
-#fieldInfo p{
+#fieldInfo p {
     display: inline-grid;
     text-align: left;
     margin-left: 15px
@@ -217,7 +237,7 @@ h1.navItems {
     BUTTON FORMATTING
     Button formatting and hover actions.
 */
-.searchForBuddyBtn {    
+.searchForBuddyBtn {
     background-color: #008ca8;
     color: white;
     border: none;
@@ -228,8 +248,9 @@ h1.navItems {
     margin-left: auto;
     margin-right: auto;
 }
+
 .deleteAccount,
-.uploadProfPicBtn {    
+.uploadProfPicBtn {
     background-color: #008ca8;
     color: white;
     border: none;
@@ -239,7 +260,8 @@ h1.navItems {
     border-radius: 25px;
 
 }
-.deleteAccBtn {    
+
+.deleteAccBtn {
     background-color: #008ca8;
     color: white;
     border: none;
@@ -248,7 +270,8 @@ h1.navItems {
     width: auto;
     border-radius: 25px;
 }
-button.saveEditBtn{    
+
+button.saveEditBtn {
     background-color: #008ca8;
     width: 90%;
     padding: 15px 20px;
@@ -261,27 +284,32 @@ button.saveEditBtn{
     border-radius: 25px;
     font-size: x-large;
 }
+
 button.editProf {
     float: right;
     margin-right: 10px;
     background-color: #ffffff;
     border-style: none;
-    color:r#008ca8;
-    font-size:xx-large;
+    color: r#008ca8;
+    font-size: xx-large;
 }
-button.editProf:hover{
-    color:red;
+
+button.editProf:hover {
+    color: red;
 }
-button.saveEdit{
-    display:grid;
+
+button.saveEdit {
+    display: grid;
     text-align: center;
     justify-content: center;
     text-justify: center;
     margin-left: 50px;
 }
-button.saveEdit:hover{
+
+button.saveEdit:hover {
     opacity: 80%;
 }
+
 .navList li:hover,
 .uploadProfPicBtn:hover,
 .deleteAccBtn:hover,
@@ -304,6 +332,7 @@ input.saveEdit {
     box-sizing: border-box;
     border-radius: 25px;
 }
+
 select.saveEdit {
     width: 90%;
     padding: 15px 20px;
@@ -324,6 +353,7 @@ h2 {
     text-align: left;
     margin-left: 5px;
 }
+
 h3 {
     font-family: 'Roboto';
     color: #008ca8;

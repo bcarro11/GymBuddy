@@ -6,46 +6,49 @@
     FILE: profPicUpload.html
     DATE: April 22, 2023
 -->
- <html>
-    <head>
-        <!--
+<html>
+
+<head>
+    <!--
         STYLE/SCRIPT REFERENCES
             CSS: mainStyleSheet.css
             FONT: Roboto font from Google.
-        --> 
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/mainStyleSheet.css')}}">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet"> 
-    </head>
-    
-    <body>
-        <!-- DEFAULT CONTAINER: main grid container -->
-        <div class="defaultContainer">
-            <!-- GRID2: Upload Picture Functionality -->
-            <div class="grid2">
-                <h1>
-                    Upload Profile Picture
-                </h1>
-                <!--
+        -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mainStyleSheet.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- DEFAULT CONTAINER: main grid container -->
+    <div class="defaultContainer">
+        <!-- GRID2: Upload Picture Functionality -->
+        <div class="grid2">
+            <h1>
+                Upload Profile Picture
+            </h1>
+            <!--
                 FLASH (JINJA LOGIC):
                 shows errors/messages if issue with Upload
                 otherwise, routes to profSuccess.html
                 -->
-                {% for messages in get_flashed_messages() %}
-                <h2>{{ messages }}</h2>
-                {% endfor %}
-                <!-- FORM(POST) for picture upload -->
-                <form method="POST" enctype=multipart/form-data>
-                    <input class=profPicIn id="file" name="file" type="file"/>
-                    <p id="fileSize"></p> 
-                    <a class="uploadProfPicBtn" href="{{ url_for('main_views.profSuccess') }}"> <button class="uploadProfPicBtn" id="uploadProfPic" type="submit">Upload</button></a>
-                </form>
-                <button name="close" class="uploadProfPicBtn" id="close" type="button">Back to Profile</button>        
-            </div>
-            
+            {% for messages in get_flashed_messages() %}
+            <h2>{{ messages }}</h2>
+            {% endfor %}
+            <!-- FORM(POST) for picture upload -->
+            <form method="POST" enctype=multipart/form-data>
+                <input class=profPicIn id="file" name="file" type="file" />
+                <p id="fileSize"></p>
+                <a class="uploadProfPicBtn" href="{{ url_for('main_views.profSuccess') }}"> <button
+                        class="uploadProfPicBtn" id="uploadProfPic" type="submit">Upload</button></a>
+            </form>
+            <button name="close" class="uploadProfPicBtn" id="close" type="button">Back to Profile</button>
         </div>
-        <!-- JS SCRIPT: Handles upload picture functionality. -->
-        <script src="{{ url_for('static', filename='js/profPicUpload.js')}}"></script>
-    </body>    
+
+    </div>
+    <!-- JS SCRIPT: Handles upload picture functionality. -->
+    <script src="{{ url_for('static', filename='js/profPicUpload.js')}}"></script>
+</body>
+
 </html>

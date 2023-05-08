@@ -19,6 +19,7 @@ html {
     background-size: 250% 250%;
     height: auto;
 }
+
 body {
     overflow: hidden;
 }
@@ -40,6 +41,7 @@ body {
     justify-content: center;
     gap: 1px;
 }
+
 .navBar {
     grid-row: 1 / 2;
     background-color: #008ca8;
@@ -47,16 +49,19 @@ body {
     list-style: none;
     text-align: center;
 }
+
 .scrollable {
     overflow-y: scroll;
     padding: 20px;
 }
+
 .grid1 {
     grid-row: 2 / 3;
     background-color: #ffffff;
     border: #008ca8;
     border-style: solid;
 }
+
 .grid2 {
     grid-row: 3 / 4;
     display: grid;
@@ -65,8 +70,9 @@ body {
     border-style: solid;
     overflow: hidden;
 }
+
 .grid3 {
-    grid-row: 4 / 5;    
+    grid-row: 4 / 5;
     background-color: #ffffff;
     border: #008ca8;
     border-style: solid;
@@ -95,6 +101,7 @@ body {
     justify-self: right;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 .msg-card-box-unread {
     background-color: lightskyblue;
     padding: 10px;
@@ -102,36 +109,43 @@ body {
     justify-self: right;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.msgBox{
+
+.msgBox {
     padding: 5px;
     text-decoration: none;
 }
+
 .msgBoxUnread {
     padding: 5px;
     text-decoration: none;
 }
+
 #from,
 #on {
     text-decoration: none;
     font-family: 'Roboto';
-    color:black;  
+    color: black;
 }
+
 #from:hover {
     opacity: 40%;
 }
+
 #subj {
     font-family: 'Roboto';
     color: #008ca8;
 }
+
 #matchesList {
     list-style-type: none;
     border-style: solid;
     padding: 5px;
     color: #008ca8;
 }
+
 .profilePic {
     border-radius: 50%;
-    width: 30px; 
+    width: 30px;
     height: 30px;
 }
 
@@ -153,6 +167,7 @@ button {
     margin-right: auto;
     margin-top: 10px;
 }
+
 button:hover {
     opacity: 90%;
 }
@@ -171,23 +186,28 @@ h2 {
     font-family: 'Roboto';
     text-align: center;
 }
+
 h3 {
     font-family: 'Roboto';
     text-align: center;
 }
+
 h4 {
     font-family: 'Roboto';
     text-align: left;
     margin-left: 10px;
     margin-right: 10px
 }
+
 a {
     text-decoration: none;
 }
+
 hr {
     opacity: 70%;
     color: #008ca8;
 }
+
 #defaultLabel {
     font-family: 'Roboto';
 }

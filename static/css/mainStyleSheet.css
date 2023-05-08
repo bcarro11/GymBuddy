@@ -10,8 +10,7 @@
         - profPicUpload.html
         - profSuccess.html 
         - splashPage.html
-        - welcomePage.html       
-
+        - welcomePage.html
 */
 
 
@@ -52,12 +51,14 @@ html {
     justify-items: center;
 
 }
+
 .grid1 {
     align-self: center;
     justify-self: center;
     text-align: center;
     text-justify: center;
 }
+
 .grid2 {
     background-color: #ffffff;
     padding: 20px 20px;
@@ -72,7 +73,8 @@ html {
     justify-self: center;
     position: relative;
     text-align: center;
-}   
+}
+
 .grid3 {
     grid-template-columns: 10%;
     background-color: #ffffff;
@@ -107,7 +109,7 @@ input.profPicIn {
     box-sizing: border-box;
     border-radius: 25px;
     text-align: center;
-    
+
 }
 
 /*
@@ -123,8 +125,9 @@ input.profPicIn {
     border: 1px solid #008ca8;
     box-sizing: border-box;
     border-radius: 25px;
-    
+
 }
+
 #defaultLabel {
     padding: 15px 20px;
     font-family: 'Roboto';
@@ -149,6 +152,7 @@ input.createAccInput {
     box-sizing: border-box;
     border-radius: 25px;
 }
+
 select.createAccInput {
     width: 100%;
     padding: 15px 20px;
@@ -157,8 +161,9 @@ select.createAccInput {
     display: block;
     border: 1px solid #008ca8;
     box-sizing: border-box;
-    border-radius: 25px;   
+    border-radius: 25px;
 }
+
 #createAccountTitle {
     margin-left: 5em;
     margin-right: 5em;
@@ -183,6 +188,7 @@ button {
     margin-left: auto;
     margin-right: auto;
 }
+
 button:hover {
     opacity: 90%;
 }
@@ -195,13 +201,17 @@ h1 {
     font-family: 'Roboto';
     color: #008ca8;
 }
+
 h2 {
     font-family: 'Roboto';
 }
+
 #forgot {
     font-family: 'Roboto';
 }
-.error { /*Error message font*/
+
+.error {
+    /*Error message font*/
     font-family: 'Roboto';
     color: red;
 }

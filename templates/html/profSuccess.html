@@ -6,38 +6,41 @@
     FILE: profSuccess.html
     DATE: April 12, 2023
 -->
- <html>
-    <head>
-        <!--
+<html>
+
+<head>
+    <!--
         STYLE/SCRIPT REFERENCES
             CSS: mainStyleSheet.css
             FONT: Roboto font from Google.
-        -->         
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/mainStyleSheet.css')}}">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet"> 
-    </head>
-    
-    <body>
-        <!-- DEFAULT CONTAINER: main grid container -->
-        <div class="defaultContainer">
-            <!-- GRID1: Gym Buddy Logo -->
-            <div class="grid1">
-                <img src="{{ url_for('static', filename='imgs/GymLogo.png')}}" class="logo">
-            </div>
-            <!-- GRID2: Message stating successful upload -->
-            <div class="grid2">
-                    <h1>
-                        Profile Picture Updated Successfully!
-                    </h1> 
-                    <!-- JINJA LOGIC: displays error message if needed. -->
-                    {% if error %}
-                        <p class="error"><strong>{{error}}</strong>
-                    {% endif %}
-                    <!-- BUTTON: closes window -->
-                    <button onclick="self.close()" name="successClose" class="uploadProfPicBtn" id="successClose" type="button">Back to Profile</button>                
-            </div>            
+        -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mainStyleSheet.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- DEFAULT CONTAINER: main grid container -->
+    <div class="defaultContainer">
+        <!-- GRID1: Gym Buddy Logo -->
+        <div class="grid1">
+            <img src="{{ url_for('static', filename='imgs/GymLogo.png')}}" class="logo">
         </div>
-    </body>    
+        <!-- GRID2: Message stating successful upload -->
+        <div class="grid2">
+            <h1>
+                Profile Picture Updated Successfully!
+            </h1>
+            <!-- JINJA LOGIC: displays error message if needed. -->
+            {% if error %}
+            <p class="error"><strong>{{error}}</strong>
+                {% endif %}
+                <!-- BUTTON: closes window -->
+                <button onclick="self.close()" name="successClose" class="uploadProfPicBtn" id="successClose"
+                    type="button">Back to Profile</button>
+        </div>
+    </div>
+</body>
+
 </html>

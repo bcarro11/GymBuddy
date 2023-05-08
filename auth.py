@@ -66,7 +66,7 @@ def matchesPage():
     for id in gymUsers:
         if id == current_user.id:
             continue
-        score = compareSequences(gymUsers[current_user.id], gymUsers[id])
+        score = compareSequences(gymUsers[current_user.id], gymUsers[id])        
         percentMatch = int(((score / 2) / len(gymUsers[current_user.id])) * 100)
         userHolder.append((User.findUserByID(id), score, percentMatch))
     return render_template("html/matchesPage.html", matches=sorted(userHolder, key=lambda match: match[1], reverse=True), id=current_user.id)
@@ -91,8 +91,9 @@ def messagingPage(userID):
     """
     messageList = Message.getMessagesBetweenUsers(current_user.id, userID)
     for message in messageList:
-        message.seen = True
-    db.session.commit()
+        if message.sender != current_user.id:
+            message.seen = True
+            db.session.commit()
     if request.method == 'POST':
         if 'msg' in request.form:
             messageContents = request.form.get('msg')

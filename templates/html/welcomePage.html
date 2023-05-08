@@ -6,42 +6,44 @@
     FILE: welcomePage.html
     DATE: April 1, 2023
 -->
- <html>
-    <head>
-        <!--
+<html>
+
+<head>
+    <!--
         STYLE/SCRIPT REFERENCES
             CSS: mainStyleSheet.css
             FONT: Roboto font from Google.
-        -->    
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/mainStyleSheet.css')}}">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet"> 
-    </head>
-    
-    <body>
-        <!-- DEFAULT CONTAINER: main grid container -->
-        <div class="defaultContainer">
-            <!-- GRID1: GymBuddy Logo -->
-            <div class="grid1">
-                <img src="{{ url_for('static', filename='imgs/GymLogo.png')}}" class="logo">
-            </div>
-            <!-- GRID2: Welcome Page -->
-            <div class="grid2">
-                    <!--
+        -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mainStyleSheet.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- DEFAULT CONTAINER: main grid container -->
+    <div class="defaultContainer">
+        <!-- GRID1: GymBuddy Logo -->
+        <div class="grid1">
+            <img src="{{ url_for('static', filename='imgs/GymLogo.png')}}" class="logo">
+        </div>
+        <!-- GRID2: Welcome Page -->
+        <div class="grid2">
+            <!--
                     JINJA LOGIC:
                     For showing (passed) error messages and user name
                     -->
-                    <h1>
-                        Welcome to Gym Buddy {{ usr }}!
-                    </h1> 
-                    {% if error %}
-                        <p class="error"><strong>{{error}}</strong>
-                    {% endif %}                        
-                    <button id="loginBtn" type="button">Login</button>              
-            </div>            
+            <h1>
+                Welcome to Gym Buddy {{ usr }}!
+            </h1>
+            {% if error %}
+            <p class="error"><strong>{{error}}</strong>
+                {% endif %}
+                <button id="loginBtn" type="button">Login</button>
         </div>
-        <!-- JS SCRIPT: Handles routing for loginBtn - takes user back to login page. -->
-        <script src="{{ url_for('static', filename='js/welcomePage.js')}}"></script>
-    </body>
+    </div>
+    <!-- JS SCRIPT: Handles routing for loginBtn - takes user back to login page. -->
+    <script src="{{ url_for('static', filename='js/welcomePage.js')}}"></script>
+</body>
+
 </html>

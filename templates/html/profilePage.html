@@ -7,245 +7,303 @@
     DATE: April 22, 2023
 -->
 
- <html>
-    <head>
-        <!--
+<html>
+
+<head>
+    <!--
         STYLE/SCRIPT REFERENCES
           CSS: profilePage.css
           FONT: Roboto font from Google.
           JS: notification.js
-        -->     
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/profilePage.css')}}">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
-        <script src="{{ url_for('static', filename='js/notifications.js')}}"></script>
-    </head>
-    
-    <body>
-        <!-- ALERT: alert notifications for new messages/matches -->
-        <div class="alert" id="alert-div" style="width: 100%;">
-            <p class="alert-text" id="alert-container" style="display: none; justify-content: space-between; width: 100%; background-color: lightsalmon;"><span id="alert-type" style="font-weight: bold;"></span> | <span id="alert-message" style="overflow: hidden;"></span><span class="close-btn" style="float: right; font-size: 20px; transition: 0.2s; font-weight: bold; cursor: pointer; margin-left: auto; margin-right: 5px;" onclick="this.parentElement.style.display='none'">&times;</span></p>
-        </div>
-        <!-- CONTAINER: main grid container -->   
-        <div class="container">
-            <!-- NAVBAR: Navigation Bar -->  
-            <div class="navBar">
-                <ul class="navList">
-                    <li><a title="Home" id="home" href="{{ url_for('main_views.profilePage', userID=id) }}">&#x1F3E0</a></li>
-                    <li><a title="Messages" id="mail" href="{{ url_for('auth.messagesPage') }}">&#x1F4EC</a></li>                    
-                    <li><a title="Logout" id="logout" href="{{ url_for('auth.logout') }}">👋</a></li>
-                    <!-- <li><a title="Logout" id="logout" href="#logout">&#x1F44B</a></li> -->
-                </ul>
-            </div>
-            <!-- USERPANE: User profile picture, rating, del account etc. -->
-            <div class="userPane">                
-                <div>
-                    <img class="profilePic" src="{{ url_for('static', filename='profPics/' + profilePic)}}" alt="">
-                    <br>
-                    <!-- Jinja logic for whether or not user is on their own page or not (enables/disables picture upload ability) -->
-                    {% if myPage +%}
-                    <div class="uploadProfPicBtn">                        
-                        <a class="uploadProfPicBtn" href="{{ url_for('main_views.profPicUpload') }}" target="blank"> <button class="uploadProfPicBtn" id="uploadProfPic" type="button">Upload Picture</button></a>
-                    </div> 
-                    {% endif %}
-                    <br>
-                    {{ profileHeader}}
-                    <br>
-                    <br>
-                    Pref Gym: {{ prefGym }}
-                    <br>
-                    <br>
+        -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profilePage.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/notifications.js')}}"></script>
+</head>
 
-                    <!--
+<body>
+    <!-- ALERT: alert notifications for new messages/matches -->
+    <div class="alert" id="alert-div" style="width: 100%;">
+        <p class="alert-text" id="alert-container"
+            style="display: none; justify-content: space-between; width: 100%; background-color: lightsalmon;"><span
+                id="alert-type" style="font-weight: bold;"></span> | <span id="alert-message"
+                style="overflow: hidden;"></span><span class="close-btn"
+                style="float: right; font-size: 20px; transition: 0.2s; font-weight: bold; cursor: pointer; margin-left: auto; margin-right: 5px;"
+                onclick="this.parentElement.style.display='none'">&times;</span></p>
+    </div>
+    <!-- CONTAINER: main grid container -->
+    <div class="container">
+        <!-- NAVBAR: Navigation Bar -->
+        <div class="navBar">
+            <ul class="navList">
+                <li><a title="Home" id="home" href="{{ url_for('main_views.profilePage', userID=id) }}">&#x1F3E0</a>
+                </li>
+                <li><a title="Messages" id="mail" href="{{ url_for('auth.messagesPage') }}">&#x1F4EC</a></li>
+                <li><a title="Logout" id="logout" href="{{ url_for('auth.logout') }}">👋</a></li>
+                <!-- <li><a title="Logout" id="logout" href="#logout">&#x1F44B</a></li> -->
+            </ul>
+        </div>
+        <!-- USERPANE: User profile picture, rating, del account etc. -->
+        <div class="userPane">
+            <div>
+                <img class="profilePic" src="{{ url_for('static', filename='profPics/' + profilePic)}}" alt="">
+                <br>
+                <!-- Jinja logic for whether or not user is on their own page or not (enables/disables picture upload ability) -->
+                {% if myPage +%}
+                <div class="uploadProfPicBtn">
+                    <a class="uploadProfPicBtn" href="{{ url_for('main_views.profPicUpload') }}" target="blank"> <button
+                            class="uploadProfPicBtn" id="uploadProfPic" type="button">Upload Picture</button></a>
+                </div>
+                {% endif %}
+                <br>
+                {{ profileHeader}}
+                <br>
+                <br>
+                Pref Gym: {{ prefGym }}
+                <br>
+                <br>
+
+                <!--
                         Rating system implementation
                         Jinja logic, confirms if user is on their page or not.
                         If on their own page, rating system = disabled.
                         If on other user's page, rating system = enabled.
                     -->
-                    {% if myPage or rated +%}
-                        {% if rating == none %}
-                            <button class="rateUserBtn" id="star5Disabled0" name="rateUser" value="5" type="submit" disabled>★</button>
-                            <button class="rateUserBtn" id="star4Disabled0" name="rateUser" value="4" type="submit" disabled>★</button>
-                            <button class="rateUserBtn" id="star3Disabled0" name="rateUser" value="3" type="submit" disabled>★</button>
-                            <button class="rateUserBtn" id="star2Disabled0" name="rateUser" value="2" type="submit" disabled>★</button>
-                            <button class="rateUserBtn" id="star1Disabled0" name="rateUser" value="1" type="submit" disabled>★</button>
-                        {% elif rating == 1 %}
-                            <button class="rateUserBtn" id="star5Disabled1" name="rateUser" value="5" type="submit" disabled>★</button>
-                            <button class="rateUserBtn" id="star4Disabled1" name="rateUser" value="4" type="submit" disabled>★</button>
-                            <button class="rateUserBtn" id="star3Disabled1" name="rateUser" value="3" type="submit" disabled>★</button>
-                            <button class="rateUserBtn" id="star2Disabled1" name="rateUser" value="2" type="submit" disabled>★</button>
-                            <button class="rateUserBtn" id="star1Disabled1" name="rateUser" value="1" type="submit" disabled>★</button>
-                        {% elif rating == 2 %}
-                            <button class="rateUserBtn" id="star5Disabled2" name="rateUser" value="5" type="submit" disabled>★</button>
-                            <button class="rateUserBtn" id="star4Disabled2" name="rateUser" value="4" type="submit" disabled>★</button>
-                            <button class="rateUserBtn" id="star3Disabled2" name="rateUser" value="3" type="submit" disabled>★</button>
-                            <button class="rateUserBtn" id="star2Disabled2" name="rateUser" value="2" type="submit" disabled>★</button>
-                            <button class="rateUserBtn" id="star1Disabled2" name="rateUser" value="1" type="submit" disabled>★</button>
-                        {% elif rating == 3 %}
-                            <button class="rateUserBtn" id="star5Disabled3" name="rateUser" value="5" type="submit" disabled>★</button>
-                            <button class="rateUserBtn" id="star4Disabled3" name="rateUser" value="4" type="submit" disabled>★</button>
-                            <button class="rateUserBtn" id="star3Disabled3" name="rateUser" value="3" type="submit" disabled>★</button>
-                            <button class="rateUserBtn" id="star2Disabled3" name="rateUser" value="2" type="submit" disabled>★</button>
-                            <button class="rateUserBtn" id="star1Disabled3" name="rateUser" value="1" type="submit" disabled>★</button>
-                        {% elif rating == 4 %}
-                            <button class="rateUserBtn" id="star5Disabled4" name="rateUser" value="5" type="submit" disabled>★</button>
-                            <button class="rateUserBtn" id="star4Disabled4" name="rateUser" value="4" type="submit" disabled>★</button>
-                            <button class="rateUserBtn" id="star3Disabled4" name="rateUser" value="3" type="submit" disabled>★</button>
-                            <button class="rateUserBtn" id="star2Disabled4" name="rateUser" value="2" type="submit" disabled>★</button>
-                            <button class="rateUserBtn" id="star1Disabled4" name="rateUser" value="1" type="submit" disabled>★</button>
-                        {% elif rating == 5 %}
-                            <button class="rateUserBtn" id="star5Disabled5" name="rateUser" value="5" type="submit" disabled>★</button>
-                            <button class="rateUserBtn" id="star4Disabled5" name="rateUser" value="4" type="submit" disabled>★</button>
-                            <button class="rateUserBtn" id="star3Disabled5" name="rateUser" value="3" type="submit" disabled>★</button>
-                            <button class="rateUserBtn" id="star2Disabled5" name="rateUser" value="2" type="submit" disabled>★</button>
-                            <button class="rateUserBtn" id="star1Disabled5" name="rateUser" value="1" type="submit" disabled>★</button>
-                        {% endif %}
-                    {% else +%}
-                        <form class="rateUser" method="post">                        
-                            <button class="rateUserBtn" id="star5" name="rateUser" value="5" type="submit">★</button>
-                            <button class="rateUserBtn" id="star4" name="rateUser" value="4" type="submit">★</button>
-                            <button class="rateUserBtn" id="star3" name="rateUser" value="3" type="submit">★</button>
-                            <button class="rateUserBtn" id="star2" name="rateUser" value="2" type="submit">★</button>                        
-                            <button class="rateUserBtn" id="star1" name="rateUser" value="1" type="submit">★</button>
-                        </form>
-                    {% endif %}  
-                    
-                     <p>Number of ratings: {{ numRating }}</p>
-                  
-                </div> 
-                <!-- Jinja logic for whether or not user is on their own page or not (enables/disables delete account functionality) -->
-                {% if myPage +%}
-                <form id="delAccount" method="post">
-                    <input type="hidden" id="deleteAccount" name="deleteAccount">
-                    <button class="deleteAccount" onClick="confSubmit(this.form);" type="submit">Delete Account</button>
+                {% if myPage or rated +%}
+                {% if rating == none %}
+                <button class="rateUserBtn" id="star5Disabled0" name="rateUser" value="5" type="submit"
+                    disabled>★</button>
+                <button class="rateUserBtn" id="star4Disabled0" name="rateUser" value="4" type="submit"
+                    disabled>★</button>
+                <button class="rateUserBtn" id="star3Disabled0" name="rateUser" value="3" type="submit"
+                    disabled>★</button>
+                <button class="rateUserBtn" id="star2Disabled0" name="rateUser" value="2" type="submit"
+                    disabled>★</button>
+                <button class="rateUserBtn" id="star1Disabled0" name="rateUser" value="1" type="submit"
+                    disabled>★</button>
+                {% elif rating == 1 %}
+                <button class="rateUserBtn" id="star5Disabled1" name="rateUser" value="5" type="submit"
+                    disabled>★</button>
+                <button class="rateUserBtn" id="star4Disabled1" name="rateUser" value="4" type="submit"
+                    disabled>★</button>
+                <button class="rateUserBtn" id="star3Disabled1" name="rateUser" value="3" type="submit"
+                    disabled>★</button>
+                <button class="rateUserBtn" id="star2Disabled1" name="rateUser" value="2" type="submit"
+                    disabled>★</button>
+                <button class="rateUserBtn" id="star1Disabled1" name="rateUser" value="1" type="submit"
+                    disabled>★</button>
+                {% elif rating == 2 %}
+                <button class="rateUserBtn" id="star5Disabled2" name="rateUser" value="5" type="submit"
+                    disabled>★</button>
+                <button class="rateUserBtn" id="star4Disabled2" name="rateUser" value="4" type="submit"
+                    disabled>★</button>
+                <button class="rateUserBtn" id="star3Disabled2" name="rateUser" value="3" type="submit"
+                    disabled>★</button>
+                <button class="rateUserBtn" id="star2Disabled2" name="rateUser" value="2" type="submit"
+                    disabled>★</button>
+                <button class="rateUserBtn" id="star1Disabled2" name="rateUser" value="1" type="submit"
+                    disabled>★</button>
+                {% elif rating == 3 %}
+                <button class="rateUserBtn" id="star5Disabled3" name="rateUser" value="5" type="submit"
+                    disabled>★</button>
+                <button class="rateUserBtn" id="star4Disabled3" name="rateUser" value="4" type="submit"
+                    disabled>★</button>
+                <button class="rateUserBtn" id="star3Disabled3" name="rateUser" value="3" type="submit"
+                    disabled>★</button>
+                <button class="rateUserBtn" id="star2Disabled3" name="rateUser" value="2" type="submit"
+                    disabled>★</button>
+                <button class="rateUserBtn" id="star1Disabled3" name="rateUser" value="1" type="submit"
+                    disabled>★</button>
+                {% elif rating == 4 %}
+                <button class="rateUserBtn" id="star5Disabled4" name="rateUser" value="5" type="submit"
+                    disabled>★</button>
+                <button class="rateUserBtn" id="star4Disabled4" name="rateUser" value="4" type="submit"
+                    disabled>★</button>
+                <button class="rateUserBtn" id="star3Disabled4" name="rateUser" value="3" type="submit"
+                    disabled>★</button>
+                <button class="rateUserBtn" id="star2Disabled4" name="rateUser" value="2" type="submit"
+                    disabled>★</button>
+                <button class="rateUserBtn" id="star1Disabled4" name="rateUser" value="1" type="submit"
+                    disabled>★</button>
+                {% elif rating == 5 %}
+                <button class="rateUserBtn" id="star5Disabled5" name="rateUser" value="5" type="submit"
+                    disabled>★</button>
+                <button class="rateUserBtn" id="star4Disabled5" name="rateUser" value="4" type="submit"
+                    disabled>★</button>
+                <button class="rateUserBtn" id="star3Disabled5" name="rateUser" value="3" type="submit"
+                    disabled>★</button>
+                <button class="rateUserBtn" id="star2Disabled5" name="rateUser" value="2" type="submit"
+                    disabled>★</button>
+                <button class="rateUserBtn" id="star1Disabled5" name="rateUser" value="1" type="submit"
+                    disabled>★</button>
+                {% endif %}
+                {% else +%}
+                <form class="rateUser" method="post">
+                    <button class="rateUserBtn" id="star5" name="rateUser" value="5" type="submit">★</button>
+                    <button class="rateUserBtn" id="star4" name="rateUser" value="4" type="submit">★</button>
+                    <button class="rateUserBtn" id="star3" name="rateUser" value="3" type="submit">★</button>
+                    <button class="rateUserBtn" id="star2" name="rateUser" value="2" type="submit">★</button>
+                    <button class="rateUserBtn" id="star1" name="rateUser" value="1" type="submit">★</button>
                 </form>
                 {% endif %}
-                
-            </div>
 
-            <!-- ABOUTPANE: user bio information, favorite music, workout etc. -->
-            <div class="aboutPane">
-                    <div id="fieldInfo">
-                        <!--
+                <p>Number of ratings: {{ numRating }}</p>
+
+            </div>
+            <!-- Jinja logic for whether or not user is on their own page or not (enables/disables delete account functionality) -->
+            {% if myPage +%}
+            <form id="delAccount" method="post">
+                <input type="hidden" id="deleteAccount" name="deleteAccount">
+                <button class="deleteAccount" onClick="confSubmit(this.form);" type="submit">Delete Account</button>
+            </form>
+            {% endif %}
+
+        </div>
+
+        <!-- ABOUTPANE: user bio information, favorite music, workout etc. -->
+        <div class="aboutPane">
+            <div id="fieldInfo">
+                <!--
                         JINJA LOGIC:
                         editing Page
                         If edit button clicked = render editable user profile. 
                         -->
 
-                        {% if not editPage +%}
-                                <form class="editProf" method="post">
-                                    <!-- JINJA LOGIC: checks to see if own page or not (enable/disable ability to edit page) -->
-                                    <h2>About{% if myPage +%}<button class="editProf" id="editProf" name="editProf" value=True type="submit">&#9998</button>{% endif %}</h2>
-                                </form>
-                            <h3>Preferred Name: </h3><p id="prefNickName">{{ prefName }}</p><br>
-                            <h3>Birthday: </h3><p id="prefBirthday">{{ dob }}</p><br>
-                            <h3>Gender: </h3><p id="prefGender">{{ gender }}</p><br>
-                            <h2>Additional Info</h2><br>
-                            <h3>Favorite Exercise: </h3><p id="profFavExercise">{{ favExercise }}</p><br>
-                            <h3>Favorite Workout Music: </h3><p id="profFavMusic">{{ favMusic }}</p><br>
-                            <h3>Fitness Goals: </h3><p id="profFitnessGoals">{{ fitGoals }}</p><br>
-                            <h3>How Many Days Of The Week Do You Workout: </h3><p id="profFrequency">{{ exFreq }}</p><br>
-                            <h3>How Long Have You Been Working Out: </h3><p id="profHowLong">{{ exLength }}</p><br>
-                            <h3>Do You Warm-Up Before Exercising: </h3><p id ="profWarmup">{{ warmUps }}</p><br>
-                            <h3>Are You Available For Spotting: </h3><p id="profSpotting">{{ spotting }}</p><br>
-                            <h3>Are You Looking For An Exercise Partner: </h3> <p id="profPartner">{{ LFPartner }}</p><br>
-                            <h3>What Do You Do For A Living: </h3> <p id="profLiving">{{ occupation }}</p><br>
-                            <h3>What Are Your Favorite Hobbies: </h3> <p id="profHobbies">{{ hobbies }}</p><br>
-                            
-                        {% else +%}
-                        <form class="saveEdit" method="post">
-                            <button class="saveEditBtn" id="saveEdit" name="saveEdit" type="submit">&#128190</button>
-                            <h3>Preferred Name: </h3>
-                            <input class="saveEdit" id="saveEdit" type="text" value={{prefName}} name="prefName" required></input>
-                            <h3>Birthday: </h3>
-                            <input class="saveEdit" id="saveEdit" type="date" value={{dob}} name="dateOfBirth" required></input>
-                            <h3>Gender: </h3>
-                            <select class="saveEdit" name="gender" id="gender" value={{gender}} required>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Non-Binary">Non-Binary</option>
-                            </select>
-                            <h3>Favorite Exercise: </h3>
-                            <input class="saveEdit" id="saveEdit" type="text" value={{favExercise}} name="favExercise"></input>
-                            <h3>Favorite Workout Music: </h3>
-                            <input class="saveEdit" id="saveEdit" type="text" value={{favMusic}} name="favMusic"></input>
-                            <h3>Fitness Goals: </h3>
-                            <input class="saveEdit" id="saveEdit" type="text" value={{fitGoals}} name="fitGoals"></input>
-                            <h3>How Many Days Of The Week Do You Workout: </h3>
-                            <select class="saveEdit" name="exFreq" id="exFreq" value={{exFreq}}>
-                                <option value="Unknown">Unknown</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                            </select>
-                            <h3>How Long Have You Been Working Out: </h3>
-                            <select class="saveEdit" name="exLength" id="exLength" value={{exLength}}>
-                                <option value=""Unknown">Unknown</option>
-                                <option value="Less Than A Year">Less Than A Year</option>
-                                <option value="A Year">A Year</option>
-                                <option value="Two To Five Years">Two To Five Years</option>
-                                <option value="Five Or More Years">Five Or More Years</option>
-                            </select>
-                            <h3>Do You Warm-Up Before Exercising: </h3>
-                            <select class="saveEdit" name="warmUps" id="warmUps" value={{warmUps}}>
-                                <option value=""Unknown">Unknown</option>
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
-                            </select>
-                            <h3>Are You Available For Spotting: </h3>
-                            <select class="saveEdit" name="spotting" id="spotting" value={{spotting}}>
-                                <option value=""Unknown">Unknown</option>
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
-                            </select>
-                            <h3>Are You Looking For An Exercise Partner: </h3>
-                            <select class="saveEdit" name="LFPartner" id="LFPartner" value={{LFPartner}}>
-                                <option value=""Unknown">Unknown</option>
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
-                            </select>
-                            <h3>What Do You Do For A Living: </h3>
-                            <input class="saveEdit" id="saveEdit" type="text" value={{occupation}} name="occupation"></input>
-                            <h3>What Are Your Favorite Hobbies: </h3>
-                            <input class="saveEdit" id="saveEdit" type="text" value={{hobbies}} name="hobbies"></input>
-                            <button class="saveEditBtn" id="saveEdit" name="saveEdit" type="submit">&#128190</button>
-                        </form>
-                        {% endif %}
-                    </div>
+                {% if not editPage +%}
+                <form class="editProf" method="post">
+                    <!-- JINJA LOGIC: checks to see if own page or not (enable/disable ability to edit page) -->
+                    <h2>About{% if myPage +%}<button class="editProf" id="editProf" name="editProf" value=True
+                            type="submit">&#9998</button>{% endif %}</h2>
+                </form>
+                <h3>Preferred Name: </h3>
+                <p id="prefNickName">{{ prefName }}</p><br>
+                <h3>Birthday: </h3>
+                <p id="prefBirthday">{{ dob }}</p><br>
+                <h3>Gender: </h3>
+                <p id="prefGender">{{ gender }}</p><br>
+                <h2>Additional Info</h2><br>
+                <h3>Favorite Exercise: </h3>
+                <p id="profFavExercise">{{ favExercise }}</p><br>
+                <h3>Favorite Workout Music: </h3>
+                <p id="profFavMusic">{{ favMusic }}</p><br>
+                <h3>Fitness Goals: </h3>
+                <p id="profFitnessGoals">{{ fitGoals }}</p><br>
+                <h3>How Many Days Of The Week Do You Workout: </h3>
+                <p id="profFrequency">{{ exFreq }}</p><br>
+                <h3>How Long Have You Been Working Out: </h3>
+                <p id="profHowLong">{{ exLength }}</p><br>
+                <h3>Do You Warm-Up Before Exercising: </h3>
+                <p id="profWarmup">{{ warmUps }}</p><br>
+                <h3>Are You Available For Spotting: </h3>
+                <p id="profSpotting">{{ spotting }}</p><br>
+                <h3>Are You Looking For An Exercise Partner: </h3>
+                <p id="profPartner">{{ LFPartner }}</p><br>
+                <h3>What Do You Do For A Living: </h3>
+                <p id="profLiving">{{ occupation }}</p><br>
+                <h3>What Are Your Favorite Hobbies: </h3>
+                <p id="profHobbies">{{ hobbies }}</p><br>
+
+                {% else +%}
+                <form class="saveEdit" method="post">
+                    <button class="saveEditBtn" id="saveEdit" name="saveEdit" type="submit">&#128190</button>
+                    <h3>Preferred Name: </h3>
+                    <input class="saveEdit" id="saveEdit" type="text" value={{prefName}} name="prefName"
+                        required></input>
+                    <h3>Birthday: </h3>
+                    <input class="saveEdit" id="saveEdit" type="date" value={{dob}} name="dateOfBirth" required></input>
+                    <h3>Gender: </h3>
+                    <select class="saveEdit" name="gender" id="gender" value={{gender}} required>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Non-Binary">Non-Binary</option>
+                    </select>
+                    <h3>Favorite Exercise: </h3>
+                    <input class="saveEdit" id="saveEdit" type="text" value={{favExercise}} name="favExercise"></input>
+                    <h3>Favorite Workout Music: </h3>
+                    <input class="saveEdit" id="saveEdit" type="text" value={{favMusic}} name="favMusic"></input>
+                    <h3>Fitness Goals: </h3>
+                    <input class="saveEdit" id="saveEdit" type="text" value={{fitGoals}} name="fitGoals"></input>
+                    <h3>How Many Days Of The Week Do You Workout: </h3>
+                    <select class="saveEdit" name="exFreq" id="exFreq" value={{exFreq}}>
+                        <option value="Unknown">Unknown</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                    </select>
+                    <h3>How Long Have You Been Working Out: </h3>
+                    <select class="saveEdit" name="exLength" id="exLength" value={{exLength}}>
+                        <option value="" Unknown">Unknown</option>
+                        <option value="Less Than A Year">Less Than A Year</option>
+                        <option value="A Year">A Year</option>
+                        <option value="Two To Five Years">Two To Five Years</option>
+                        <option value="Five Or More Years">Five Or More Years</option>
+                    </select>
+                    <h3>Do You Warm-Up Before Exercising: </h3>
+                    <select class="saveEdit" name="warmUps" id="warmUps" value={{warmUps}}>
+                        <option value="" Unknown">Unknown</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                    <h3>Are You Available For Spotting: </h3>
+                    <select class="saveEdit" name="spotting" id="spotting" value={{spotting}}>
+                        <option value="" Unknown">Unknown</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                    <h3>Are You Looking For An Exercise Partner: </h3>
+                    <select class="saveEdit" name="LFPartner" id="LFPartner" value={{LFPartner}}>
+                        <option value="" Unknown">Unknown</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                    <h3>What Do You Do For A Living: </h3>
+                    <input class="saveEdit" id="saveEdit" type="text" value={{occupation}} name="occupation"></input>
+                    <h3>What Are Your Favorite Hobbies: </h3>
+                    <input class="saveEdit" id="saveEdit" type="text" value={{hobbies}} name="hobbies"></input>
+                    <button class="saveEditBtn" id="saveEdit" name="saveEdit" type="submit">&#128190</button>
+                </form>
+                {% endif %}
             </div>
-            <!--
+        </div>
+        <!--
             JINJA LOGIC:
             If editing profile page search for buddy button = disabled
             If not editing profile page search for buddy button = enabled
             -->
-            <div class="findBuddyPane">
-                {% if editPage +%}
-                <a class="searchForBuddyBtn" href="{{ url_for('auth.findBuddy') }}"> <button class="searchForBuddyBtn" id="searchForBuddy" type="button" disabled>&#128683</button></a>
-                {% else +%}
-                    {% if hasMatches +%}
-                    <a class="searchForBuddyBtn" href="{{ url_for('auth.matchesPage') }}"> <button class="searchForBuddyBtn" id="searchForBuddyDisabled" type="button">See Matches</button></a>
-                    {% else +%}
-                    <a class="searchForBuddyBtn" href="{{ url_for('auth.findBuddy') }}"> <button class="searchForBuddyBtn" id="searchForBuddyDisabled" type="button">Search For Buddy</button></a>
-                    {% endif %}
-                {% endif %}
-            </div>
+        <div class="findBuddyPane">
+            {% if editPage +%}
+            <a class="searchForBuddyBtn" href="{{ url_for('auth.findBuddy') }}"> <button class="searchForBuddyBtn"
+                    id="searchForBuddy" type="button" disabled>&#128683</button></a>
+            {% else +%}
+            {% if hasMatches +%}
+            <a class="searchForBuddyBtn" href="{{ url_for('auth.matchesPage') }}"> <button class="searchForBuddyBtn"
+                    id="searchForBuddyDisabled" type="button">See Matches</button></a>
+            {% else +%}
+            <a class="searchForBuddyBtn" href="{{ url_for('auth.findBuddy') }}"> <button class="searchForBuddyBtn"
+                    id="searchForBuddyDisabled" type="button">Search For Buddy</button></a>
+            {% endif %}
+            {% endif %}
+        </div>
 
-        </div><!--End of div.container-->
-        <!--
+    </div><!--End of div.container-->
+    <!--
         JS SCRIPT: 
         Refreshes page on view.
         Handles confirmation alert for delete account
         -->
-        <script src="{{ url_for('static', filename='js/profilePage.js')}}"></script>
-    </body>
-    <!-- GYMBUDDY ABOUT: routes to aboutUs and userGuide page -->
-    <center><p>©Gym Buddy 
-    | <a href="{{ url_for('main_views.aboutUs') }}" target="blank">About Us</a>
-    | <a href ="{{ url_for('main_views.usersGuide') }}" target =blank>User's Guide</a></p></center>
+    <script src="{{ url_for('static', filename='js/profilePage.js')}}"></script>
+</body>
+<!-- GYMBUDDY ABOUT: routes to aboutUs and userGuide page -->
+<center>
+    <p>©Gym Buddy
+        | <a href="{{ url_for('main_views.aboutUs') }}" target="blank">About Us</a>
+        | <a href="{{ url_for('main_views.usersGuide') }}" target=blank>User's Guide</a></p>
+</center>
 
 </html>
