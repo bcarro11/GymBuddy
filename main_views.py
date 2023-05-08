@@ -7,7 +7,7 @@ from os import getenv
 from hashlib import sha256
 
 #added imports for file upload
-import gymBuddy
+#import gymBuddy
 #from gymBuddy import app
 from flask import flash, current_app
 import os
