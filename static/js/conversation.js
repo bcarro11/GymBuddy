@@ -6,7 +6,7 @@
  * DATE: May 5, 2023
  */
 
-//Confirmation for requesting a match.
+//Confirmation for requesting a match. 
 function confSubmit(form) {
     if (confirm("Are you sure you want to request a match?")) {        
         document.getElementById("confirmMatch").value = "True";

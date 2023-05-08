@@ -4,6 +4,14 @@
     COURSE: CMSC 495:7383
     FILE: profilePage.css
     DATE: April 8, 2023
+        REFERENCED BY:
+        - profilePage.html
+*/
+
+/* 
+    HTML/BODY
+    Handles Background of entire page,
+    and overflow (hidden).
 */
 html {
     background: linear-gradient(-45deg, #f6f8f7, #b6f3ff);
@@ -12,20 +20,19 @@ html {
     height: auto;
 }
 
-/* body {
-    overflow: hidden;
-
- } */
-
-/*
-    Grid and containers
-*/
+/* 
+    GRID LAYOUT
+    Container - Main container
+    navBar - navigation bar    
+    aboutPane - about user pane
+    findBuddyPane - pane for find buddy button.
+    userPane - pane for prof pic, rating etc.
+ */
 .container {
     height: 98vh;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(10, 1fr);
-    /* grid-auto-rows: auto; */
     justify-content: center;
     gap: 15px;
     margin-left: 10px;
@@ -33,7 +40,6 @@ html {
     width: 98vw;
     height: 98vh;
 }
-
 .navBar {
     grid-column: 2 / 6;
     grid-row: 1;
@@ -42,37 +48,23 @@ html {
     list-style: none;
     text-align: center;
 }
-
-.navList li {
-    display: inline-block;
-    list-style-type: none;
-    font-size: 20px;
-    padding-left: 5px;
-    font-size: xx-large;
+.aboutPane {
+    grid-column: 3 / 6;
+    grid-row: 2 / 10;
+    display: grid;    
+    background-color: #ffffff;
+    border-radius: 25px;
+    overflow-y: scroll;
 }
-
-
-#mail {
-    /* margin-left: 100%; */
-    margin-right: 100%;
+.findBuddyPane {
+    grid-column: 2;
+    grid-row: 9;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
+    border-radius: 25px;
 }
-
-h1.navItems {
-    /* display: block; */
-    color:#ffffff;
-    align-items: left;
-    text-align: center;
-}
-
-#mail {
-    color:#ffffff;
-    font-size:xx-large;
-    align-self: right;
-    text-align: right;
-    align-content: right;
-}
-
-
 .userPane {
     grid-column: 2 / 3;
     grid-row: 2 / 9;
@@ -84,6 +76,35 @@ h1.navItems {
     border-radius: 25px;
 }
 
+/* 
+    NAVBAR LIST
+    Navbar objects formatting.
+*/
+.navList li {
+    display: inline-block;
+    list-style-type: none;
+    font-size: 20px;
+    padding-left: 5px;
+    font-size: xx-large;
+}
+h1.navItems {
+    color:#ffffff;
+    align-items: left;
+    text-align: center;
+}
+#mail {
+    color:#ffffff;
+    font-size:xx-large;
+    align-self: right;
+    text-align: right;
+    align-content: right;
+    margin-right: 100%;
+}
+
+/*
+    RATING SYSTEM
+    Handles buttons for rating other users.
+*/
 .rateUserBtn{
     float: right;
     text-align: center;
@@ -95,29 +116,24 @@ h1.navItems {
     font-size:large;
     display: inline;
 }
-
 #star1:hover {
     color:rgb(189, 189, 26);
 }
-
 #star2:hover,
 #star2:hover ~ #star1 {
     color:rgb(189, 189, 26);
 }
-
 #star3:hover,
 #star3:hover ~ #star2,
 #star3:hover ~ #star1 {
     color:rgb(189, 189, 26);
 }
-
 #star4:hover,
 #star4:hover ~ #star3,
 #star4:hover ~ #star2,
 #star4:hover ~ #star1 {
     color:rgb(189, 189, 26);
 }
-
 #star5:hover,
 #star5:hover ~ #star4,
 #star5:hover ~ #star3,
@@ -126,28 +142,29 @@ h1.navItems {
     color:rgb(189, 189, 26);
 }
 
+/*
+    RATING SYSTEM
+    Handles disabling buttons on user's own profile page
+    and user pages that they've already rated.
+*/
 #star1Disabled1 {
     color:rgb(189, 189, 26);
 }
-
 #star2Disabled2,
 #star2Disabled2 ~ #star1Disabled2 {
     color:rgb(189, 189, 26);
 }
-
 #star3Disabled3,
 #star3Disabled3 ~ #star2Disabled3,
 #star3Disabled3 ~ #star1Disabled3 {
     color:rgb(189, 189, 26);
 }
-
 #star4Disabled4,
 #star4Disabled4 ~ #star3Disabled4,
 #star4Disabled4 ~ #star2Disabled4,
 #star5Disabled4 ~ #star1Disabled4 {
     color:rgb(189, 189, 26);
 }
-
 #star5Disabled5,
 #star5Disabled5 ~ #star4Disabled5,
 #star5Disabled5 ~ #star3Disabled5,
@@ -156,59 +173,50 @@ h1.navItems {
     color:rgb(189, 189, 26);
 }
 
-
-.aboutPane {
-    grid-column: 3 / 6;
-    grid-row: 2 / 10;
-    display: grid;    
-    background-color: #ffffff;
-    border-radius: 25px;
-    overflow-y: scroll;
-}
-
-.findBuddyPane {
-    grid-column: 2;
-    grid-row: 9;
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    object-fit: cover;
-    border-radius: 25px;
-}
-
 /*
-    Image Handling
+    IMAGES    
+    Handles profile picture and rating pics
 */
 .profilePic {
     border-radius: 50%;
     width: 132px; 
     height: 132px;
 }
-
 .ratingPic {
     width: 132px; 
     height: 132px;
 }
-
 .mailPic:hover {
     opacity: 90%;
 }
 
+/*
+    USER & ABOUT PANE
+    Formatting for user and about user panes.
+*/
 .status {
     padding: 15px 20px;
     text-align: center;
 }
-
 .prefGym {
     padding: 15px 20px;
     text-align: center;
 }
-
 #searchForBuddy {
     padding: 15px 20px;
     text-align: center;
 }
+#fieldInfo h3,
+#fieldInfo p{
+    display: inline-grid;
+    text-align: left;
+    margin-left: 15px
+}
 
+/* 
+    BUTTON FORMATTING
+    Button formatting and hover actions.
+*/
 .searchForBuddyBtn {    
     background-color: #008ca8;
     color: white;
@@ -220,7 +228,6 @@ h1.navItems {
     margin-left: auto;
     margin-right: auto;
 }
-
 .deleteAccount,
 .uploadProfPicBtn {    
     background-color: #008ca8;
@@ -230,10 +237,8 @@ h1.navItems {
     height: 30px;
     width: auto;
     border-radius: 25px;
-    /* margin-left: auto; */
-    /* margin-right: auto; */
-}
 
+}
 .deleteAccBtn {    
     background-color: #008ca8;
     color: white;
@@ -242,11 +247,7 @@ h1.navItems {
     height: 30px;
     width: auto;
     border-radius: 25px;
-    /* margin-left: auto; */
-    /* margin-right: auto; */
 }
-
-
 button.saveEditBtn{    
     background-color: #008ca8;
     width: 90%;
@@ -259,9 +260,28 @@ button.saveEditBtn{
     box-sizing: border-box;
     border-radius: 25px;
     font-size: x-large;
-
 }
-
+button.editProf {
+    float: right;
+    margin-right: 10px;
+    background-color: #ffffff;
+    border-style: none;
+    color:r#008ca8;
+    font-size:xx-large;
+}
+button.editProf:hover{
+    color:red;
+}
+button.saveEdit{
+    display:grid;
+    text-align: center;
+    justify-content: center;
+    text-justify: center;
+    margin-left: 50px;
+}
+button.saveEdit:hover{
+    opacity: 80%;
+}
 .navList li:hover,
 .uploadProfPicBtn:hover,
 .deleteAccBtn:hover,
@@ -270,27 +290,10 @@ button.saveEditBtn{
     opacity: 90%;
 }
 
-
-
-h2 {
-    font-family: 'Roboto';
-    text-align: left;
-    margin-left: 5px;
-}
-
-
-#fieldInfo h3,
-#fieldInfo p{
-    /* overflow-y: scroll; */
-    display: inline-grid;
-    text-align: left;
-    margin-left: 15px
-}
-h3 {
-    font-family: 'Roboto';
-    color: #008ca8;
-}
-
+/*
+    SAVE EDIT
+    Handling for save/edit buttons/styles
+*/
 input.saveEdit {
     width: 90%;
     padding: 15px 20px;
@@ -300,9 +303,7 @@ input.saveEdit {
     border: 1px solid #008ca8;
     box-sizing: border-box;
     border-radius: 25px;
-    
 }
-
 select.saveEdit {
     width: 90%;
     padding: 15px 20px;
@@ -312,32 +313,18 @@ select.saveEdit {
     border: 1px solid #008ca8;
     box-sizing: border-box;
     border-radius: 25px;
-    
 }
 
-
-button.editProf {
-    float: right;
-    margin-right: 10px;
-    background-color: #ffffff;
-    border-style: none;
-    color:r#008ca8;
-    font-size:xx-large;
+/*
+    HEADERS & TEXT
+    Text/font formats and colors.
+*/
+h2 {
+    font-family: 'Roboto';
+    text-align: left;
+    margin-left: 5px;
 }
-
-button.editProf:hover{
-    /* opacity:90%; */
-    color:red;
-}
-
-button.saveEdit{
-    display:grid;
-    text-align: center;
-    justify-content: center;
-    text-justify: center;
-    margin-left: 50px;
-}
-
-button.saveEdit:hover{
-    opacity: 80%;
+h3 {
+    font-family: 'Roboto';
+    color: #008ca8;
 }

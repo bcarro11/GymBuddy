@@ -3,12 +3,17 @@
     GROUP: Gym Buddy
     MEMBERS: ​Brenden Carroll, Stefani Page, Elina Tsykhmistrenko, Justin White, Hamza Zgidou​ 
     COURSE: CMSC 495:7383
-    FILE: createAccount.html
-    DATE: April 1, 2023
+    FILE: findBuddy.html
+    DATE: April 12, 2023
 -->
  <html>
     <head>
-        <!-- <link rel="stylesheet" href="..\css\findBuddy.css"> -->
+        <!--
+        STYLE/SCRIPT REFERENCES
+            CSS: findBuddy.css
+            FONT: Roboto font from Google.
+            JS: notification.js
+        --> 
         <link rel="stylesheet" href="{{ url_for('static', filename='css/findBuddy.css')}}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,37 +21,37 @@
         <script src="{{ url_for('static', filename='js/notifications.js')}}"></script>
     </head>
 
-    <body>        
+    <body>
+        <!-- ALERT: alert notifications for new messages/matches -->     
         <div class="alert" id="alert-div" style="width: 100%;">
             <p class="alert-text" id="alert-container" style="display: none; justify-content: space-between; width: 100%; background-color: lightsalmon;"><span id="alert-type" style="font-weight: bold;"></span> | <span id="alert-message" style="overflow: hidden;"></span><span class="close-btn" style="float: right; font-size: 20px; transition: 0.2s; font-weight: bold; cursor: pointer; margin-left: auto; margin-right: 5px;" onclick="this.parentElement.style.display='none'">&times;</span></p>
         </div>
+        <!-- CONTAINER: main grid container -->
         <div class="container">
+            <!-- NAVBAR: Navigation Bar -->
             <div class="navBar">
                 <ul class="navList">
                     <li><a title="Home" id="home" href="{{ url_for('main_views.profilePage', userID=id) }}">&#x1F3E0</a></li>
                     <li><a title="Messages" id="mail" href="{{ url_for('auth.messagesPage') }}">&#x1F4EC</a></li>                    
                     <li><a title="Logout" id="logout" href="{{ url_for('auth.logout') }}">👋</a></li>
-                    <!-- <li><a title="Logout" id="logout" href="#logout">&#x1F44B</a></li> -->
                 </ul>
             </div>
+            <!-- GRID1: Title -->
             <div class="grid1">
                 <h1 id="createAccountTitle">Gym Buddy</h1>
                 <h2>Find Buddy - Your Routine</h2>
             </div>
+            <!-- GRID2: Find Buddy Routine Drop-Down list -->
             <div class="grid2">
+                <!-- SCROLLABLE: Find Buddy Routine Drop-Down list -->
                 <div class="scrollable">
-                    <!-- <form id="exerciseForm" method="post">
-
-                        {% for exercise in exercises %}
-                        
-                        <input type="checkbox" id="{{ exercise.name }}" name="{{ exercise.name }}" value="{{ exercise.name }}">
-                        <label id="defaultLabel" for="{{ exercise.name }}">{{ exercise.name }}</label><br>
-
-                        {% endfor %}                               
-
-                    </form> -->
                     <h3> Enter your exercise routine: </h3>
                     <hr>
+                    <!-- 
+                    EXERCISE FORM: 
+                    JINJA LOGIC: 
+                        to populate routine drop-down menus from DB
+                    -->
                     <form id="exerciseForm" method="post" name="exer">
                         {% set ns = namespace(count = 1) %}
                         {% for exercise in exercises %}                       
@@ -66,13 +71,11 @@
                     </form>
                 </div>
             </div>
+            <!-- GRID3: Search and Cancel buttons -->
             <div class="grid3">
                 <button id="startSearch" type="submit" form="exerciseForm">Accept</button>                    
                 <a href="{{ url_for('main_views.profilePage', userID=id) }}"> <button id="cancelSearch" type="button">Cancel</button></a>
             </div>
         </div>
-        <!-- <script src="{{ url_for('static', filename='js/findBuddy.js')}}"></script> -->
-        <!-- <script src="..\js\findBuddy.js"></script> -->
     </body>
-    
 </html>

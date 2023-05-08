@@ -4,12 +4,17 @@
     GROUP: Gym Buddy
     MEMBERS: ​Brenden Carroll, Stefani Page, Elina Tsykhmistrenko, Justin White, Hamza Zgidou​ 
     COURSE: CMSC 495:7383
-    FILE: createAccount.html
-    DATE: April 1, 2023
+    FILE: conversation.html
+    DATE: May 1, 2023
 -->
  <html>
     <head>
-        <!-- <link rel="stylesheet" href="..\css\findBuddy.css"> -->
+      <!--
+      STYLE/SCRIPT REFERENCES
+        CSS: conversation.css
+        FONT: Roboto font from Google.
+        JS: notification.js
+      -->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/conversation.css')}}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,53 +23,63 @@
     </head>
 
     <body>        
+      <!-- CONTAINER: main grid container -->
       <div class="container">
+        <!-- alert notifications for new messages/matches -->
         <div class="alert" id="alert-div" style="width: 100%;">
         <p class="alert-text" id="alert-container" style="display: none; justify-content: space-between; width: 100%; background-color: lightsalmon;"><span id="alert-type" style="font-weight: bold;"></span> | <span id="alert-message" style="overflow: hidden;"></span><span class="close-btn" style="float: right; font-size: 20px; transition: 0.2s; font-weight: bold; cursor: pointer; margin-left: auto; margin-right: 5px;" onclick="this.parentElement.style.display='none'">&times;</span></p>
       </div>
+      <!-- NAVBAR: Navigation Bar -->
       <div class="navBar">
         <ul class="navList">
             <li><a title="Home" id="home" href="{{ url_for('main_views.profilePage', userID=id) }}">&#x1F3E0</a></li>
             <li><a title="Messages" id="mail" href="{{ url_for('auth.messagesPage') }}">&#x1F4EC</a></li>                    
             <li><a title="Logout" id="logout" href="{{ url_for('auth.logout') }}">👋</a></li>
-            <!-- <li><a title="Logout" id="logout" href="#logout">&#x1F44B</a></li> -->
         </ul>
       </div>
+      <!-- GRID1: Title -->
       <div class="grid1">
                 <h1 id="createAccountTitle">Gym Buddy</h1>
                 <h2>Your Messages</h2>
                 <strong class="error">{{currentUserName}}</strong>
             </div>
+            <!-- GRID2: conversation -->
             <div class="grid2">
-                <!-- <div class="scrollable"> -->
+              <!-- 
+              Jinja logic for iterating through messages.
+              Styling varies on whether or not message was sent or received.
+               -->
                   {% for messagetuple in messageTuples %}
                   {% if messagetuple[0].id == partner.id %}
-                    <div class="msg-card-box">
+                    <div class="msg-received">
                         <div><a href="{{ url_for('main_views.profilePage', userID=partner.id)}}">{{ messagetuple[0].prefname }}</a></div>
                         <div>{{ messagetuple[1].time }}</div>
                         <p>{{ messagetuple[1].contents }}</p>
                     </div>
                   {% else %}
-                    <div class="msg-card-box-unread">
+                    <div class="msg-sent">
                       <div>{{ messagetuple[0].prefname }}</div>
                       <div>{{ messagetuple[1].time }}</div>
                       <p> {{ messagetuple[1].contents }}</p>
                     </div>
                   {% endif %}
                 {% endfor %}
-                <!-- </div> -->
             </div>
-            <div class="grid3">                  
+            <!-- Grid3: Text Box, Send Button and Match Button. -->
+            <div class="grid3">
+              <!-- Form for sending message (POST to backend)-->
               <form id="sendmsg" name="sendmsg" method="post" onsubmit="() => document.getElementById('msg').value = '';">
                 <input id="msg" type="text" class="msg" name="msg">
                 <button class="send-btn" type="submit">Send</button>
               </form>
+              <!-- Form for sending match request (POST to backend) -->
               <form id="RequestMatch" method="post">
                 <input type="hidden" id="confirmMatch" name="confirmMatch">
                 <button class="match-bnt" onClick="confSubmit(this.form);" type="submit">Match!</button>
               </form>
             </div>
         </div>
+        <!-- Script import for match confirmation prompt -->
         <script src="{{ url_for('static', filename='js/conversation.js')}}"></script>
     </body>
     

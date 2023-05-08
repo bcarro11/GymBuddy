@@ -4,23 +4,35 @@
     COURSE: CMSC 495:7383
     FILE: findBuddy.css
     DATE: April 8, 2023
+    REFERENCED BY:
+        - findBuddy.html
 */
 
+
+/* 
+    HTML/BODY
+    Handles Background of entire page,
+    and overflow (hidden).
+*/
 html {
     background: linear-gradient(-45deg, #f6f8f7, #b6f3ff);
     background-color: #ffffff;
     background-size: 250% 250%;
     height: auto;
 }
-
 body {
     overflow: hidden;
-    /* background-image: url('../imgs/GymLogo.png');
-    background-position: center;
-    background-repeat: repeat;
-    background-size: 35%; */
 }
 
+/* 
+    GRID LAYOUT
+    Container - Main container
+    navBar - navigation bar    
+    grid1 - title box
+    grid2 - main dispaly area
+    (grid2) scrollable - handles scroll feature inside grid2 
+    grid3 - buttons/inputs
+ */
 .container {
     height: 98vh;
     display: grid;
@@ -36,22 +48,12 @@ body {
     list-style: none;
     text-align: center;
 }
-
-.navList li {
-    display: inline-block;
-    list-style-type: none;
-    font-size: 20px;
-    padding-left: 5px;
-    font-size: xx-large;
-}
-
 .grid1 {
     grid-row: 2 / 3;
     background-color: #ffffff;
     border: #008ca8;
     border-style: solid;
 }
-
 .grid2 {
     grid-row: 3 / 4;
     display: grid;
@@ -60,12 +62,10 @@ body {
     border-style: solid;
     overflow: hidden;
 }
-
 .scrollable {
     overflow-y: scroll;
     padding: 20px;
 }
-
 .grid3 {
     grid-row: 4 / 5;    
     background-color: #ffffff;
@@ -73,12 +73,27 @@ body {
     border-style: solid;
 }
 
+/* 
+    NAVBAR LIST
+    Navbar objects formatting.
+*/
+.navList li {
+    display: inline-block;
+    list-style-type: none;
+    font-size: 20px;
+    padding-left: 5px;
+    font-size: xx-large;
+}
+
+/*
+    HEADERS & TEXT
+    Text/font formats and colors.
+*/
 h1 {
     font-family: 'Roboto';
     color: #008ca8;
     text-align: center;
 }
-
 h2 {
     font-family: 'Roboto';
     text-align: center;
@@ -87,11 +102,14 @@ h3 {
     font-family: 'Roboto';
     text-align: center;
 }
-
-#exerciseDropDownLbl{
+#defaultLabel {
     font-family: 'Roboto';
 }
 
+/* 
+    BUTTON FORMATTING
+    Button formatting and hover actions.
+*/
 button {
     background-color: #008ca8;
     color: white;
@@ -106,28 +124,30 @@ button {
     margin-right: auto;
     margin-top: 10px;
 }
-
-#exerciseForm {
-    justify-content: center;
-}
-select.findBuddyOption {
-    width: 95%;
-    padding: 15px 20px;
-    /* margin: auto; */
-    margin-bottom: 5px;
-    display: inline-flex;
-    border: 1px solid #008ca8;
-    /* box-sizing: border-box; */
-    border-radius: 25px;
-    background-color: #008ca8;
-    color: white;
-    justify-content: center;
-}
-
 button:hover {
     opacity: 90%;
 }
 
-#defaultLabel {
-    font-family: 'Roboto';
+/*
+    EXERCISE FORM
+    Form justification to center content
+*/
+#exerciseForm {
+    justify-content: center;
+}
+
+/*
+    SELECT (DROP-DOWN)
+    Handles drop down formatting
+*/
+select.findBuddyOption {
+    width: 95%;
+    padding: 15px 20px;
+    margin-bottom: 5px;
+    display: inline-flex;
+    border: 1px solid #008ca8;
+    border-radius: 25px;
+    background-color: #008ca8;
+    color: white;
+    justify-content: center;
 }

@@ -4,12 +4,17 @@
     MEMBERS: ​Brenden Carroll, Stefani Page, Elina Tsykhmistrenko, Justin White, Hamza Zgidou​ 
     COURSE: CMSC 495:7383
     FILE: profilePage.html
-    DATE: April 1, 2023
+    DATE: April 22, 2023
 -->
 
  <html>
     <head>
-        <!-- <link rel="stylesheet" href="..\css\profilePage.css"> -->
+        <!--
+        STYLE/SCRIPT REFERENCES
+          CSS: profilePage.css
+          FONT: Roboto font from Google.
+          JS: notification.js
+        -->     
         <link rel="stylesheet" href="{{ url_for('static', filename='css/profilePage.css')}}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,10 +23,13 @@
     </head>
     
     <body>
+        <!-- ALERT: alert notifications for new messages/matches -->
         <div class="alert" id="alert-div" style="width: 100%;">
             <p class="alert-text" id="alert-container" style="display: none; justify-content: space-between; width: 100%; background-color: lightsalmon;"><span id="alert-type" style="font-weight: bold;"></span> | <span id="alert-message" style="overflow: hidden;"></span><span class="close-btn" style="float: right; font-size: 20px; transition: 0.2s; font-weight: bold; cursor: pointer; margin-left: auto; margin-right: 5px;" onclick="this.parentElement.style.display='none'">&times;</span></p>
         </div>
-        <div class="container"> 
+        <!-- CONTAINER: main grid container -->   
+        <div class="container">
+            <!-- NAVBAR: Navigation Bar -->  
             <div class="navBar">
                 <ul class="navList">
                     <li><a title="Home" id="home" href="{{ url_for('main_views.profilePage', userID=id) }}">&#x1F3E0</a></li>
@@ -30,17 +38,15 @@
                     <!-- <li><a title="Logout" id="logout" href="#logout">&#x1F44B</a></li> -->
                 </ul>
             </div>
+            <!-- USERPANE: User profile picture, rating, del account etc. -->
             <div class="userPane">                
                 <div>
-                    <!-- <img class="profilePic" src="{{ url_for('static', filename='imgs/profile.png')}}" alt=""> -->
                     <img class="profilePic" src="{{ url_for('static', filename='profPics/' + profilePic)}}" alt="">
                     <br>
+                    <!-- Jinja logic for whether or not user is on their own page or not (enables/disables picture upload ability) -->
                     {% if myPage +%}
-                    <div class="uploadProfPicBtn">
-                        <!-- Routes to welcome page as place holder -->
-                        <!-- <button onclick="window.open('{{ url_for('main_views.profPicUpload') }}', '_blank')" class="uploadProfPicBtn" id="uploadProfPic" type="button">Upload Picture</button></a> -->
+                    <div class="uploadProfPicBtn">                        
                         <a class="uploadProfPicBtn" href="{{ url_for('main_views.profPicUpload') }}" target="blank"> <button class="uploadProfPicBtn" id="uploadProfPic" type="button">Upload Picture</button></a>
-
                     </div> 
                     {% endif %}
                     <br>
@@ -53,6 +59,9 @@
 
                     <!--
                         Rating system implementation
+                        Jinja logic, confirms if user is on their page or not.
+                        If on their own page, rating system = disabled.
+                        If on other user's page, rating system = enabled.
                     -->
                     {% if myPage or rated +%}
                         {% if rating == none %}
@@ -105,6 +114,7 @@
                      <p>Number of ratings: {{ numRating }}</p>
                   
                 </div> 
+                <!-- Jinja logic for whether or not user is on their own page or not (enables/disables delete account functionality) -->
                 {% if myPage +%}
                 <form id="delAccount" method="post">
                     <input type="hidden" id="deleteAccount" name="deleteAccount">
@@ -114,15 +124,20 @@
                 
             </div>
 
+            <!-- ABOUTPANE: user bio information, favorite music, workout etc. -->
             <div class="aboutPane">
                     <div id="fieldInfo">
+                        <!--
+                        JINJA LOGIC:
+                        editing Page
+                        If edit button clicked = render editable user profile. 
+                        -->
+
                         {% if not editPage +%}
                                 <form class="editProf" method="post">
+                                    <!-- JINJA LOGIC: checks to see if own page or not (enable/disable ability to edit page) -->
                                     <h2>About{% if myPage +%}<button class="editProf" id="editProf" name="editProf" value=True type="submit">&#9998</button>{% endif %}</h2>
                                 </form>
-
-                            <!-- <h3>Name</h3><p>{{ uName }}</p><br> -->
-                            <!-- <h2>About:</h2><br> -->
                             <h3>Preferred Name: </h3><p id="prefNickName">{{ prefName }}</p><br>
                             <h3>Birthday: </h3><p id="prefBirthday">{{ dob }}</p><br>
                             <h3>Gender: </h3><p id="prefGender">{{ gender }}</p><br>
@@ -203,7 +218,11 @@
                         {% endif %}
                     </div>
             </div>
-
+            <!--
+            JINJA LOGIC:
+            If editing profile page search for buddy button = disabled
+            If not editing profile page search for buddy button = enabled
+            -->
             <div class="findBuddyPane">
                 {% if editPage +%}
                 <a class="searchForBuddyBtn" href="{{ url_for('auth.findBuddy') }}"> <button class="searchForBuddyBtn" id="searchForBuddy" type="button" disabled>&#128683</button></a>
@@ -217,10 +236,14 @@
             </div>
 
         </div><!--End of div.container-->
+        <!--
+        JS SCRIPT: 
+        Refreshes page on view.
+        Handles confirmation alert for delete account
+        -->
         <script src="{{ url_for('static', filename='js/profilePage.js')}}"></script>
-        <!-- <script src="..\js\profilePage.js"></script> -->
     </body>
-    
+    <!-- GYMBUDDY ABOUT: routes to aboutUs and userGuide page -->
     <center><p>©Gym Buddy 
     | <a href="{{ url_for('main_views.aboutUs') }}" target="blank">About Us</a>
     | <a href ="{{ url_for('main_views.usersGuide') }}" target =blank>User's Guide</a></p></center>

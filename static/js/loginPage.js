@@ -6,8 +6,12 @@
  * DATE: April 4, 2023
  */
 
-// const submit = document.getElementById("loginForm").addEventListener("submit", submitFunction);
 
+
+/**
+ * Handles login page buttons.
+ * Routes to profile page or create account.
+ */
 const createAcc = document.getElementById("createAccountBtn").addEventListener("click", goToCreateAcc);
 
 

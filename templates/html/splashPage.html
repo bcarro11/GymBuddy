@@ -4,41 +4,48 @@
     MEMBERS: ​Brenden Carroll, Stefani Page, Elina Tsykhmistrenko, Justin White, Hamza Zgidou​ 
     COURSE: CMSC 495:7383
     FILE: login.html
-    DATE: April 1, 2023
+    DATE: May 2, 2023
 -->
  <html>
     <head>
-        <!-- <link rel="stylesheet" href="..\css\mainStyleSheet.css"> -->
+        <!--
+        STYLE/SCRIPT REFERENCES
+            CSS: mainStyleSheet.css
+            FONT: Roboto font from Google.
+        -->      
         <link rel="stylesheet" href="{{ url_for('static', filename='css/mainStyleSheet.css')}}">
-
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet"> 
     </head>
     
     <body>
-
-            <div class="defaultContainer">
-                <div class="grid1">
-                    <img src="{{ url_for('static', filename='imgs/GymLogo.png')}}" class="logo">
-                </div>
-                
-                <div class="grid2">
-                        <h1>
-                            {{ message }} {{ usr }}
-                        </h1> 
-                        {% if error %}
-                            <p class="error"><strong>{{error}}</strong>
-                        {% endif %}
-                        {% if buttonName == "Back" %}
-                            <a href="{{ url_for('main_views.profilePage', userID=id) }}"> <button id="cancelSearch" type="button">{{buttonName}}</button></a>
-                        {% elif buttonName == "OK" %}
-                            <a href="{{ url_for('main_views.loginPage') }}"> <button id="cancelSearch" type="button">{{buttonName}}</button></a>
-                        {% endif %}
-                </div>
-                
+        <!-- DEFAULT CONTAINER: main grid container -->
+        <div class="defaultContainer">
+            <!-- GRID1: Gym Buddy Logo -->
+            <div class="grid1">
+                <img src="{{ url_for('static', filename='imgs/GymLogo.png')}}" class="logo">
             </div>
-
-    </body>
-    
+            <!-- GRID2: Utility area for multi-purpose splash page. -->            
+            <div class="grid2">
+                    <!--
+                    JINJA LOGIC:
+                    Pass message, and type of button based on need for splash page.
+                    (e.g.,) If button = back, route to profile,
+                            If button = OK, route to login page.
+                    -->
+                    <h1>
+                        {{ message }} {{ usr }}
+                    </h1> 
+                    {% if error %}
+                        <p class="error"><strong>{{error}}</strong>
+                    {% endif %}
+                    {% if buttonName == "Back" %}
+                        <a href="{{ url_for('main_views.profilePage', userID=id) }}"> <button id="cancelSearch" type="button">{{buttonName}}</button></a>
+                    {% elif buttonName == "OK" %}
+                        <a href="{{ url_for('main_views.loginPage') }}"> <button id="cancelSearch" type="button">{{buttonName}}</button></a>
+                    {% endif %}
+            </div>            
+        </div>
+    </body>    
 </html>

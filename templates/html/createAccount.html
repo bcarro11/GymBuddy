@@ -4,11 +4,15 @@
     MEMBERS: ​Brenden Carroll, Stefani Page, Elina Tsykhmistrenko, Justin White, Hamza Zgidou​ 
     COURSE: CMSC 495:7383
     FILE: createAccount.html
-    DATE: April 1, 2023
+    DATE: April 12, 2023
 -->
  <html>
     <head>
-        <!-- <link rel="stylesheet" href="..\css\mainStyleSheet.css"> -->
+        <!--
+        STYLE/SCRIPT REFERENCES
+            CSS: mainStyleSheet.css
+            FONT: Roboto font from Google.
+        -->        
         <link rel="stylesheet" href="{{ url_for('static', filename='css/mainStyleSheet.css')}}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,60 +20,57 @@
     </head>
     
     <body>
-        
-            <div class="defaultContainer">
-                
-                <div class="grid3">
-                    <div class="centerAll">
-                        <h1 id="createAccountTitle">Gym Buddy</h1>
-                        <h2>Create Account</h2>
-                        {% if error %}
-                            <p class="error"><strong>{{error}}</strong>
-                        {% endif %} 
-                    </div>
-                    <!--
-                        Create User Form:
-                        Form contains all data for user account creation.
-                    -->                    
-                    <form id="createForm" method="post">
-                            <label id="defaultLabel" for="prefName">Preferred Name*</label>
-                            <input class="createAccInput" id="prefName" type="text" placeholder="Preferred Name" name="prefName" required></input>
-
-                            <label id="defaultLabel" for="email">E-Mail Address*</label>
-                            <input class="createAccInput" id="email" type="text" placeholder="E-Mail" name="email" required></input>
-
-                            <label id="defaultLabel" for="pwd1 pwd2">Password*</label>                            
-                            <input class="createAccInput" id="pwd1" type="password" placeholder="At least 8 characters" name="pwd1" required></input>
-                            <input class="createAccInput" id="pwd2" type="password" placeholder="Re-Enter Password" name="pwd2" required></input>
-
-                            <!-- <label id="defaultLabel" for="nickName">Nickname</label>
-                            <input class="createAccInput" id="nickName" type="text" placeholder="(optional) Nickname" name="nname"></input> -->
-
-                            <label id="defaultLabel" for="dateOfBirth">Date of Birth*</label>
-                            <input class="createAccInput" id="dateOfBirth" type="date" name="dateOfBirth" required></input>
-
-                            <label id="defaultLabel" for="gender">Gender*</label>
-                            <select class="createAccInput" name="gender" id="gender" required>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                                <option value="nonBinary">Non-Binary</option>
-                            </select>
-
-                            <label id="defaultLabel" for="prefGym">Preferred Gym*</label>
-                            <select class="createAccInput" name="prefGym" id="prefGym" required>
-                                <option value="goldsGym">Gold's Gym</option>
-                                <option value="planetFitness">Planet Fitness</option>
-                                <option value="LAFitness">LA Fitness</option>
-                            </select>
-
-                        <button id="createAccBtn" type="submit">Submit</button>
-                        <button id="cancelCreateBtn" type="button">Cancel</button>
-                    </form>  
+        <div class="defaultContainer">
+            <!-- GRID3: Title and Jinja logic for informing user of errors. -->
+            <div class="grid3">
+                <div class="centerAll">
+                    <h1 id="createAccountTitle">Gym Buddy</h1>
+                    <h2>Create Account</h2>
+                    {% if error %}
+                        <p class="error"><strong>{{error}}</strong>
+                    {% endif %} 
                 </div>
-                
+                <!--
+                CREATE USER FORM
+                Form contains all data for user account creation.
+                -->                    
+                <form id="createForm" method="post">
+                        <label id="defaultLabel" for="prefName">Preferred Name*</label>
+                        <input class="createAccInput" id="prefName" type="text" placeholder="Preferred Name" name="prefName" required></input>
+
+                        <label id="defaultLabel" for="email">E-Mail Address*</label>
+                        <input class="createAccInput" id="email" type="text" placeholder="E-Mail" name="email" required></input>
+
+                        <label id="defaultLabel" for="pwd1 pwd2">Password*</label>                            
+                        <input class="createAccInput" id="pwd1" type="password" placeholder="At least 8 characters" name="pwd1" required></input>
+                        <input class="createAccInput" id="pwd2" type="password" placeholder="Re-Enter Password" name="pwd2" required></input>
+
+                        <label id="defaultLabel" for="dateOfBirth">Date of Birth*</label>
+                        <input class="createAccInput" id="dateOfBirth" type="date" name="dateOfBirth" required></input>
+
+                        <label id="defaultLabel" for="gender">Gender*</label>
+                        <select class="createAccInput" name="gender" id="gender" required>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="nonBinary">Non-Binary</option>
+                        </select>
+
+                        <label id="defaultLabel" for="prefGym">Preferred Gym*</label>
+                        <select class="createAccInput" name="prefGym" id="prefGym" required>
+                            <option value="goldsGym">Gold's Gym</option>
+                            <option value="planetFitness">Planet Fitness</option>
+                            <option value="LAFitness">LA Fitness</option>
+                        </select>
+
+                    <!-- BUTTONS - submit create account and cancel buttons -->
+                    <button id="createAccBtn" type="submit">Submit</button>
+                    <button id="cancelCreateBtn" type="button">Cancel</button>
+                </form>  
             </div>
-            <!-- <script src="..\js\createAccount.js"></script> -->
-            <script src="{{ url_for('static', filename='js/createAccount.js')}}"></script>
-    </body>
-    
+            
+        </div>
+        <!-- IMPORT JS - handles cancel button -->
+        <script src="{{ url_for('static', filename='js/createAccount.js')}}"></script>
+</body>
+
 </html>

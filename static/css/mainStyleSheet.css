@@ -4,21 +4,44 @@
     COURSE: CMSC 495:7383
     FILE: mainStyleSheet.css
     DATE: April 1, 2023
+    REFERENCED BY:
+        - login.html
+        - createAccount.html
+        - profPicUpload.html
+        - profSuccess.html 
+        - splashPage.html       
+
 */
 
+
+/* 
+    HTML/BODY
+    Handles Background of entire page,
+    and overflow (hidden).
+*/
 html {
     background: linear-gradient(-45deg, #f6f8f7, #b6f3ff);
-    /* background-color: #ffffff; */
     background-size: 250% 250%;
     height: auto
 }
 
+/*
+    LOGO FORMATTING
+*/
 .logo {
     text-align: center;
     text-justify: center;
     width: 40%;
 }
 
+/*  
+    GRID LAYOUT 
+    (varies based on html referencing this sheet):
+    defaultContainer - Main container
+    grid1 - title box/Logo
+    grid2 - main dispaly area
+    grid3 - buttons/inputs
+ */
 .defaultContainer {
     display: grid;
     justify-content: center;
@@ -26,19 +49,14 @@ html {
     gap: 4px;
     align-items: center;
     justify-items: center;
-    /* text-align: center; */
-    /* text-justify: center; */
-}
 
+}
 .grid1 {
     align-self: center;
     justify-self: center;
     text-align: center;
     text-justify: center;
 }
-
-
-
 .grid2 {
     background-color: #ffffff;
     padding: 20px 20px;
@@ -54,21 +72,19 @@ html {
     position: relative;
     text-align: center;
 }   
-
 .grid3 {
-    /* display: inline-grid; */
-    /* display: block; */
     grid-template-columns: 10%;
-    /* justify-content: center; */
-    /* align-content: center; */
     background-color: #ffffff;
     padding: 20px 20px;
     border: #008ca8;
     border-style: solid;
 }
 
+/*  
+    HELPER CLASS
+    centers all.
+*/
 .centerAll {
-    /* display: block; */
     text-align: center;
     text-justify: center;
     align-content: center;
@@ -77,30 +93,26 @@ html {
     align-items: center;
 }
 
-/* input {
-    width: 90%;
-    padding: 15px 20px;
-    margin: auto;
-    margin-bottom: 10px;
-    display: block;
-    border: 1px solid #008ca8;
-    box-sizing: border-box;
-    border-radius: 25px;
-    
-} */
+/*
+    PROFILE PICTURE INPUT    
+    Handles input for profile picture.
+*/
 input.profPicIn {
     width: 90%;
     padding: 15px 20px;
     margin: auto;
     margin-bottom: 10px;
     display: block;
-    /* border: 1px solid #008ca8; */
     box-sizing: border-box;
     border-radius: 25px;
     text-align: center;
     
 }
 
+/*
+    DEFAULTS
+    Default label and input formatting.
+*/
 #defaultInput {
     width: 90%;
     padding: 15px 20px;
@@ -112,7 +124,20 @@ input.profPicIn {
     border-radius: 25px;
     
 }
+#defaultLabel {
+    padding: 15px 20px;
+    font-family: 'Roboto';
+    text-justify: left;
+    text-align: left;
+    align-items: left;
+    align-content: left;
+}
 
+/*
+    CREATE ACCOUNT FORMATTING
+    Formatting for create Account:
+    Input fields and selector (drop-down) fields.
+*/
 input.createAccInput {
     width: 100%;
     padding: 15px 20px;
@@ -122,9 +147,7 @@ input.createAccInput {
     border: 1px solid #008ca8;
     box-sizing: border-box;
     border-radius: 25px;
-    
 }
-
 select.createAccInput {
     width: 100%;
     padding: 15px 20px;
@@ -133,9 +156,18 @@ select.createAccInput {
     display: block;
     border: 1px solid #008ca8;
     box-sizing: border-box;
-    border-radius: 25px;
-    
+    border-radius: 25px;   
 }
+#createAccountTitle {
+    margin-left: 5em;
+    margin-right: 5em;
+}
+
+/* 
+    BUTTON FORMATTING
+    Button formatting and hover actions.
+    Includes file-selctor-button formatting for profile pic upload.
+*/
 input::file-selector-button,
 button {
     background-color: #008ca8;
@@ -150,48 +182,32 @@ button {
     margin-left: auto;
     margin-right: auto;
 }
-
-
 button:hover {
     opacity: 90%;
 }
 
+/*
+    HEADERS & TEXT
+    Text/font formats and colors.
+*/
 h1 {
     font-family: 'Roboto';
     color: #008ca8;
 }
-
 h2 {
     font-family: 'Roboto';
 }
-
-.error {
+#forgot {
+    font-family: 'Roboto';
+}
+.error { /*Error message font*/
     font-family: 'Roboto';
     color: red;
 }
 
-#forgot {
-    font-family: 'Roboto';
-}
-
-#createAccountTitle {
-    margin-left: 5em;
-    margin-right: 5em;
-}
-
-#defaultLabel {
-    padding: 15px 20px;
-    font-family: 'Roboto';
-    text-justify: left;
-    text-align: left;
-    align-items: left;
-    align-content: left;
-}
-
-
 /* MESSAGE LAYOUT */
 
-.box {
+/* .box {
     margin: 25px;
     border: 1px solid black;
 }
@@ -229,13 +245,13 @@ h2 {
 .send-btn:hover {
     background-color: darkblue;
   }
-  /* Rounded message cards */
-  .msg-card {
+
+.msg-card {
     border-radius: 10px;
     border: 1px solid #ccc;
     padding: 10px;
     margin-bottom: 10px;
   }
-  html {
+html {
     font-size: 20px;
-}
+} */

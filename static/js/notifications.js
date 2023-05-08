@@ -1,3 +1,15 @@
+/**
+ * GROUP: Gym Buddy
+ * MEMBERS: ​Brenden Carroll, Stefani Page, Elina Tsykhmistrenko, Justin White, Hamza Zgidou​ 
+ * COURSE: CMSC 495:7383
+ * FILE: notifactions.js
+ * DATE: May 4, 2023
+ */
+
+/**
+ * Asynchronous request for message/match notifications.
+ */
+
 async function fetchNotifications(){
     let res = await fetch('/getnotifications');
     let json = await res.json();

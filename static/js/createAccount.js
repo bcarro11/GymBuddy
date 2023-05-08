@@ -6,6 +6,10 @@
  * DATE: April 4, 2023
  */
 
+/**
+ * Handles cancel button on create account page 
+ * Routes back to login page.
+ */
 const cnclCreate = document.getElementById("cancelCreateBtn").addEventListener("click", goHome);
 
 function goHome(){

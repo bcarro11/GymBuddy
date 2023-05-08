@@ -3,12 +3,17 @@
     GROUP: Gym Buddy
     MEMBERS: ​Brenden Carroll, Stefani Page, Elina Tsykhmistrenko, Justin White, Hamza Zgidou​ 
     COURSE: CMSC 495:7383
-    FILE: createAccount.html
-    DATE: April 1, 2023
+    FILE: messageList.html
+    DATE: May 1, 2023
 -->
  <html>
     <head>
-        <!-- <link rel="stylesheet" href="..\css\findBuddy.css"> -->
+        <!--
+        STYLE/SCRIPT REFERENCES
+          CSS: messageList.css
+          FONT: Roboto font from Google.
+          JS: notification.js
+        -->        
         <link rel="stylesheet" href="{{ url_for('static', filename='css/messageList.css')}}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,30 +22,42 @@
     </head>
 
     <body>
+      <!-- ALERT: alert notifications for new messages/matches -->
       <div class="alert" id="alert-div" style="width: 100%;">
         <p class="alert-text" id="alert-container" style="display: none; justify-content: space-between; width: 100%; background-color: lightsalmon;"><span id="alert-type" style="font-weight: bold;"></span> | <span id="alert-message" style="overflow: hidden;"></span><span class="close-btn" style="float: right; font-size: 20px; transition: 0.2s; font-weight: bold; cursor: pointer; margin-left: auto; margin-right: 5px;" onclick="this.parentElement.style.display='none'">&times;</span></p>
-      </div>        
+      </div>
+        <!-- CONTAINER: main grid container -->         
         <div class="container">
+          <!-- NAVBAR: Navigation Bar --> 
           <div class="navBar">
             <ul class="navList">
                 <li><a title="Home" id="home" href="{{ url_for('main_views.profilePage', userID=id) }}">&#x1F3E0</a></li>
                 <li><a title="Messages" id="mail" href="{{ url_for('auth.messagesPage') }}">&#x1F4EC</a></li>                    
                 <li><a title="Logout" id="logout" href="{{ url_for('auth.logout') }}">👋</a></li>
-                <!-- <li><a title="Logout" id="logout" href="#logout">&#x1F44B</a></li> -->
             </ul>
           </div>
-            <div class="grid1">
+           <!-- GRID1: Title -->
+          <div class="grid1">
                 <h1 id="createAccountTitle">Gym Buddy</h1>
                 <h2>Your Inbox</h2>
                 <p class="error"><strong>{{currentUserName}}</strong>
             </div>
+            <!-- GRID2: List of all user messages -->
             <div class="grid2">
-                <div class="scrollable">                    
+                <div class="scrollable">
+                  <!--
+                  JINJA LOGIC:
+                  Jinja logic for iterating through and printing inbox messages.
+                  Styling changes based on whether message is marked as seen or not in DB.
+                  Lists all user messages.
+                  -->                                      
                   {% for messagepair in messagepairs |reverse%}
                     {% if messagepair[1].seen %}
+                    <!-- a href - makes box of message routable (link) -->
                     <a href="/message/{{ messagepair[0].id }}" id="messagesBox" class="msgBox">
                       <div class="msg-card-box">
                         <object>
+                          <!-- a href - makes user name routable (link) -->
                           <a href="/profilePage/{{ messagepair[0].id }}">
                             <div id="from">
                               From: {{ messagepair[0].prefname }}
@@ -71,12 +88,12 @@
                   {% endfor %}
                 </div>
             </div>
+            <!-- GRID3: Button Handling -->
             <div class="grid3">                  
                 <a href="{{ url_for('main_views.profilePage', userID=id) }}"> <button id="cancelSearch" type="button">Return To Profile</button></a>
             </div>
         </div>
+        JS SCRIPT: Refreshes message 
         <script src="{{ url_for('static', filename='js/messageList.js')}}"></script>
-        <!-- <script src="..\js\findBuddy.js"></script> -->
-    </body>
-    
+    </body>    
 </html>

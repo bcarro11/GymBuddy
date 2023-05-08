@@ -4,19 +4,35 @@
     COURSE: CMSC 495:7383
     FILE: matchesPage.css
     DATE: April 8, 2023
+    REFERENCED BY:
+        - matchesPage.html
+
 */
 
+/* 
+    HTML/BODY
+    Handles Background of entire page,
+    and overflow (hidden).
+*/
 html {
     background: linear-gradient(-45deg, #f6f8f7, #b6f3ff);
     background-color: #ffffff;
     background-size: 250% 250%;
     height: auto;
 }
-
 body {
     overflow: hidden;
 }
 
+/* 
+    GRID LAYOUT
+    Container - Main container
+    navBar - navigation bar    
+    grid1 - title box
+    grid2 - main dispaly area
+    (grid2) scrollable - handles scroll feature inside grid2 
+    grid3 - buttons/inputs
+ */
 .container {
     height: 98vh;
     display: grid;
@@ -25,14 +41,19 @@ body {
     justify-content: center;
     gap: 1px;
 }
-
+.navBar {
+    grid-row: 1 / 2;
+    background-color: #008ca8;
+    border-radius: 25px;
+    list-style: none;
+    text-align: center;
+}
 .grid1 {
     grid-row: 2 / 3;
     background-color: #ffffff;
     border: #008ca8;
     border-style: solid;
 }
-
 .grid2 {
     grid-row: 3 / 4;
     display: grid;
@@ -41,7 +62,6 @@ body {
     border-style: solid;
     overflow: hidden;
 }
-
 .grid3 {
     grid-row: 4 / 5;    
     background-color: #ffffff;
@@ -52,14 +72,11 @@ body {
     overflow-y: scroll;
     padding: 20px;
 }
-.navBar {
-    grid-row: 1 / 2;
-    background-color: #008ca8;
-    border-radius: 25px;
-    list-style: none;
-    text-align: center;
-}
 
+/* 
+    NAVBAR LIST
+    Navbar objects formatting.
+*/
 .navList li {
     display: inline-block;
     list-style-type: none;
@@ -68,22 +85,10 @@ body {
     font-size: xx-large;
 }
 
-#matchesList {
-    list-style-type: none;
-    border-style: solid;
-    padding: 5px;
-    color: #008ca8;
-}
-
-#profilePic {
-    border-radius: 50%;
-    width: 160px; 
-    height: 160px;
-    float: left;
-}
-
-
-
+/*
+    MATCH
+    Formatting for match information/boxes
+*/
 .matchBoxes {
     background-color: #ffffff;
     padding: 10px;
@@ -91,85 +96,34 @@ body {
     justify-self: right;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
 .match{
     padding: 5px;
     text-decoration: none;
 }
-
-#matchInfoGood,
-#matchInfo {
+#matchInfo { /* Matching info and rating*/
     text-decoration: none;
     font-family: 'Roboto';
     color:black;
     text-align: center;
 }
-
-#matchInfoBetter{
-    text-decoration: none;
-    font-family: 'Roboto';
-    color:silver;
-    text-align: center;
-}
-
-#matchInfoBest {
-    text-decoration: none;
-    font-family: 'Roboto';
-    color:goldenrod;
-    text-align: center;
-}
-
-hr {
-    width: 50%;
-    align-self: center;
-}
-
-#matchInfoName {
+#matchInfoName { /* formatting for match's name */
     text-decoration: none;
     font-family: 'Roboto';
     color:#008ca8;
     text-align: center;
     font-size: large;
 }
-
-a {
-    text-decoration: none;
+#profilePic { /*Profile Pic formatting*/
+    border-radius: 50%;
+    width: 160px; 
+    height: 160px;
+    float: left;
 }
 
-h1 {
-    font-family: 'Roboto';
-    color: #008ca8;
-    text-align: center;
-}
-
-h2 {
-    font-family: 'Roboto';
-    text-align: center;
-}
-
-h3 {
-    font-family: 'Roboto';
-    text-align: center;
-}
-
-h4 {
-    font-family: 'Roboto';
-    text-align: left;
-    margin-left: 10px;
-    margin-right: 10px
-}
-
-
-#subj {
-    font-family: 'Roboto';
-    color: #008ca8;
-}
-
-hr {
-    opacity: 70%;
-    color: #008ca8;
-}
-
+/* 
+    BUTTON FORMATTING
+    Button formatting and hover actions.
+*/
 button {
     background-color: #008ca8;
     color: white;
@@ -184,11 +138,48 @@ button {
     margin-right: auto;
     margin-top: 10px;
 }
-
 button:hover {
     opacity: 90%;
 }
 
-#defaultLabel {
+/*
+    HEADERS & TEXT
+    Text/font formats and colors.
+*/
+h1 {
     font-family: 'Roboto';
+    color: #008ca8;
+    text-align: center;
+}
+h2 {
+    font-family: 'Roboto';
+    text-align: center;
+}
+h3 {
+    font-family: 'Roboto';
+    text-align: center;
+}
+h4 {
+    font-family: 'Roboto';
+    text-align: left;
+    margin-left: 10px;
+    margin-right: 10px
+}
+
+/*
+    HORIZONTAL RULE, HYPERLINK etc.
+    Formatting for HR, A and additional IDs
+*/
+hr {
+    width: 50%;
+    align-self: center;
+    opacity: 70%;
+    color: #008ca8;
+}
+a {
+    text-decoration: none;
+}
+#subj {
+    font-family: 'Roboto';
+    color: #008ca8;
 }
