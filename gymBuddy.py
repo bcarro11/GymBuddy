@@ -1,8 +1,9 @@
-# GROUP: Gym Buddy
-# MEMBERS: ​Brenden Carroll, Stefani Page, Elina Tsykhmistrenko, Justin White, Hamza Zgidou​ 
-# COURSE: CMSC 495:7383
-# FILE: gymBuddy.py
-# DATE: April 9, 2023
+"""
+    GROUP: Gym Buddy
+    MEMBERS: ​Brenden Carroll, Stefani Page, Elina Tsykhmistrenko, Justin White, Hamza Zgidou​ 
+    COURSE: CMSC 495:7383
+    FILE: gymBuddy.py
+"""
 
 from flask import Flask, render_template, request, flash, redirect, url_for
 from flask_login.login_manager import LoginManager

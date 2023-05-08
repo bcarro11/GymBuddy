@@ -1,3 +1,10 @@
+"""
+    GROUP: Gym Buddy
+    MEMBERS: ​Brenden Carroll, Stefani Page, Elina Tsykhmistrenko, Justin White, Hamza Zgidou​ 
+    COURSE: CMSC 495:7383
+    FILE: auth.py
+"""
+
 from flask import Blueprint, request, redirect, url_for, render_template
 from flask_login import current_user, login_required, logout_user
 from models import db, User, Exercise, Message, Gym
@@ -206,7 +213,6 @@ def logout():
     msg = "Logged Out Successfully!"
     btn = "OK"
     return splashPage(msg, btn)
-    # return redirect(url_for("main_views.login"))
 
 @auth.route('/splashPage')
 def splashPage(msg, btn):

@@ -1,3 +1,10 @@
+"""
+    GROUP: Gym Buddy
+    MEMBERS: ​Brenden Carroll, Stefani Page, Elina Tsykhmistrenko, Justin White, Hamza Zgidou​ 
+    COURSE: CMSC 495:7383
+    FILE: main_views.py
+"""
+
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import current_user, user_logged_in, user_unauthorized, login_user, login_required
 from datetime import date
@@ -37,8 +44,6 @@ def loginPage():
         user = User.passwordIsMatch(usr, hashedpwd)
         if user:
             login_user(user)
-            # current_user.hasMatches = False
-            # db.session.commit()
             return redirect(url_for('main_views.profilePage', userID = user.id))
         else:
             return render_template("html/login.html", error="Invalid Login")
@@ -69,7 +74,7 @@ def createAccount():
         prefGym = str(request.form.get('prefGym'))
         profPic = str('default.png')
 
-        #Validation here?
+        #Input Validation
         if not (len(password1) >= 8):
             valid = False
             msg = "Password invalid"
@@ -173,7 +178,7 @@ def profilePage(userID):
             current_user.occupationStr = str(request.form.get('occupation'))
             current_user.hobbiesStr = str(request.form.get('hobbies'))
             db.session.commit()
-
+        # If user is deleting account and confirmation is true, route to deleteaccount function for removal.
         elif 'deleteAccount' in request.form:
             deleted = request.form.get("deleteAccount")
             if deleted == "True":
@@ -233,10 +238,9 @@ def profPicUpload():
             return redirect(request.url)
         if allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            #file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
             
-            # upload to DB here
+            # upload to DB
             print(filename)
             current_user.profilePic = str(filename)
             db.session.commit()
