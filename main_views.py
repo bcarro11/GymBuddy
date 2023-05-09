@@ -279,6 +279,7 @@ def aboutUs():
 def feedbackDone():
     return render_template("html/feedback.html")
 
+#Gets feedback from user and sends to local text file
 @main_views.route('/submit', methods=['POST'])
 def get_input_text():
     name = request.form['name']
