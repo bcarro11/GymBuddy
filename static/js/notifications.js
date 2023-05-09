@@ -29,7 +29,7 @@ async function fetchNotifications(){
         //window.alert(json)
         $('#ajaxUpdate').load(document.URL +  ' #ajaxUpdate');
     }
-    setTimeout(fetchNotifications, 3000);
+    setTimeout(fetchNotifications, 30000);
 }
 
 fetchNotifications();
