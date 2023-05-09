@@ -27,8 +27,9 @@ async function fetchNotifications(){
             window.location.href = '/message/' + String(userid);
         });
         //window.alert(json)
+        $('#ajaxUpdate').load(document.URL +  ' #ajaxUpdate');
     }
-    setTimeout(fetchNotifications, 30000);
+    setTimeout(fetchNotifications, 3000);
 }
 
 fetchNotifications();

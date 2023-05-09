@@ -15,6 +15,7 @@
           FONT: Roboto font from Google.
           JS: notification.js
         -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/messageList.css')}}">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,7 +52,7 @@
 		</div>
 		<!-- GRID2: List of all user messages -->
 		<div class="grid2">
-			<div class="scrollable">
+			<div class="scrollable" id="ajaxUpdate">
 				<!--
                   JINJA LOGIC:
                   Jinja logic for iterating through and printing inbox messages.
